@@ -1,0 +1,19 @@
+:host {
+  display: block;
+}
+
+.paginator-btn {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.paginator-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.paginator-btn.active {
+  background-color: #3e9cda;
+  color: white;
+}

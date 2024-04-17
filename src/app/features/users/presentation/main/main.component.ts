@@ -25,6 +25,7 @@ import { iconScreen, translate } from '../config';
 import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
+import { PaginatorComponent } from '../components/paginator/paginator.component';
 
 @Component({
   selector: 'clients-main',
@@ -38,6 +39,8 @@ import { Store } from '@ngrx/store';
     LayoutListComponent,
     LayoutGridComponent,
     HeaderPagesComponent,
+    MainComponent,
+    PaginatorComponent
   ],
 
   encapsulation: ViewEncapsulation.None,
@@ -53,6 +56,7 @@ export class MainComponent implements OnInit, OnDestroy {
   layout: TLayout = 'list';
 
   items$: Observable<IUserState>;
+  itemsPage$: Observable<IUserState>;
   maxSize$: Observable<number>;
   fStore = new UserStoreService(this.store);
 
@@ -83,6 +87,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getsItemsPaginator();
     this.get();
   }
 
@@ -145,6 +150,37 @@ export class MainComponent implements OnInit, OnDestroy {
       offset: this.offset,
       sort: this.sort,
     };
+  }
+
+  currentPage: number = 1;
+  onPageChangePaginator(page: number): void {
+    this.currentPage = page;
+    this.updatePaginator(page,this.limit);
+  }
+  onLimitChangePaginator(event: number): void {
+    this.limit = event;
+    this.updatePaginator(0, event);
+    this._changeDetectorRef.detectChanges();
+  }
+
+  updatePaginator(page: number, limit: number): void {
+    this.url = this._router.url;
+    const params: IQueryUsers = {
+      filter: this.filter,
+      limit: limit,
+      offset: page,
+      sort: this.sort,
+    };
+    this.fStore.getUsers(params, 'user');
+    this.items$ = this.fStore.see();
+    this._changeDetectorRef.detectChanges();
+  }
+
+  getsItemsPaginator(): void {
+    const params = this.buildParams();
+    this.fStore.getUsers(params, 'user');
+    this.itemsPage$ = this.fStore.see();
+    this._changeDetectorRef.detectChanges();
   }
 
   ngOnDestroy(): void {
