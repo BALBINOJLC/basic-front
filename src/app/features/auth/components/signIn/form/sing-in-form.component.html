@@ -1,0 +1,24 @@
+<form [formGroup]="form" class="mt-8" #signInNgForm="ngForm">
+  <div class="rounded-md shadow-sm">
+    <!-- Email field -->
+    <app-form-email [formControlName]="'email'" [email]="_authService.signInForm?.email" (setEmail)="setEmail($event)"> </app-form-email>
+    <!-- Password field -->
+    <app-form-password formControlName="password" (setPassword)="setPassword($event)"></app-form-password>
+
+    <!-- Actions -->
+    <div class="flex justify-between w-full mt-1.5">
+      <mat-checkbox>{{ 'AUTH.SIGN_IN.BTN.REMEMBERME' | transloco }}</mat-checkbox>
+      <a class="text-md font-medium hover:underline flex items-center" [routerLink]="['/auth/forgot-password']">{{
+        'AUTH.SIGN_IN.BTN.FORGOT_PASSWORD' | transloco
+      }}</a>
+    </div>
+
+    <!-- Submit button -->
+    <button class="w-full mt-6" mat-flat-button [color]="'primary'" [disabled]="form.disabled" (click)="signIn()">
+      <span *ngIf="!form.disabled">
+        {{ 'AUTH.SIGN_IN.BTN.SIGN_IN' | transloco }}
+      </span>
+      <mat-progress-spinner *ngIf="form.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+    </button>
+  </div>
+</form>

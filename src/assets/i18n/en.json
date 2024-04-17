@@ -1,0 +1,131 @@
+{
+  "AUTH": {
+    "SIGN_IN": {
+      "TITLE": "Sign In",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "SIGN_IN": "Sign In",
+      "FORGOT_PASSWORD": "Forgot Your Password?",
+      "CREATE_ACCOUNT": "Create Account",
+      "NO_ACCOUNT": "Don't have an account?",
+      "SIGN_IN_SUBTITLE": "Sign in to continue",
+
+      "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "Invalid email or password",
+        "REQUIERED": "Field is required",
+        "EMAIL": "Must enter a valid Email",
+        "PASSWORD_VALID": "The password is incorrect",
+        "PASSWORD_CONFIRM_ERROR": "Passwords do not match"
+      },
+      "FORMS": {
+        "EMAIL": "Email",
+        "MESSAGE": "Sign in successful",
+        "PASSWORD": "Password",
+        "REMEMBERME": "Remember Me",
+        "FORGOT_PASSWORD": "Forgot Your Password?",
+        "CREATE_ACCOUNT": "Create Account"
+      },
+      "BTN": {
+        "SIGN_IN": "Sign In",
+        "FORGOT_PASSWORD": "Forgot Your Password?",
+        "REMEMBERME": "Remember Me"
+      }
+    },
+    "SIGN_UP": {
+      "TITLE": "Sign Up",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "SIGN_UP": "Register",
+      "ALREADY_ACCOUNT": "Already have an account?",
+      "SIGN_IN": "Sign In!",
+      "SIGN_UP_SUBTITLE": "Register to continue",
+      "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "Invalid email or password",
+        "REQUIERED": "Field is required",
+        "EMAIL": "Must enter a valid Email",
+        "PASSWORD_VALID": "The password is incorrect",
+        "PASSWORD_CONFIRM_ERROR": "Passwords do not match"
+      },
+      "FORMS": {
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "MESSAGE": "Registration successful",
+        "PASSWORD": "Password",
+        "CONFIRM_PASSWORD": "Confirm Password",
+        "TERMS_AND_CONDITIONS_1": "I accept the ",
+        "TERMS_AND_CONDITIONS_2": "Terms and Conditions",
+        "TERMS_AND_CONDITIONS_3": " and ",
+        "TERMS_AND_CONDITIONS_4": "the Privacy Policy"
+      },
+      "BTN": {
+        "SIGN_UP": "Create Account",
+        "SIGN_IN": "Sign In"
+      }
+    },
+    "FORGOT_PASSWORD": {
+      "TITLE": "Forgot Your Password?",
+      "COMPLETE_FORM": "Complete the form to reset your password",
+      "RETURN_TO": "Go to",
+      "SIGN_IN": "Sign In"
+    },
+    "BTN": {
+      "RESET_LINK": "Send Reset Link"
+    }
+  },
+
+  "USER_NAV": {
+    "SIGNED_IN_AS": "Signed in as",
+    "SIGN_OUT": "Sign out",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings",
+    "HELP": "Help",
+    "STATUS": {
+      "ONLINE": "Online",
+      "OFFLINE": "Offline",
+      "AWAY": "Away",
+      "BUSY": "Busy",
+      "INVISIBLE": "Invisible",
+      "TITLE": "Status"
+    }
+  },
+
+  "FORMS": {
+    "FIELDS": {
+      "SEARCH": "Search",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "CONFIRM_PASSWORD": "Confirm Password",
+      "FIRSTNAME": "First Name",
+      "LASTNAME": "Last Name",
+      "PHONE": "Phone"
+    },
+    "ERRORS": {
+      "REQUIRED": "Field required",
+      "INVALID_EMAIL": "Invalid email",
+      "MIN_LENGTH": "Minimum character length not met",
+      "MAX_LENGTH": "Maximum character length exceeded",
+      "PASSWORDS_DONT_MATCH": "Passwords do not match"
+    }
+  },
+
+  "BTNS": {
+    "ADD": "Add",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "DELETE": "Delete",
+    "EDIT": "Edit",
+    "BACK": "Back",
+    "LOAD_MASIVE": "Carga Masiva"
+  },
+
+  "USER": {
+    "FIELDS": {
+      "FIRST_NAME": "First Name",
+      "LAST_NAME": "Last Name"
+    }
+  }
+}

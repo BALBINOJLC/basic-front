@@ -1,0 +1,7 @@
+# Ignore artifacts:
+*action.ts
+*reducer.ts
+*interface.ts
+tsconfig.json
+
+

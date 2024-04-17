@@ -1,0 +1,69 @@
+<div [formGroup]="form" class="flex-auto w-full min-w-60">
+  <!--Phone-->
+  <ng-container *ngIf="!showMultiArea">
+    <mat-form-field class="w-full">
+      <mat-label>{{ 'FORMS.FIELDS.PHONE' | transloco }}</mat-label>
+
+      <span matPrefix>{{ area }}</span>
+
+      <input matInput formControlName="phone" type="text" maxlength="9" #phone placeholder="912345678" />
+
+      <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matSuffix></mat-icon>
+      <mat-hint align="end">{{ phone.value.length }} / 9</mat-hint>
+      <mat-error *ngIf="form.get('phone').touched && form.get('phone').hasError('required')">
+        {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+      </mat-error>
+
+      <mat-error *ngIf="form.get('phone').touched && form.get('phone').hasError('minlength')">
+        {{ 'FORMS.ERRORS.MIN_LENGTH_1' | transloco }}
+        {{ form.get('phone').errors.minlength.requiredLength }}
+        {{ 'FORMS.ERRORS.MIN_LENGTH_2' | transloco }}
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+  <ng-container *ngIf="showMultiArea">
+    <mat-form-field class="w-full">
+      <mat-label>{{ 'FORMS.FIELDS.PHONE' | transloco}}</mat-label>
+
+      <input matInput formControlName="phone" type="text" placeholder="912345678" />
+      <mat-select class="mr-1.5" [formControlName]="'area'" matPrefix (valueChange)="setArea($event)">
+        <mat-select-trigger>
+          <span class="flex items-center">
+            <span
+              class="hidden sm:flex w-6 h-4 mr-1 overflow-hidden"
+              [style.background]="'url(\'/assets/icons/flags.png\') no-repeat 0 0'"
+              [style.backgroundSize]="'24px 3876px'"
+              [style.backgroundPosition]="getCountryByIso(form.get('area').value).flagImagePos"
+            ></span>
+            <span class="sm:mx-0.5 font-medium text-default">{{ getCountryByIso(form.get('area').value).code }}</span>
+          </span>
+        </mat-select-trigger>
+        <ng-container *ngFor="let country of countries; trackBy: trackByFn">
+          <mat-option [value]="country.iso">
+            <span class="flex items-center">
+              <span
+                class="w-6 h-4 overflow-hidden"
+                [style.background]="'url(\'/assets/icons/flags.png\') no-repeat 0 0'"
+                [style.backgroundSize]="'24px 3876px'"
+                [style.backgroundPosition]="country.flagImagePos"
+              ></span>
+              <span class="ml-2">{{ country.name }}</span>
+              <span class="ml-2 font-medium">{{ country.code }}</span>
+            </span>
+          </mat-option>
+        </ng-container>
+      </mat-select>
+
+      <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:phone'" matSuffix></mat-icon>
+      <mat-error *ngIf="form.get('phone').touched && form.get('phone').hasError('required')">
+        {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+      </mat-error>
+
+      <mat-error *ngIf="form.get('phone').touched && form.get('phone').hasError('minlength')">
+        {{ 'FORMS.ERRORS.MIN_LENGTH_1' | transloco }}
+        {{ form.get('phone').errors.minlength.requiredLength }}
+        {{ 'FORMS.ERRORS.MIN_LENGTH_2' | transloco }}
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+</div>

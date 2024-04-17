@@ -1,0 +1,12 @@
+<div>
+  <div class="w-full max-w-40 sm:w-40 mx-auto">
+    <img *ngIf="appConfig.scheme === 'dark'" [src]="appConfig.logoTextOnDark" />
+    <img *ngIf="appConfig.scheme === 'light'" [src]="appConfig.logoTextOnLight" />
+  </div>
+
+  <div class="header-sign-in-title">{{ 'AUTH.SIGN_UP.TITLE' | transloco }}</div>
+  <div class="not-account">
+    <span>{{ 'AUTH.SIGN_UP.ALREADY_ACCOUNT' | transloco }}</span>
+    <a class="header-sign-up" [routerLink]="['/auth/sign-in']">{{ 'AUTH.SIGN_UP.SIGN_IN' | transloco }}</a>
+  </div>
+</div>

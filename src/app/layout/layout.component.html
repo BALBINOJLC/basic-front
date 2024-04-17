@@ -1,0 +1,31 @@
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<!-- Empty layout -->
+<!-- ----------------------------------------------------------------------------------------------------- -->
+<empty-layout *ngIf="layout === 'empty'"></empty-layout>
+
+<ng-container *ngIf="user$ | async as user">
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+  <!-- Layouts with vertical navigation -->
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+
+  <!-- Classic -->
+  <classy-layout *ngIf="layout === 'classy'" [user]="user"></classy-layout>
+
+  <!-- Classy -->
+  <classic-layout *ngIf="layout === 'classic'" [user]="user"></classic-layout>
+
+  <!-- Compact -->
+  <compact-layout *ngIf="layout === 'compact'" [user]="user"></compact-layout>
+
+  <!-- Dense -->
+  <dense-layout *ngIf="layout === 'dense'" [user]="user"></dense-layout>
+
+  <!-- Thin -->
+  <thin-layout *ngIf="layout === 'thin'" [user]="user"></thin-layout>
+
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+  <!-- Settings drawer - Remove this to remove the drawer and its button -->
+  <!-- ----------------------------------------------------------------------------------------------------- -->
+</ng-container>
+
+<settings></settings>

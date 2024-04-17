@@ -1,0 +1,31 @@
+@mixin auth-title {
+  @apply mt-4 text-4xl font-extrabold tracking-tight leading-tight text-center;
+}
+
+.header-sign-in-title {
+  @include auth-title;
+}
+
+@mixin auth-subtitle {
+  @apply flex items-baseline mt-0.5 font-medium my-1 text-center justify-center mx-auto;
+}
+
+.header-subtitle {
+  @include auth-subtitle;
+}
+
+@mixin auth-not-account {
+  @apply flex items-baseline mt-0.5 font-medium justify-center;
+}
+
+.not-account {
+  @include auth-not-account;
+}
+
+@mixin auth-header-Sign-up {
+  @apply ml-1 hover:underline cursor-pointer;
+}
+
+.header-sign-up {
+  @include auth-header-Sign-up;
+}

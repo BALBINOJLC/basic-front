@@ -1,0 +1,33 @@
+{
+  "hosting": [
+    {
+      "source": ".",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "frameworksBackend": {
+        "region": "us-central1"
+      },
+      "site": "base-angular-dashboard",
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "source": ".",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+      "frameworksBackend": {
+        "region": "us-central1"
+      },
+      "site": "base-angular-sicrux",
+
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+<div class="flex flex-col w-full items-center h-full">
+  <!-- Header -->
+
+  <div class="py-10"></div>
+
+  <div class="w-full flex items-center justify-end p-6">
+    <a class="font-bold pr-15 cursor-pointer" (click)="close()">
+      <mat-icon>close</mat-icon>
+      <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+    </a>
+  </div>
+
+  <!-- Close button -->
+
+  <!-- Img Profile-->
+
+  <!-- Img Profile-->
+  <ng-container *ngIf="!editMode">
+    <ng-container>
+      <div class="flex flex-col xl:flex-row relative p-6 pt-0 sm:p-12 sm:pt-0">
+        <div class="flex flex-row p-6">
+          <div class="relative">
+            <div class="flex items-center justify-center w-32 h-32">
+              <img
+                class="h-full w-full rounded-full object-cover"
+                src="https://www.clipartkey.com/mpngs/m/208-2089363_user-profile-image-png.png"
+                alt="Imagen de Perfil de Usuario"
+              />
+            </div>
+          </div>
+        </div>
+
+        <view-details></view-details>
+        <!-- Right Actions Container -->
+        <div class="flex flex-grow flex-col items-end justify-start">
+          <div class="flex items-center">
+            <button mat-stroked-button (click)="toggleEditMode(true)">
+              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+              <span class="ml-2">{{ 'USER.FIELDS.EDIT' | transloco }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Edit mode -->
+  <ng-container *ngIf="editMode">
+    <ng-container *ngIf="user$ | async as user">
+      <!-- Contact form -->
+      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12 h-full">
+        <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [user]="user"></edit-details>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

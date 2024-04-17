@@ -1,0 +1,49 @@
+<div [formGroup]="form" class="mt-8">
+  <div class="rounded-md shadow-sm">
+    <!-- First Name -->
+    <mat-form-field class="w-full">
+      <mat-label>{{ 'AUTH.SIGN_UP.FORMS.FIRST_NAME' | transloco }}</mat-label>
+      <input matInput [formControlName]="'first_name'" />
+      <mat-error *ngIf="form.get('first_name')?.hasError('required')">
+        {{ 'AUTH.SIGN_UP.ERROR.REQUIRED' | transloco }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- LastName -->
+    <mat-form-field class="w-full">
+      <mat-label>{{ 'AUTH.SIGN_UP.FORMS.LAST_NAME' | transloco }}</mat-label>
+      <input matInput [formControlName]="'last_name'" />
+      <mat-error *ngIf="form.get('last_name')?.hasError('required')">
+        {{ 'AUTH.SIGN_UP.ERROR.REQUIRED' | transloco }}
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Email field -->
+    <app-form-email [formControlName]="'email'" (setEmail)="setEmail($event)"> </app-form-email>
+
+    <!-- Password field -->
+    <app-form-password formControlName="password" (setPassword)="setPassword($event)" [showConfirm]="true"></app-form-password>
+
+    <!-- Actions -->
+    <div class="flex justify-between w-full mt-1.5 mb-8">
+      <mat-checkbox [color]="'primary'">
+        <div class="not-account">
+          <span
+            >{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_1' | transloco }}
+            <a class="header-sign-up" [routerLink]="['/auth/sign-up']">{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_2' | transloco }}</a>
+            {{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_3' | transloco }}
+            <a class="header-sign-up" [routerLink]="['/auth/sign-up']">{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_4' | transloco }}</a>
+          </span>
+        </div>
+      </mat-checkbox>
+    </div>
+
+    <!-- Submit button -->
+    <button class="w-full mt-6y" mat-flat-button [color]="'primary'" [disabled]="form.disabled" (click)="signUp()">
+      <span *ngIf="!form.disabled">
+        {{ 'AUTH.SIGN_UP.BTN.SIGN_UP' | transloco }}
+      </span>
+      <mat-progress-spinner *ngIf="form.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+    </button>
+  </div>
+</div>

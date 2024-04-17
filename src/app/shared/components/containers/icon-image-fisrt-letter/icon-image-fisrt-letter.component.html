@@ -1,0 +1,50 @@
+<ng-container [ngSwitch]="itemType">
+  <div *ngSwitchCase="'USER'">
+    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'photo_url', name: 'display_name' }"></ng-template>
+  </div>
+  <div *ngSwitchCase="'PROJECT'">
+    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'logo', name: 'name' }"></ng-template>
+  </div>
+  <div *ngSwitchCase="'ENTERPRISE'">
+    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'logo', name: 'name' }"></ng-template>
+  </div>
+  <div *ngSwitchCase="'TEAM'">
+    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'logo', name: 'name' }"></ng-template>
+  </div>
+</ng-container>
+
+<!--User Icon-->
+<ng-template #icon let-dedault let-item let-file="file" let-name="name">
+  <div *ngVar="item[file] | imgProfile as dataImage" [matTooltip]="item[name]" matTooltipPosition="below">
+    <div
+      class="flex items-center justify-center w-full h-full font-bold"
+      [ngClass]="{ 'rounded-full': layoutType === 'ROUND', 'rounded-md': layoutType === 'SQUARE' }"
+      [ngStyle]="{
+        'background-color': dataImage?.color,
+        'min-width.rem': width,
+        'min-height.rem': height,
+        'max-width.rem': width,
+        'max-height.rem': height,
+        'font-size.rem': fontSize
+      }"
+    >
+      <div *ngIf="(dataImage | typeof) === 'object'">
+        {{ dataImage.charter }}
+      </div>
+      <img
+        [ngClass]="{ 'rounded-full': layoutType === 'ROUND', 'rounded-md': layoutType === 'SQUARE' }"
+        class="object-cover w-full h-full"
+        *ngIf="(dataImage | typeof) === 'string'"
+        src="{{ dataImage }}"
+        alt="image"
+        [ngStyle]="{
+          'min-width.rem': width,
+          'min-height.rem': height,
+          'max-width.rem': width,
+          'max-height.rem': height,
+          'font-size.rem': fontSize
+        }"
+      />
+    </div>
+  </div>
+</ng-template>

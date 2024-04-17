@@ -1,0 +1,30 @@
+<div [formGroup]="form" class="flex-auto w-full">
+  <ng-container *ngIf="!showLabel">
+    <div [formGroup]="form" class="flex-auto w-full">
+      <mat-form-field class="w-full mt-5">
+        <input matInput formControlName="email" [placeholder]="placeHolder" />
+
+        <mat-icon *ngIf="showIcon" class="icon-size-5"  matSuffix></mat-icon>
+        <mat-error *ngIf="emailControl.touched && emailControl.hasError('required')">
+          {{ 'AUTH.SIGN_IN.ERROR.REQUIRED' | transloco }}
+        </mat-error>
+        <mat-error *ngIf="emailControl.touched && !emailControl.hasError('required') && emailControl.hasError('email')">
+          {{ 'AUTH.SIGN_IN.ERROR.EMAIL' | transloco }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="showLabel">
+    <mat-form-field class="w-full">
+      <mat-label>{{ 'AUTH.SIGN_IN.FORMS.EMAIL' | transloco }}</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-icon *ngIf="showIcon" class="icon-size-5" matSuffix></mat-icon>
+      <mat-error *ngIf="emailControl.touched && emailControl.hasError('required')">
+        {{ 'AUTH.SIGN_IN.ERROR.REQUIRED' | transloco }}
+      </mat-error>
+      <mat-error *ngIf="emailControl.touched && !emailControl.hasError('required') && emailControl.hasError('email')">
+        {{ 'AUTH.SIGN_IN.ERROR.EMAIL' | transloco }}
+      </mat-error>
+    </mat-form-field>
+  </ng-container>
+</div>

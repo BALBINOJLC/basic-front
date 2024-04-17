@@ -1,0 +1,97 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<!-- Navigation -->
+
+<fuse-vertical-navigation
+  class="dark:bg-custom-2"
+  [mode]="isScreenSmall ? 'over' : 'side'"
+  [name]="'mainNavigation'"
+  [navigation]="navigation.default"
+  [opened]="!isScreenSmall"
+>
+  <!-- Navigation header hook -->
+  <ng-container fuseVerticalNavigationContentHeader>
+    <div class="flex items-center w-full p-4 pl-6">
+      <!-- Logo -->
+      <div class="flex items-center justify-center">
+        <img class="w-8" [src]="appConfig.logo" />
+      </div>
+      <!-- Components -->
+      <div class="flex items-center ml-auto">
+        <notifications></notifications>
+        <ng-container *ngIf="user">
+          <user [user]="user" [showAvatar]="true"></user>
+        </ng-container>
+      </div>
+    </div>
+    <!-- User -->
+    <div class="flex flex-col items-center w-full p-4">
+      <ng-container *ngIf="user">
+        <div class="relative">
+          <app-icon-image-fisrt-letter
+            [item]="user"
+            [itemType]="'USER'"
+            [width]="10"
+            [height]="10"
+            [fontSize]="5"
+            [layoutType]="'SQUARE'"
+          ></app-icon-image-fisrt-letter>
+        </div>
+        <div class="flex flex-col items-center justify-center w-full mt-6">
+          <div class="w-full whitespace-nowrap text-ellipsis overflow-hidden text-center leading-normal font-medium">
+            {{ user.display_name }}
+          </div>
+          <div
+            class="w-full mt-0.5 whitespace-nowrap text-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary"
+          >
+            {{ user.email }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <!-- Navigation footer hook -->
+  <ng-container fuseVerticalNavigationContentFooter>
+    <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
+      <img class="max-w-36" [src]="appConfig.logoTextOnDark" />
+    </div>
+  </ng-container>
+</fuse-vertical-navigation>
+
+<!-- Wrapper -->
+<div class="flex flex-col flex-auto w-full min-w-0 dark:bg-custom-2">
+  <!-- Header -->
+  <div
+    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card rounded-2xl dark:bg-custom-1 print:hidden space-nav-bar"
+  >
+    <!-- Navigation toggle button -->
+    <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
+      <mat-icon [svgIcon]="'mat_solid:menu'"></mat-icon>
+    </button>
+    <!-- Components -->
+    <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+      <languages></languages>
+      <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
+      <search [appearance]="'bar'"></search>
+      <shortcuts></shortcuts>
+      <messages></messages>
+      <button class="lg:hidden" mat-icon-button (click)="quickChat.toggle()">
+        <mat-icon [svgIcon]="'heroicons_outline:chat-bubble-left-right'"></mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-auto">
+    <router-outlet *ngIf="true"></router-outlet>
+  </div>
+
+  <!-- Footer -->
+  <div class="base-footer space-footer-bar">
+    <span class="font-medium text-secondary">{{ appConfig.copyRight }} &copy; {{ currentYear }}</span>
+  </div>
+</div>
+
+<!-- Quick chat -->
+<quick-chat #quickChat="quickChat"></quick-chat>

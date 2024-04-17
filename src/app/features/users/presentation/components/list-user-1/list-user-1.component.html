@@ -1,0 +1,26 @@
+<div
+  class="div-list"
+  (click)="view(user)"
+>
+  <div class="flex items-center md:col-span-1">
+    <div class="h-10 w-10 flex-shrink-0">
+      <!-- todo falta hacer le icon-image para que se vean las imagenes -->
+      <!-- <app-icon-image-fisrt-letter [item]="user" [itemType]="'USER'" [width]="5" [height]="5" [fontSize]="1"></app-icon-image-fisrt-letter> -->
+      <img
+        class="h-full w-full rounded-full"
+        src="https://www.clipartkey.com/mpngs/m/208-2089363_user-profile-image-png.png"
+        alt="User Profile Image"
+      />
+    </div>
+    <div class="ml-3">
+      <p class="list-name">{{ user.first_name }} {{ user.last_name }}</p>
+      <div class="email-mobile">{{ user.email }}</div>
+    </div>
+  </div>
+  <div class="email-desktop">
+    <p class="text-md font-medium truncate">{{ user.email }}</p>
+  </div>
+  <div class="a-phone hidden md:flex">
+    <a href="tel:{{ user.phone }}" class="user-phone">{{ user.phone }}</a>
+  </div>
+</div>

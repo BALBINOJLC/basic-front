@@ -1,0 +1,80 @@
+<div class="w-full flex flex-col md:flex-row">
+  <div class="w-full min-h-full flex flex-col p-10">
+    <ng-container *ngIf="platform$ | async as platform">
+      <form [formGroup]="form">
+        <ng-container>
+          <div class="flex flex-col">
+            <!-- Avatar -->
+            <ng-container *ngIf="user._id">
+              <div class="relative -mt-16">
+                <!--todo hacer el upload para cargar las fotos-->
+                <!-- Upload / Remove avatar -->
+                <!-- <app-upload-file-theme
+                  [layoutType]="'ROUND'"
+                  [imagePlace]="item.photo_url"
+                  [height]="8"
+                  [width]="8"
+                  [fontSize]="4"
+                  (fileUploaded)="sendFile($event)"
+                  [key]="item.photo_url?.key"
+                ></app-upload-file-theme> -->
+              </div>
+            </ng-container>
+          </div>
+
+          <!--Info User-->
+          <div class="w-full">
+            <app-form-user class="col-span-4" [formControlName]="'customer'"></app-form-user>
+          </div>
+        </ng-container>
+      </form>
+
+      <!-- Actions -->
+      <ng-container>
+        <div class="flex items-center justify-end mt-auto py-2 mb-4">
+          <ng-container>
+            <!--Delete-->
+            <ng-container *ngIf="user._id !== null">
+              <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
+                <mat-icon>delete</mat-icon>
+                <span class="ml-2">{{ 'BTNS.DELETE' | transloco }}</span>
+              </button>
+            </ng-container>
+
+            <!--Save-->
+            <button mat-stroked-button color="primary" (click)="save()" class="mx-2" matTooltip="sasas">
+              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
+
+              <span class="ml-2">{{ btnSave | transloco }}</span>
+            </button>
+
+            <!--Cancel-->
+            <button mat-stroked-button color="info" (click)="cancel(false)" [matTooltip]="'BTNS.CANCEL' | transloco">
+              <mat-icon>cancel</mat-icon>
+              <span class="ml-2">{{ 'BTNS.CANCEL' | transloco }}</span>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="platform === 'mobile'">
+            <!-- Delete -->
+            <ng-container *ngIf="user._id !== null">
+              <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">
+                <mat-icon svgIcon="mat_outline:delete"></mat-icon>
+              </button>
+            </ng-container>
+
+            <!-- Save -->
+            <button mat-mini-fab color="primary" class="mx-2" [matTooltip]="btnSave | transloco" (click)="save()">
+              <mat-icon svgIcon="mat_outline:save"></mat-icon>
+            </button>
+
+            <!-- Cancel -->
+            <button mat-mini-fab color="accent" [matTooltip]="'BTNS.CANCEL' | transloco" (click)="cancel(false)">
+              <mat-icon svgIcon="mat_outline:cancel"></mat-icon>
+            </button>
+          </ng-container>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

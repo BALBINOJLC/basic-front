@@ -1,0 +1,34 @@
+<div [formGroup]="form" class="grid grid-cols-4 gap-4">
+  <!-- firstName -->
+  <mat-form-field class="col-span-2">
+    <mat-label>{{ 'FORMS.FIELDS.FIRST_NAME' | transloco }}</mat-label>
+    <input matInput formControlName="firstName" type="text" placeholder="{{ 'FORMS.FIELDS.FIRST_NAME' | transloco }}" />
+    <mat-error *ngIf="userFirstNameControl.touched && userFirstNameControl.hasError('required')">
+      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+    </mat-error>
+  </mat-form-field>
+  <!-- LastName -->
+  <mat-form-field class="col-span-2">
+    <mat-label>{{ 'FORMS.FIELDS.LAST_NAME' | transloco }}</mat-label>
+    <input matInput formControlName="lastName" type="text" placeholder="{{ 'FORMS.FIELDS.LAST_NAME' | transloco }}" />
+    <mat-error *ngIf="userLastNameControl.touched && userLastNameControl.hasError('required')">
+      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+    </mat-error>
+  </mat-form-field>
+  <!-- Email -->
+  <mat-form-field class="col-span-2">
+    <mat-label>{{ 'FORMS.FIELDS.EMAIL' | transloco }}</mat-label>
+    <input matInput formControlName="email" type="text" placeholder="{{ 'FORMS.FIELDS.EMAIL' | transloco }}" />
+    <mat-error *ngIf="userEmailControl.touched && userEmailControl.hasError('required')">
+      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+    </mat-error>
+  </mat-form-field>
+  <!-- Phone -->
+  <mat-form-field class="col-span-2">
+    <mat-label>{{ 'FORMS.FIELDS.PHONE' | transloco }}</mat-label>
+    <input matInput formControlName="phone" type="text" placeholder="{{ 'FORMS.FIELDS.PHONE' | transloco }}" />
+    <mat-error *ngIf="userPhoneControl.touched && userPhoneControl.hasError('required')">
+      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+    </mat-error>
+  </mat-form-field>
+</div>

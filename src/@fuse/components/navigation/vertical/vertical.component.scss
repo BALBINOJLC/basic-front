@@ -1,0 +1,12 @@
+@use 'styles/appearances/default';
+@use 'styles/appearances/compact';
+@use 'styles/appearances/dense';
+@use 'styles/appearances/thin';
+
+.space-sidebar {
+
+    height: calc(100vh - 20px) !important;
+    margin-top: 10px;
+    margin-left: 10px;
+    
+}

@@ -1,0 +1,49 @@
+<div class="w-full max-w-3xl">
+  <!-- Add team role -->
+  <div class="w-full">
+    <form [formGroup]="form">
+      <mat-form-field class="w-full" [floatLabel]="'always'">
+        <mat-label>{{ 'SETTINGS.ROLES.ADD' | transloco  }}</mat-label>
+        <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matPrefix></mat-icon>
+        <input matInput [formControlName]="'name'" [placeholder]="'SETTINGS.ROLES.ADD_PLACEHOLDER' | transloco " />
+
+        <button (click)="addRole()" mat-icon-button matSuffix>
+          <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:plus-circle'"></mat-icon>
+        </button>
+
+        <mat-error *ngIf="form.controls.name.touched && form.controls.name.hasError('required')">
+          {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <!-- Roles -->
+  <div class="flex flex-col mt-8 divide-y border-t border-b">
+    <ng-container *ngIf="newsLetter$ | async as newsLetter">
+      <ng-container *ngFor="let role of newsLetter; trackBy: trackByFn">
+        <div class="flex flex-col sm:flex-row sm:items-center py-6">
+          <div class="flex items-center">
+            <div class="flex flex-0 items-center justify-center w-10 h-10 rounded-full overflow-hidden">
+              <div
+                class="flex items-center justify-center w-full h-full rounded-full text-lg uppercase bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-200"
+              >
+                {{ role.email.charAt(0) }}
+              </div>
+            </div>
+            <div class="ml-4">
+              <div class="font-medium">{{ role.email }}</div>
+            </div>
+          </div>
+          <div class="flex items-center mt-4 sm:mt-0 sm:ml-auto">
+            <div class="order-1 sm:order-2 sm:ml-3">
+              <button (click)="deleteNewsLetter(role)" mat-icon-button>
+                <mat-icon class="text-hint" [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

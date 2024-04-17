@@ -1,0 +1,44 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "outDir": "./dist/out-tsc",
+       "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+         /*"strict": true,
+        "noImplicitOverride": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,*/
+        "sourceMap": true,
+        "declaration": false,
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "ES2022",
+        "module": "ES2022",
+        "useDefineForClassFields": false,
+        "lib": ["ES2022", "dom"],
+        "paths": {
+            "@core"     : ["app/core/index"],
+            "@config"   : ["app/config/index"],
+            "@store"    : ["app/store/index"],
+            "@shared"   : ["app/shared/index"],
+            "@utils"    : ["app/shared/utils/index"],
+            "@pipes"    : ["app/shared/pipes/index"],
+            "@auth"     : ["app/features/auth/index"],
+            "@users"    : ["app/features/users/index"],
+            "@data"     : ["app/data/fake"],
+        },
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false,
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

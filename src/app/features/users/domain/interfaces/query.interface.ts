@@ -1,0 +1,41 @@
+
+import { Query, RespApiGETS } from '@utils';
+import { IUser } from './users.interface';
+import { SortUserType } from '../types';
+
+export interface IUserFilter {
+  _id?: string;
+}
+
+export interface IQueryUsers extends Query {
+  filter? : IUserFilter;
+  sort    : ISortUsers;
+}
+
+export interface IQueryUser {
+  filter?: IUserFilter;
+  fields?: string;
+}
+
+export interface IRespApiUsers extends RespApiGETS {
+  data: IUser[];
+}
+
+export interface IUserUpdated {
+  data        : IUser;
+  access_token: string;
+  message     : string;
+}
+
+export interface ISortUsers {
+  field: SortUserType;
+  order: number;
+}
+
+export interface ISingUpSucces {
+  user_name : string;
+  email     : string;
+  message   : string;
+  _id       : string;
+  user      : IUser;
+}

@@ -1,0 +1,114 @@
+<div class="w-full max-w-3xl">
+  <!-- Form -->
+  <ng-container *ngIf="user$ | async as user">
+    <form [formGroup]="form">
+      <!-- Section -->
+      <div class="w-full flex">
+        <div class="w-1/2">
+          <div class="text-xl">{{ 'SETTINGS.TITLE' | transloco }}</div>
+          <div class="text-secondary">{{ 'SETTINGS.PROFILE.DESCRIPTION' | transloco}}</div>
+        </div>
+
+        <!-- Avatar -->
+        <ng-container *ngIf="user._id">
+          <div class="flex justify-center relative w-1/2">
+            <!-- Upload / Remove avatar -->
+            <!-- <app-upload-file-theme
+              [layoutType]="'SQUARE'"
+              [imagePlace]="user.photo_url"
+              [height]="12"
+              [width]="8"
+              [fontSize]="4"
+              (fileUploaded)="changeImgProfile($event, user._id)"
+              [key]="user.photo_url?.key"
+            ></app-upload-file-theme> -->
+          </div>
+        </ng-container>
+      </div>
+      <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+        <!--first_name-->
+        <div class="sm:col-span-2">
+          <mat-form-field class="w-full">
+            <mat-label>{{ 'FORMS.FIELDS.FIRST_NAME' | transloco }}</mat-label>
+            <input [formControlName]="'first_name'" matInput />
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matSuffix></mat-icon>
+            <mat-error *ngIf="form.get('first_name').hasError('required')">
+              {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!--last_name-->
+        <div class="sm:col-span-2">
+          <mat-form-field class="w-full">
+            <mat-label>{{ 'FORMS.FIELDS.LAST_NAME' | transloco }}</mat-label>
+            <input [formControlName]="'last_name'" matInput />
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matSuffix></mat-icon>
+            <mat-error *ngIf="form.get('last_name').hasError('required')">
+              {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!--email-->
+        <div class="sm:col-span-2">
+          <app-form-email [formControlName]="'email'" [email]="user?.email"></app-form-email>
+        </div>
+        <!--phone-->
+        <div class="sm:col-span-2">
+          <app-form-phone
+            [formControlName]="'phone'"
+            [showMultiArea]="true"
+            [area]="area"
+            (newArea)="setNewArea($event)"
+            [phone]="user.phone"
+          ></app-form-phone>
+        </div>
+        <!--dni-->
+        <div class="sm:col-span-2">
+          <div class="sm:col-span-2">
+            <mat-form-field class="w-full">
+              <mat-label>{{ 'FORMS.FIELDS.DNI' | transloco }}</mat-label>
+              <input [formControlName]="'dni'" matInput />
+              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:user'" matSuffix></mat-icon>
+              <mat-error *ngIf="form.get('dni').hasError('required')">
+                {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <!--country-->
+        <div class="sm:col-span-2">
+          <!-- <app-form-auto-complete
+            class=""
+            [options]="countries"
+            [showLabel]="true"
+            (optionSelected)="setCountry($event)"
+            [placeHolder]="translate + '.FIELDS.COUNTRY' | transloco"
+            [defaultValue]="{
+              name: user.country,
+              _id: '123'
+            }"
+          >
+          </app-form-auto-complete> -->
+        </div>
+
+        <!--Two Auth / boolean-->
+         <div class="sm:col-span-2 md:mt-10">
+          <!-- <mat-slide-toggle [checked]="user.twoAuth" class="w-full" [formControlName]="'twoAuth'">{{
+            'FIELDS.TWO_AUTH' | transloco
+          }}</mat-slide-toggle> -->
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="mt-11 mb-10 border-t"></div>
+
+      <!-- Actions -->
+      <div class="flex items-center justify-end">
+        <button mat-stroked-button type="button" (click)="cancel()">{{ 'BTNS.CANCEL' | transloco }}</button>
+        <button (click)="update(user._id)" class="ml-4" mat-flat-button type="submit" [color]="'primary'">
+          {{ 'BTNS.SAVE' | transloco }}
+        </button>
+      </div>
+    </form>
+  </ng-container>
+</div>

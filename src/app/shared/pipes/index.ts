@@ -1,0 +1,12 @@
+export { TypeofPipe } from './typeOf.pipe';
+export { ImgProfilePipe } from './ImgProfile.pipe';
+export { ValidColorPipe } from './valid-color.pipe';
+export { DateAgoPipe } from './date-ago.pipe';
+export { DateDuePipe } from './date-due.pipe';
+export { ConvertSH } from './convert-sh.pipe';
+export { ExtensionPipe } from './extension.pipe';
+export { SumArrPipe } from './sum-arr.pipe';
+export { CurrencyPipeCLP } from './currency.pipe';
+export { FileTypePipe } from './file-type.pipe';
+export { FileColorPipe } from './file-color.pipe';
+export { OrderArrayPipe } from './order.array.pipe';

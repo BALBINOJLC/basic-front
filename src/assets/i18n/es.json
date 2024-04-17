@@ -1,0 +1,316 @@
+{
+  "AUTH": {
+    "SIGNUP_SUCCESS": "Usuario registrado exitosamente",
+    "SIGNIN_SUCCESS": "Usuario autenticado exitosamente",
+    "FORGOT_PASSWORD_SUCCESS": "Correo de restablecimiento de contraseña enviado exitosamente",
+    "PASSWORD_RESET_SUCCESS": "Contraseña restablecida exitosamente",
+
+    "SIGN_IN": {
+      "TITLE": "Inicio de Sesión",
+      "EMAIL": "Correo Electrónico",
+      "PASSWORD": "Contraseña",
+      "SIGN_IN": "Iniciar Sesión",
+      "FORGOT_PASSWORD": "¿Olvidaste tu Contraseña?",
+      "CREATE_ACCOUNT": "Crear Cuenta",
+      "NO_ACCOUNT": "¿No tienes una cuenta?",
+      "SIGN_IN_SUBTITLE": "Inicia sesión para continuar",
+
+      "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "Correo electrónico o contraseña inválidos",
+        "REQUIRED": "El campo es requerido",
+        "EMAIL": "Debe colocar un Email válido",
+        "PASSWORD_VALID": "La contraseña es incorrecta",
+        "PASSWORD_CONFIRM_ERROR": "Las contraseñas no coinciden"
+      },
+      "FORMS": {
+        "FIRST_NAME": "Nombre",
+        "LAST_NAME": "Apellido",
+        "EMAIL": "Correo electrónico",
+        "MESSAGE": "Inicio de sesión exitoso",
+        "PASSWORD": "Contraseña",
+        "CONFIRM_PASSWORD": "Confirmar Contraseña"
+      },
+      "BTN": {
+        "SIGN_IN": "Iniciar sesión",
+        "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+        "REMEMBERME": "Recordarme"
+      }
+    },
+
+    "SIGN_UP": {
+      "TITLE": "Regístrate",
+      "EMAIL": "Correo Electrónico",
+      "PASSWORD": "Contraseña",
+      "CONFIRM_PASSWORD": "Confirmar Contraseña",
+      "SIGN_UP": "Registrarse",
+      "ALREADY_ACCOUNT": "¿Ya tienes una cuenta?",
+      "SIGN_IN": "¡Ingresa!",
+      "SIGN_UP_SUBTITLE": "Regístrate para continuar",
+      "ERROR": {
+        "TITLE": "Error",
+        "MESSAGE": "Correo electrónico o contraseña inválidos",
+        "REQUIRED": "El campo es requerido",
+        "EMAIL": "Debe colocar un Email válido",
+        "PASSWORD_VALID": "La contraseña es incorrecta",
+        "PASSWORD_CONFIRM_ERROR": "Las contraseñas no coinciden"
+      },
+      "FORMS": {
+        "FIRST_NAME": "Nombre",
+        "LAST_NAME": "Apellido",
+        "EMAIL": "Correo electrónico",
+        "MESSAGE": "Registro exitoso",
+        "PASSWORD": "Contraseña",
+        "CONFIRM_PASSWORD": "Confirmar Contraseña",
+        "TERMS_AND_CONDITIONS_1": "Acepto los",
+        "TERMS_AND_CONDITIONS_2": "Términos y Condiciones",
+        "TERMS_AND_CONDITIONS_3": "y",
+        "TERMS_AND_CONDITIONS_4": "las Políticas de Privacidad"
+      },
+      "BTN": {
+        "SIGN_UP": "Crear cuenta",
+        "SIGN_IN": "Iniciar Sesión"
+      }
+    },
+
+    "FORGOT_PASSWORD": {
+      "TITLE": "¿Olvidaste tu contraseña?",
+      "COMPLETE_FORM": "Completa el formulario para restablecer tu contraseña",
+      "RETURN_TO": "Ir a",
+      "SIGN_IN": "Iniciar Sesión"
+    },
+
+    "CONFIRMATION_REQUIRED": {
+      "TITLE": "Confirmación Requerida",
+      "SUBTITLE": "Se ha enviado un enlace de confirmación a tu correo electrónico",
+      "RESEND": "Reenviar correo de confirmación",
+      "REDIRECT_LOGIN": "Ir a la página de inicio de sesión",
+      "REDIRECT_LOGIN_2": "Iniciar Sesión"
+    },
+
+    "FORMS": {
+      "EMAIL": "Correo Electrónico",
+      "MESSAGE": "Se ha enviado un enlace de restablecimiento a tu correo electrónico",
+      "PASSWORD": "Contraseña",
+      "CONFIRM_PASSWORD": "Confirmar Contraseña"
+    },
+    "ERRORS": {
+      "SIGNIN": {
+        "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
+        "EMAIL_VALID": "Error al crear el usuario, el correo no es válido."
+      },
+      "PASSWORD_SAME_OLD": "La contraseña nueva no puede ser igual a la anterior",
+      "SIGNIN.INCORRECT_PASSWORD": "Contraseña incorrecta"
+    }
+  },
+
+  "FORMS": {
+    "FIELDS": {
+      "SEARCH": "Buscar",
+      "EMAIL": "Correo Electrónico",
+      "PASSWORD": "Contraseña",
+      "CONFIRM_PASSWORD": "Confirmar Contraseña",
+      "FIRST_NAME": "Nombre",
+      "LAST_NAME": "Apellido",
+      "PHONE": "Teléfono",
+      "DNI": "Nº DNI"
+    },
+    "ERRORS": {
+      "REQUIRED": "Campo requerido",
+      "INVALID_EMAIL": "Correo electrónico inválido",
+      "MIN_LENGTH": "Mínimo de caracteres no alcanzado",
+      "MAX_LENGTH": "Máximo de caracteres excedido",
+      "PASSWORDS_DONT_MATCH": "Las contraseñas no coinciden"
+    }
+  },
+
+  "BTNS": {
+    "ADD": "Agregar",
+    "SAVE": "Guardar",
+    "CANCEL": "Cancelar",
+    "DELETE": "Eliminar",
+    "EDIT": "Editar",
+    "BACK": "Volver",
+    "LIST_VIEW": "Vista de Lista",
+    "GRID_VIEW": "Vista de Cuadrícula",
+    "RESET_LINK": "Enviar enlace de restablecimiento",
+    "RESET_PASSWORD": "Restablecer Contraseña"
+  },
+
+  "USER": {
+    "TITLES": "Usuarios",
+    "TITLE": "Usuario",
+    "CLEAN_SCREEN": "No se encontraron usuarios",
+    "ERRORS": {
+      "NOT_FOUND": "Usuario no encontrado.",
+      "CREATED": "Error al crear el usuario.",
+      "CREATE": {
+        "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
+        "EMAIL_VALID": "Error al crear el usuario, el correo no es válido."
+      }
+    },
+    "SUCCESS": {
+      "CREATED": "El usuario fue creado exitosamente.",
+      "UPDATED": "El usuario fue actualizado exitosamente.",
+      "DELETED": "El usuario fue eliminado exitosamente.",
+      "ADD_MASIVE": "Usuarios añadidos exitosamente."
+    },
+    "ROLE": {
+      "ADMIN": "Administrador",
+      "USER": "Usuario",
+      "CLIENT": "Cliente"
+    },
+    "TYPE": {
+      "ORG": "Organización",
+      "USER": "Usuario",
+      "OWNER": "Super Administrador",
+      "CLIENT": "Cliente"
+    },
+    "PROFILE": {
+      "TITLE": "Perfil",
+      "SUB_TITLE": "Información del Usuario"
+    },
+    "FIELDS": {
+      "ADDRESSS": "Dirección",
+      "BIRTHDAY_DATE": "Fecha de Nacimiento",
+      "DATE_ADMISSION": "Fecha de Admisión",
+      "DNI": "Número de Identificación",
+      "COUNTRY": "País",
+      "REGION": "Región",
+      "COMMUNE": "Comuna",
+      "ABOUT": "Acerca de",
+      "BIRTHDAY": "Cumpleaños",
+      "CITY": "Ciudad",
+      "COST_HOUR": "Costo por Hora",
+      "DAYS_HOURS_WORK": "Horas Diarias",
+      "DAYS_WORK": "Días Laborales",
+      "DISPLAYNAME": "Nombre de Usuario",
+      "EMAIL": "Correo",
+      "FIRST_NAME": "Nombre",
+      "GITHUB_PROFILE": "Perfil de GitHub",
+      "INSTAGRAM": "Instagram",
+      "ISACTIVE": "¿Activo?",
+      "LAST_NAME": "Apellido",
+      "LASTNAME": "Apellido",
+      "LINKEDIN_PROFILE": "Perfil de LinkedIn",
+      "NAME": "Nombre",
+      "EDIT": "Editar",
+      "PASSWORD": "Contraseña",
+      "PHONE": "Teléfono",
+      "POSITION": "Posición",
+      "REGISTER_H": "¿Registrar Horas?",
+      "ROLE": "Rol",
+      "SALARY": "Salario",
+      "STATE": "Estado",
+      "TYPE": "Tipo",
+      "USERNAME": "Nombre de Usuario",
+      "WEEK_HOURS": "Horas Semanales",
+      "ZIP_CODE": "Código Postal",
+      "ADDRESS": {
+        "TITLE": "Dirección",
+        "REGION": "Región",
+        "CITY": "Ciudad",
+        "ADDRESS_1": "Dirección 1",
+        "ADDRESS_2": "Dirección 2"
+      }
+    },
+    "ACTIONS": {
+      "CREATE": "Crear",
+      "UPDATE": "Actualizar",
+      "DELETE": "Eliminar",
+      "RESET_PASSWORD": "Restablecer Contraseña",
+      "SEND_PASSWORD": "Enviar Contraseña",
+      "SEE": "Ver Usuario"
+    },
+    "LISTS": {
+      "ADMIN": "Administrador",
+      "USER": "Usuario",
+      "CLIENT": "Cliente",
+      "OWNER": "Propietario",
+      "VENDOR": "Vendedor",
+      "TRUE": "Sí",
+      "FALSE": "No"
+    },
+    "MS": {
+      "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar al usuario?",
+      "DELETE_INFO": "Este usuario no podrá ser recuperado."
+    }
+  },
+
+  "SETTINGS": {
+    "TITLE": "Ajustes",
+    "ACCOUNT": "Cuenta",
+    "BILLING": "Facturación",
+    "NOTIFICATIONS": "Notificaciones",
+    "TEAM": "Equipo",
+    "CHANGEPASSWORD": "Cambiar contraseña",
+    "PROFILE": {
+      "TITLE": "Perfil",
+      "SUB_TITLE": "Actualizar tu perfil",
+      "DESCRIPTION": "Actualiza la información de tu perfil"
+    },
+    "SECURITY": {
+      "TITLE": "Seguridad",
+      "DESCRIPTION": "Actualizar tus datos de seguridad",
+      "CHANGE_PASSWORD": "Cambiar contraseña",
+      "CHANGE_PASSWORD_SUBTITLE": "Coloque su contrasea actual y la nueva",
+      "NEW_PASSWORD": "Nueva contraseña",
+      "CURRENT_PASSWORD": "Contraseña actual",
+      "VALIDATE_PASSWORD": "Mínimo 8 caracteres, una mayúscula, una minúscula, un número y un carácter especial"
+    },
+    "INTEGRATIONS": {
+      "TITLE": "Integraciones",
+      "DESCRIPTION": "Integraciones con otras plataformas",
+      "JIRASOFTWARE": {
+        "NAME": "Jira Software",
+        "DESCRIPTION": "Jira Software es una herramienta de desarrollo de software utilizada por equipos ágiles.",
+        "INSTRUCTIONS": "Para integrar Jira Software, siga las instrucciones a continuación:"
+      },
+      "OPENAI": {
+        "NAME": "Open AI",
+        "DESCRIPTION": "OpenAI es una empresa ofrece distintos servicios de inteligencia artificial.",
+        "INSTRUCTIONS": "Para integrar Open AI, siga las instrucciones a continuación:"
+      },
+      "GITHUB": {
+        "NAME": "Github",
+        "DESCRIPTION": "GitHub es una plataforma de desarrollo colaborativo de software para alojar proyectos utilizando el sistema de control de versiones Git.",
+        "INSTRUCTIONS": "Para integrar Github, siga las instrucciones a continuación:"
+      },
+      "TRELLO": {
+        "NAME": "Trello",
+        "DESCRIPTION": "Trello es una herramienta de administración de proyectos basada en la web que utiliza el paradigma Kanban para la gestión de proyectos.",
+        "INSTRUCTIONS": "Para integrar Trello, siga las instrucciones a continuación:"
+      }
+    }
+  },
+
+  "USER_NAV": {
+    "SIGNED_IN_AS": "Ingresado como",
+    "SIGN_OUT": "Cerrar sesión",
+    "PROFILE": "Perfil",
+    "SETTINGS": "Ajustes",
+    "HELP": "Ayuda",
+    "STATUS": {
+      "ONLINE": "En línea",
+      "OFFLINE": "Desconectado",
+      "AWAY": "Ausente",
+      "BUSY": "Ocupado",
+      "INVISIBLE": "Invisible",
+      "TITLE": "Estado"
+    }
+  },
+
+  "LAYOUT": {
+    "LIST": {
+      "NAME": "Nombre",
+      "EMAIL": "Email",
+      "PHONE": "Teléfono"
+    }
+  },
+
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "USERS": "Usuarios",
+    "SETTINGS": "Ajustes"
+  }
+}

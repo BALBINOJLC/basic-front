@@ -1,0 +1,89 @@
+import { ChangeDetectorRef, Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Subject, Subscription, debounceTime, delay, of, takeUntil, tap } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
+import { Store } from '@ngrx/store';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { selectUiState } from './store/reducers';
+import * as actions from './store/actions';
+import { IHttpError } from '@core';
+import { FuseConfirmationService } from '@fuse/services/confirmation';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
+})
+export class AppComponent {
+  title = 'backoffice_base_startups';
+
+  private subscription: Subscription = new Subscription();
+  loading: boolean = false;
+  private _unsubscribeAll: Subject<void> = new Subject<void>();
+  constructor(
+    private translocoService: TranslocoService,
+    private store: Store,
+    private cd: ChangeDetectorRef,
+    private _snackBar: MatSnackBar,
+    private trans: TranslocoService,
+    private _fuseConfirmationService: FuseConfirmationService
+  ) {}
+
+  ngOnInit(): void {
+    this.store
+      .select(selectUiState)
+      .pipe(takeUntil(this._unsubscribeAll), debounceTime(400))
+      .subscribe((ui) => {
+        this.loading = ui.isLoading;
+        if (ui.error) {
+          this.uiErrors(ui.error);
+        }
+        if (ui.message) {
+          if (ui.message.message.includes('UPDATED') || ui.message.message.includes('DELETED')) {
+            this.uiMessageUpdate(ui.message.message, '👍🏽', 3000);
+          } else {
+            this.uiMessage(ui.message);
+          }
+          this.store.dispatch(actions.uIClean());
+        }
+        this.cd.detectChanges();
+      });
+  }
+
+  uiErrors(error: IHttpError): void {
+    this.store.dispatch(actions.uIClean());
+    console.error('Error Api:', error);
+    this._fuseConfirmationService.open({
+      actions: {
+        cancel: { show: false },
+        confirm: { show: true, label: 'OK', color: 'primary' },
+      },
+      message: this.trans.translate(error?.error.message?.toString()),
+      title: '',
+    });
+  }
+
+  uiMessage(message: { message: string; status: number }): void {
+    this.store.dispatch(actions.uIClean());
+
+    this._fuseConfirmationService.open({
+      actions: {
+        cancel: { show: false },
+        confirm: { show: true, label: 'OK', color: 'primary' },
+      },
+      message: this.trans.translate(message.message),
+      title: '',
+    });
+  }
+
+  uiMessageUpdate(message: string, icon: string, duration: number): void {
+    const messageT = this.trans.translate(message);
+    this._snackBar.open(messageT, icon, {
+      duration: duration,
+      horizontalPosition: 'end',
+    });
+  }
+}

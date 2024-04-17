@@ -1,0 +1,28 @@
+@mixin base-footer {
+    @apply fixed flex flex-0 items-center justify-start w-full h-14 px-4 bottom-0 md:px-6 z-49 shadow-md bg-card rounded-2xl dark:bg-custom-1 print:hidden;
+}
+
+@mixin base-nav-bar {
+    @apply relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-custom-1 rounded-2xl print:hidden;
+}
+
+.base-nav-bar {
+    @include base-nav-bar;
+}
+
+.base-footer {
+    @include base-footer;
+}
+
+.space-nav-bar {
+    width: calc(100% - 20px) !important;
+    margin: 10px;
+    position: relative;
+    left: 0px;
+}
+
+.space-footer-bar {
+    width: calc(100% - 140px) !important;
+    right: 10px;
+    bottom: 10px;
+}

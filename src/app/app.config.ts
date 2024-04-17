@@ -1,0 +1,96 @@
+import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
+import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { appRoutes } from './app.routes';
+import { provideClientHydration } from '@angular/platform-browser';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
+import { provideTransloco } from '@ngneat/transloco';
+import { TranslocoHttpLoader } from './core/transloco/transloco.http-loader';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideFuse } from '@fuse';
+import { provideAuth } from './core/auth/auth.provider';
+import { provideIcons } from './core/icons/icons.provider';
+import { mockApiServices } from './mock-api';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideStore } from '@ngrx/store';
+import { appReducers } from '@store';
+import { provideEffects } from '@ngrx/effects';
+import { effects } from './store/effects';
+import { provideRouterStore } from '@ngrx/router-store';
+import { HttpApiInterceptorProvider, appThemeConfig } from '@core';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideAnimations(),
+    provideHttpClient(withFetch()),
+    importProvidersFrom(HttpClientModule),
+    HttpApiInterceptorProvider,
+
+    provideRouter(appRoutes, withPreloading(PreloadAllModules), withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),
+    provideClientHydration(),
+
+    // Material Date Adapter
+    {
+      provide: DateAdapter,
+      useClass: LuxonDateAdapter,
+    },
+    {
+      provide: MAT_DATE_FORMATS,
+      useValue: {
+        parse: {
+          dateInput: 'D',
+        },
+        display: {
+          dateInput: 'DDD',
+          monthYearLabel: 'LLL yyyy',
+          dateA11yLabel: 'DD',
+          monthYearA11yLabel: 'LLLL yyyy',
+        },
+      },
+    },
+
+    // Transloco Config
+    provideTransloco({
+      config: {
+        availableLangs: [
+          {
+            id: 'en',
+            label: 'English',
+          },
+          {
+            id: 'es',
+            label: 'Spanish',
+          },
+          {
+            id: 'tr',
+            label: 'Turkish',
+          },
+        ],
+        defaultLang: 'es',
+        fallbackLang: 'es',
+        reRenderOnLangChange: true,
+        prodMode: true,
+      },
+      loader: TranslocoHttpLoader,
+    }),
+    // Fuse
+    provideAuth(),
+    provideIcons(),
+    provideFuse({
+      mockApi: {
+        delay: 0,
+        services: mockApiServices,
+      },
+      fuse: appThemeConfig,
+    }),
+
+    provideAnimationsAsync(),
+    provideStore(appReducers),
+
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+    provideEffects(effects),
+    provideRouterStore(),
+  ],
+};

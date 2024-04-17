@@ -1,0 +1,40 @@
+<div class="w-full max-w-3xl">
+  <!-- Form -->
+  <form [formGroup]="form">
+    <!-- Section -->
+    <div class="w-full">
+      <div class="text-xl">{{ 'SETTINGS.SECURITY.CHANGE_PASSWORD' | transloco }}</div>
+      <div class="text-secondary">{{ 'SETTINGS.SECURITY.CHANGE_PASSWORD_SUBTITLE' | transloco}}</div>
+    </div>
+    <div class="grid sm:grid-cols-4 gap-6 w-full mt-8">
+      <!-- Current password -->
+      <div class="sm:col-span-4">
+        <mat-form-field class="fuse-mat-no-subscript w-full">
+          <mat-label>{{ 'SETTINGS.SECURITY.CURRENT_PASSWORD' | transloco}}</mat-label>
+          <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:key'" matPrefix></mat-icon>
+          <input [formControlName]="'currentPassword'" type="password" matInput />
+        </mat-form-field>
+      </div>
+      <!-- New password -->
+      <div class="sm:col-span-4">
+        <app-form-password
+          [formControlName]="'newPassword'"
+          [showConfirm]="true"
+          [labelPassword]="'SETTINGS.SECURITY.NEW_PASSWORD'"
+        ></app-form-password>
+
+        <div class="mt-1 text-md text-hint">{{ 'SETTINGS.SECURITY.VALIDATE_PASSWORD' | transloco }}</div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="my-10 border-t"></div>
+
+    <!-- Actions -->
+    <div class="flex items-center justify-end">
+      <button (click)="changePassword()" [disabled]="form.invalid" class="ml-4" mat-flat-button type="button" [color]="'primary'">
+        {{ 'BTNS.SAVE' | transloco }}
+      </button>
+    </div>
+  </form>
+</div>
