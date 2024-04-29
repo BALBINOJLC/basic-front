@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
-import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { TLayout } from '@utils';
 import { LayoutListComponent } from '../layouts/list/layout.list.component';
 import { LayoutGridComponent } from '../layouts/grid/layout.grid.component';
@@ -25,6 +25,7 @@ import { iconScreen, translate } from '../config';
 import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
+import { PaginatorLoad, selectUIPaginator } from '@store';
 
 @Component({
   selector: 'clients-main',
@@ -47,7 +48,7 @@ import { Store } from '@ngrx/store';
 export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('matDrawer', { static: true }) matDrawer!: MatDrawer;
 
-  limit: number = 50;
+  limit: number = 2;
   offset: number = 0;
   transloco = translate;
   drawerMode: 'side' | 'over' = 'side';
@@ -85,8 +86,20 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.loadPaginate();
     this.getsItemsPaginator();
     this.get();
+  }
+
+  loadPaginate(): void {
+    this.store.dispatch(
+      PaginatorLoad({
+        paginator: {
+          limit: this.limit,
+          offset: this.offset,
+        },
+      })
+    );
   }
 
   get(): void {
@@ -102,12 +115,13 @@ export class MainComponent implements OnInit, OnDestroy {
     this.maxSize$ = this.fStore.seeMaxSize();
   }
 
-  eventPaginate(event: PageEvent): void {
+  eventPaginate(limit: number, offset: number): void {
     let paginate = 0;
-    const limit = event.pageSize;
-    paginate = event.pageIndex * event.pageSize;
+    paginate = offset;
+    paginate = offset * limit;
     this.limit = limit;
     this.offset = paginate;
+
     const params = this.buildParams();
     this.fStore.getUsers(params, 'user');
   }
@@ -175,10 +189,10 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   getsItemsPaginator(): void {
-    const params = this.buildParams();
-    this.fStore.getUsers(params, 'user');
-    this.itemsPage$ = this.fStore.see();
-    this._changeDetectorRef.detectChanges();
+    const paginator$ = this.store.select(selectUIPaginator);
+    paginator$.subscribe((paginator) => {
+      this.eventPaginate(paginator.limit, paginator.offset);
+    });
   }
 
   ngOnDestroy(): void {
