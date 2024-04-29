@@ -1,4 +1,6 @@
 {
+  "NEXT": "Siguiente",
+  "PREV": "Anterior",
   "AUTH": {
     "SIGNUP_SUCCESS": "Usuario registrado exitosamente",
     "SIGNIN_SUCCESS": "Usuario autenticado exitosamente",
@@ -94,6 +96,7 @@
       "PASSWORD": "Contraseña",
       "CONFIRM_PASSWORD": "Confirmar Contraseña"
     },
+
     "ERRORS": {
       "SIGNIN": {
         "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",

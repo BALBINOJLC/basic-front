@@ -1,7 +1,8 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { RouterOutlet } from '@angular/router';
 import { selectAuthUser } from '@auth';
 import { IAppConfig, appThemeConfig } from '@config';
@@ -9,7 +10,9 @@ import { FuseFullscreenComponent } from '@fuse/components/fullscreen';
 import { FuseLoadingBarComponent } from '@fuse/components/loading-bar';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { TranslocoModule } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
+import { IPaginator, PaginatorLoad, selectUIPaginator } from '@store';
 import { IUser } from '@users';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { LanguagesComponent } from 'app/layout/common/languages/languages.component';
@@ -20,7 +23,7 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { userMenu } from 'app/mock-api/common/navigation/data';
-import { Subject, takeUntil } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'compact-layout',
@@ -29,6 +32,7 @@ import { Subject, takeUntil } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
+    CommonModule,
     FuseLoadingBarComponent,
     MatButtonModule,
     MatIconModule,
@@ -43,6 +47,8 @@ import { Subject, takeUntil } from 'rxjs';
     RouterOutlet,
     QuickChatComponent,
     FuseVerticalNavigationComponent,
+    TranslocoModule,
+    MatPaginatorModule,
   ],
 })
 export class CompactLayoutComponent implements OnInit, OnDestroy {
@@ -52,6 +58,7 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
   navigation: Navigation;
 
   appConfig: IAppConfig = appThemeConfig;
+  paginator$: Observable<IPaginator>;
 
   private _unsubscribeAll: Subject<void> = new Subject<void>();
 
@@ -62,7 +69,9 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
     private store: Store,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _fuseNavigationService: FuseNavigationService
-  ) {}
+  ) {
+    this.paginator$ = this.store.select(selectUIPaginator);
+  }
 
   // -----------------------------------------------------------------------------------------------------
   // @ Accessors
@@ -98,6 +107,15 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
       // Check if the screen is small
       this.isScreenSmall = !matchingAliases.includes('md');
     });
+  }
+
+  eventPaginate(event: PageEvent): void {
+    let paginate = 0;
+    paginate = event.pageIndex * event.pageSize;
+    const limit = event.pageSize;
+    const offset = paginate;
+
+    this.store.dispatch(PaginatorLoad({ paginator: { limit, offset } }));
   }
 
   /**

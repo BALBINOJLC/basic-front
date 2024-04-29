@@ -16,7 +16,7 @@ import { MatIcon } from '@angular/material/icon';
 import { FormPhoneComponent } from 'app/shared/components/form/form-phone';
 import { MatInputModule } from '@angular/material/input';
 import { UserStoreService } from '@users';
-import { AuthStoreService } from '@core';
+import { AuthStoreService } from '@auth';
 
 @Component({
   selector: 'settings-account',

@@ -4,7 +4,7 @@ import { ForgotPasswordClassicComponent } from '../../components/forgot-password
 import { AuthEventsService, TSignInTemplate } from '@auth';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AuthStoreService } from '@core';
+import { AuthStoreService } from '@auth';
 
 @Component({
   selector: 'app-forgot-password',

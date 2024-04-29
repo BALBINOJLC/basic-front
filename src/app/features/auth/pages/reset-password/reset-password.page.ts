@@ -8,7 +8,7 @@ import * as actions from '@auth';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ResetPasswordClassicComponent } from '../../components/reset-password';
-import { AuthStoreService } from '@core';
+import { AuthStoreService } from '@auth';
 
 @Component({
   selector: 'auth-reset-password',

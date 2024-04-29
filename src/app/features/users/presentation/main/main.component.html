@@ -26,14 +26,8 @@
           (cleanSearch)="get()"
         ></header-pages>
 
-
-
         <!-- Clients list -->
         <ng-container *ngIf="items$ | async as items">
-
-
-
-
           <div class="ml-auto mr-4">
             <button (click)="setLayout('list')" mat-icon-button [matTooltip]="'BTNS.LIST_VIEW' | transloco">
               <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:queue-list'"></mat-icon>
@@ -52,43 +46,14 @@
             <layout-list *ngIf="layout === 'list'" [items]="items.items" (view)="view($event)"></layout-list>
           </ng-container>
 
-          <!-- <mat-paginator
-            class="sm:fixed right-0 sm:bottom-13 rounded-xl shadow-boxshadow m-3"
-            [length]="maxSize$ | async"
-            [pageSize]="limit"
-            [pageSizeOptions]="[20, 50, 100]"
-            [showFirstLastButtons]="true"
-            (page)="eventPaginate($event)"
-            [showFirstLastButtons]="true"
-          >
-          </mat-paginator> -->
-
-          <ng-container  *ngIf="itemsPage$ | async as items_per">
-
-
-              <app-paginator
-              class="sm:fixed right-0 sm:bottom-13 rounded-xl shadow-boxshadow m-3 mb-2"
-              [title]="'USER' + '.TITLES' | transloco"
-              [total_count]="items.items.length"
-              [currentItem]="items_per.total_count"
-              [limit_perPage]="limit"
-              (newLimit)="onLimitChangePaginator($event)"
-              (pageChange)="onPageChangePaginator($event)"
-            ></app-paginator>
-
-
-
+          <ng-container *ngIf="itemsPage$ | async as items_per"> </ng-container>
         </ng-container>
-
-      </ng-container>
         <!-- No clients -->
         <ng-template #noItems>
           <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
             <mat-icon class="icon-size-24" [svgIcon]="iconScreen"></mat-icon>
             <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary text-center">
               {{ transloco + '.CLEAN_SCREEN' | transloco }}
-
-              {{ '.CLEAN_SCREEN' | transloco }}
             </div>
           </div>
         </ng-template>

@@ -1,5 +1,5 @@
-import { CommonModule, DOCUMENT, NgIf } from '@angular/common';
-import { Component, Inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
+import { CommonModule, DOCUMENT, NgIf, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { FuseConfig, FuseConfigService } from '@fuse/services/config';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
@@ -55,7 +55,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
     private _fuseConfigService: FuseConfigService,
     private _fuseMediaWatcherService: FuseMediaWatcherService,
     private _fusePlatformService: FusePlatformService,
-    private store: Store
+    private store: Store,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.user$ = this.fStore.seeUser();
   }
@@ -209,11 +210,13 @@ export class LayoutComponent implements OnInit, OnDestroy {
    */
   private _updateTheme(): void {
     // Find the class name for the previously selected theme and remove it
-    this._document.body.classList.forEach((className: string) => {
-      if (className.startsWith('theme-')) {
-        this._document.body.classList.remove(className, className.split('-')[1]);
-      }
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this._document.body.classList.forEach((className: string) => {
+        if (className.startsWith('theme-')) {
+          this._document.body.classList.remove(className, className.split('-')[1]);
+        }
+      });
+    }
 
     // Add class name for the currently selected theme
     this._document.body.classList.add(this.theme);

@@ -4,9 +4,9 @@ import { SignInClassicComponent } from '../../components/signIn';
 import { TSignInTemplate } from '../../auth.types';
 import { IAuthSignIn, ISignInForm } from '../../auth.interface';
 import { Store } from '@ngrx/store';
-import { AuthEventsService, selectAuthToken } from '@auth';
+import { AuthEventsService, AuthStoreService, selectAuthToken } from '@auth';
 import { Subscription, map } from 'rxjs';
-import { AuthStoreService } from '@core';
+
 
 @Component({
   selector: 'app-sign-in',

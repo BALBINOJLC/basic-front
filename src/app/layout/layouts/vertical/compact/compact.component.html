@@ -22,9 +22,7 @@
 <!-- Wrapper -->
 <div class="flex flex-col flex-auto w-full min-w-0 ml-2 dark:bg-custom-2">
   <!-- Header -->
-  <div
-    class="base-nav-bar space-nav-bar"
-  >
+  <div class="base-nav-bar space-nav-bar">
     <!-- Navigation toggle button -->
     <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
       <mat-icon [svgIcon]="'heroicons_outline:bars-3'"></mat-icon>
@@ -50,8 +48,20 @@
   </div>
 
   <!-- Footer -->
-  <div class="base-footer space-footer-bar">
+  <div class="base-footer space-footer-bar flex justify-between">
     <span class="font-medium text-secondary">{{ appConfig.copyRight }} &copy; {{ currentYear }}</span>
+    <ng-container *ngIf="paginator$ | async as paginator">
+      <mat-paginator
+        class="relative z-50 bg-transparent dark:bg-sicrux-1 h-5 bottom-5"
+        [length]="paginator.limit"
+        [pageSize]="paginator.offset"
+        [pageSizeOptions]="[50, 75, 100]"
+        [showFirstLastButtons]="true"
+        (page)="eventPaginate($event)"
+        [showFirstLastButtons]="true"
+      >
+      </mat-paginator>
+    </ng-container>
   </div>
 </div>
 

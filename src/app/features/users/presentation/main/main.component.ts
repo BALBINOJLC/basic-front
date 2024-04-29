@@ -25,7 +25,6 @@ import { iconScreen, translate } from '../config';
 import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
-import { PaginatorComponent } from '../components/paginator/paginator.component';
 
 @Component({
   selector: 'clients-main',
@@ -40,7 +39,6 @@ import { PaginatorComponent } from '../components/paginator/paginator.component'
     LayoutGridComponent,
     HeaderPagesComponent,
     MainComponent,
-    PaginatorComponent
   ],
 
   encapsulation: ViewEncapsulation.None,
@@ -155,7 +153,7 @@ export class MainComponent implements OnInit, OnDestroy {
   currentPage: number = 1;
   onPageChangePaginator(page: number): void {
     this.currentPage = page;
-    this.updatePaginator(page,this.limit);
+    this.updatePaginator(page, this.limit);
   }
   onLimitChangePaginator(event: number): void {
     this.limit = event;

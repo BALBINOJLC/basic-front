@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, type OnInit } from '@angular/core';
 import { SignUpClassicComponent } from '../../components/signup/classic/sign-up.component';
-import { AuthEventsService, IAuthSignUp, ISignUpForm, TSignInTemplate } from '@auth';
+import { AuthEventsService, AuthStoreService, IAuthSignUp, ISignUpForm, TSignInTemplate } from '@auth';
 import { Subscription } from 'rxjs';
-import { AuthStoreService } from '@core';
 import { Store } from '@ngrx/store';
 
 @Component({
