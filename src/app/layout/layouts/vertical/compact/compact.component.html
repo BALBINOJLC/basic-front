@@ -51,10 +51,12 @@
   <div class="base-footer space-footer-bar flex justify-between">
     <span class="font-medium text-secondary">{{ appConfig.copyRight }} &copy; {{ currentYear }}</span>
     <ng-container *ngIf="paginator$ | async as paginator">
+      <ng-container *ngIf="maxSize$ | async as maxSize">
+
       <mat-paginator
         class="relative z-50 bg-transparent dark:bg-sicrux-1 h-5 bottom-5"
-        [length]="paginator.limit"
-        [pageSize]="paginator.offset"
+        [length]="maxSize"
+        [pageSize]="paginator.limit"
         [pageSizeOptions]="[50, 75, 100]"
         [showFirstLastButtons]="true"
         (page)="eventPaginate($event)"
@@ -62,6 +64,7 @@
       >
       </mat-paginator>
     </ng-container>
+  </ng-container>
   </div>
 </div>
 

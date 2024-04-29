@@ -23,7 +23,8 @@ import { SearchComponent } from 'app/layout/common/search/search.component';
 import { ShortcutsComponent } from 'app/layout/common/shortcuts/shortcuts.component';
 import { UserComponent } from 'app/layout/common/user/user.component';
 import { userMenu } from 'app/mock-api/common/navigation/data';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Observable, of, Subject, takeUntil } from 'rxjs';
+
 
 @Component({
   selector: 'compact-layout',
@@ -61,7 +62,7 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
   paginator$: Observable<IPaginator>;
 
   private _unsubscribeAll: Subject<void> = new Subject<void>();
-
+  maxSize$: Observable<number>;
   /**
    * Constructor
    */
@@ -71,6 +72,9 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
     private _fuseNavigationService: FuseNavigationService
   ) {
     this.paginator$ = this.store.select(selectUIPaginator);
+    this.paginator$.subscribe((paginator) => {
+      this.maxSize$ = of(paginator.items);
+    });
   }
 
   // -----------------------------------------------------------------------------------------------------
@@ -114,7 +118,6 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
     paginate = event.pageIndex * event.pageSize;
     const limit = event.pageSize;
     const offset = paginate;
-
     this.store.dispatch(PaginatorLoad({ paginator: { limit, offset } }));
   }
 

@@ -14,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule,} from '@angular/material/paginator';
 import { TLayout } from '@utils';
 import { LayoutListComponent } from '../layouts/list/layout.list.component';
 import { LayoutGridComponent } from '../layouts/grid/layout.grid.component';
@@ -26,6 +26,7 @@ import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users'
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { PaginatorLoad, selectUIPaginator } from '@store';
+
 
 @Component({
   selector: 'clients-main',
@@ -48,24 +49,27 @@ import { PaginatorLoad, selectUIPaginator } from '@store';
 export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('matDrawer', { static: true }) matDrawer!: MatDrawer;
 
-  limit: number = 2;
-  offset: number = 0;
   transloco = translate;
+
   drawerMode: 'side' | 'over' = 'side';
   layout: TLayout = 'list';
+
 
   items$: Observable<IUserState>;
   itemsPage$: Observable<IUserState>;
   maxSize$: Observable<number>;
-  fStore = new UserStoreService(this.store);
-
-  selected!: IUser;
-  filter: IUserFilter = {};
-  iconScreen = iconScreen;
+  limit: number = 50;
+  offset: number = 0;
   sort: ISortUsers = {
     field: 'display_name',
     order: 1,
   };
+
+  fStore = new UserStoreService(this.store);
+  selected!: IUser;
+  filter: IUserFilter = {};
+
+  iconScreen = iconScreen;
   url!: string;
 
   private _unsubscribeAll: Subject<void> = new Subject<void>();
@@ -86,44 +90,8 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.loadPaginate();
-    this.getsItemsPaginator();
     this.get();
-  }
-
-  loadPaginate(): void {
-    this.store.dispatch(
-      PaginatorLoad({
-        paginator: {
-          limit: this.limit,
-          offset: this.offset,
-        },
-      })
-    );
-  }
-
-  get(): void {
-    this.url = this._router.url;
-    const params: IQueryUsers = {
-      filter: this.filter,
-      limit: this.limit,
-      offset: this.offset,
-      sort: this.sort,
-    };
-    this.fStore.getUsers(params, 'user');
-    this.items$ = this.fStore.see();
-    this.maxSize$ = this.fStore.seeMaxSize();
-  }
-
-  eventPaginate(limit: number, offset: number): void {
-    let paginate = 0;
-    paginate = offset;
-    paginate = offset * limit;
-    this.limit = limit;
-    this.offset = paginate;
-
-    const params = this.buildParams();
-    this.fStore.getUsers(params, 'user');
+    this.getsItemsPaginator();
   }
 
   search(query: string): void {
@@ -151,9 +119,70 @@ export class MainComponent implements OnInit, OnDestroy {
     this._changeDetectorRef.markForCheck();
   }
 
-  trackByFn(index: number, item: IUser): string | number {
-    return item._id || index;
+
+
+
+  get(): void {
+    this.url = this._router.url;
+    const params: IQueryUsers = {
+      filter: this.filter,
+      limit: this.limit,
+      offset: this.offset,
+      sort: this.sort,
+    };
+    this.fStore.getUsers(params, 'user');
+    this.items$ = this.fStore.see();
+    this.maxSize$ = this.fStore.seeMaxSize();
+    this.maxSize$.subscribe((maxSize) => {
+      this.loadPaginate(maxSize);
+    });
   }
+
+  loadPaginate(items: number): void {
+    this.store.dispatch(
+      PaginatorLoad({
+        paginator: {
+          limit: this.limit,
+          offset: this.offset,
+          items: items,
+        },
+      })
+    );
+  }
+
+  eventPaginate(limit: number, offset: number): void {
+    this.limit = limit;
+    this.offset = offset;
+    const params: IQueryUsers = {
+      filter: this.filter,
+      limit: this.limit,
+      offset: this.offset,
+      sort: this.sort,
+    };
+    this.fStore.getUsers(params, 'user');
+    this.items$ = this.fStore.see();
+    this.maxSize$ = this.fStore.seeMaxSize();
+    this.maxSize$.subscribe((maxSize) => {
+      this.store.dispatch(
+        PaginatorLoad({
+          paginator: {
+            items: maxSize,
+          },
+        })
+      );
+    });
+  }
+
+
+  getsItemsPaginator(): void {
+    const paginator$ = this.store.select(selectUIPaginator);
+    paginator$.subscribe((paginator) => {
+      if (paginator.limit) {
+        this.eventPaginate(paginator.limit, paginator.offset);
+      }
+    });
+  }
+
 
   private buildParams(): IQueryUsers {
     return {
@@ -164,36 +193,6 @@ export class MainComponent implements OnInit, OnDestroy {
     };
   }
 
-  currentPage: number = 1;
-  onPageChangePaginator(page: number): void {
-    this.currentPage = page;
-    this.updatePaginator(page, this.limit);
-  }
-  onLimitChangePaginator(event: number): void {
-    this.limit = event;
-    this.updatePaginator(0, event);
-    this._changeDetectorRef.detectChanges();
-  }
-
-  updatePaginator(page: number, limit: number): void {
-    this.url = this._router.url;
-    const params: IQueryUsers = {
-      filter: this.filter,
-      limit: limit,
-      offset: page,
-      sort: this.sort,
-    };
-    this.fStore.getUsers(params, 'user');
-    this.items$ = this.fStore.see();
-    this._changeDetectorRef.detectChanges();
-  }
-
-  getsItemsPaginator(): void {
-    const paginator$ = this.store.select(selectUIPaginator);
-    paginator$.subscribe((paginator) => {
-      this.eventPaginate(paginator.limit, paginator.offset);
-    });
-  }
 
   ngOnDestroy(): void {
     this.fStore.cleansUsers();
