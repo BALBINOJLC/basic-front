@@ -10,7 +10,7 @@ import { provideTransloco } from '@ngneat/transloco';
 import { TranslocoHttpLoader } from './core/transloco/transloco.http-loader';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideFuse } from '@fuse';
-import { provideAuth } from './core/auth/auth.provider';
+import { provideAuthAPI } from './core/auth/auth.provider';
 import { provideIcons } from './core/icons/icons.provider';
 import { mockApiServices } from './mock-api';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -20,9 +20,30 @@ import { provideEffects } from '@ngrx/effects';
 import { effects } from './store/effects';
 import { provideRouterStore } from '@ngrx/router-store';
 import { HttpApiInterceptorProvider, appThemeConfig } from '@core';
+import { environment } from 'environments/environment';
+import { getPerformance, providePerformance } from '@angular/fire/performance';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
+import { getStorage, provideStorage } from '@angular/fire/storage';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    /**Firebase */
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    providePerformance(() => getPerformance()),
+    provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
+    provideAnalytics(() => getAnalytics()),
+    provideStorage(() => getStorage()),
+
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
+    // Servicios de tracking para Analytics
+    ScreenTrackingService,
+    UserTrackingService,
+
     provideAnimations(),
     provideHttpClient(withFetch()),
     importProvidersFrom(HttpClientModule),
@@ -76,7 +97,7 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader,
     }),
     // Fuse
-    provideAuth(),
+    provideAuthAPI(),
     provideIcons(),
     provideFuse({
       mockApi: {
