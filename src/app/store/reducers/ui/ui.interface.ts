@@ -26,6 +26,7 @@ export enum PlatformEnum {
 }
 
 export interface IPaginator {
-  limit   : number;
-  offset  : number;
+  limit   ?: number;
+  offset  ?: number;
+  items?   : number;
 }

@@ -16,10 +16,10 @@
     <div class="flex-auto">
       <form [formGroup]="form">
         <mat-form-field class="fuse-mat-dense fuse-mat-no-subscript fuse-mat-rounded w-full min-w-50">
-          <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:search'"></mat-icon>
+          <mat-icon class="icon-size-5" matPrefix [svgIcon]="'heroicons_solid:magnifying-glass'"></mat-icon>
           <input matInput [formControlName]="'query'" [autocomplete]="'off'" [placeholder]="'FORMS.FIELDS.SEARCH' | transloco" />
           <button mat-icon-button type="button" (click)="clean()" matSuffix>
-            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:refresh'"></mat-icon>
+            <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:arrow-path'"></mat-icon>
           </button>
         </mat-form-field>
       </form>
