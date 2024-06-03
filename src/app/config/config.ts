@@ -47,7 +47,7 @@ export interface IAppConfig {
  */
 
 export const appThemeConfig: IAppConfig = {
-  layout: 'thin',
+  layout: 'classic',
   scheme: 'dark',
   screens: {
     sm: '600px',

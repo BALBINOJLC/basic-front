@@ -1,10 +1,9 @@
-<div class="inset-0 flex flex-col w-full overflow-hidden">
+<div class="absolute inset-0 flex flex-col overflow-hidden w-full">
   <mat-drawer-container class="flex-auto h-full" (backdropClick)="onBackdropClicked()">
     <!-- Drawer -->
 
-
     <mat-drawer
-      class="w-full sm:w-160 dark:bg-sicrux-1 h-full"
+      class="w-full md:w-5/6 lg:w-4/6 xl:w-3/6 dark:bg-sicrux-1 h-full"
       [mode]="drawerMode"
       [opened]="false"
       [position]="'end'"
@@ -13,8 +12,6 @@
     >
       <router-outlet></router-outlet>
     </mat-drawer>
-
-
 
     <mat-drawer-content class="flex flex-col">
       <!-- Main -->
@@ -33,7 +30,6 @@
         <!-- Clients list -->
         <ng-container *ngIf="items$ | async as items">
           <div class="ml-auto mr-4">
-
             <button (click)="setLayout('list')" mat-icon-button [matTooltip]="'BTNS.LIST_VIEW' | transloco">
               <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:queue-list'"></mat-icon>
             </button>
