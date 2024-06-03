@@ -3,7 +3,7 @@
 
 <!-- Navigation -->
 <fuse-vertical-navigation
-  class="dark:bg-custom-2"
+  class="dark bg-gray-900 print:hidden"
   [appearance]="navigationAppearance"
   [mode]="isScreenSmall ? 'over' : 'side'"
   [name]="'mainNavigation'"
@@ -20,10 +20,10 @@
 </fuse-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="flex flex-col flex-auto w-full min-w-0 dark:bg-custom-2">
+<div class="flex flex-col flex-auto w-full min-w-0">
   <!-- Header -->
   <div
-    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-custom-1 rounded-2xl  print:hidden space-nav-bar"
+    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden"
   >
     <div class="flex items-center pr-2 space-x-2">
       <!-- Navigation toggle button -->
@@ -46,18 +46,22 @@
       <button class="lg:hidden" mat-icon-button (click)="quickChat.toggle()">
         <mat-icon [svgIcon]="'heroicons_outline:chat-bubble-left-right'"></mat-icon>
       </button>
-      <user [user]="user"></user>
+      <user [user]="user" [showAvatar]="true"></user>
     </div>
   </div>
 
   <!-- Content -->
   <div class="flex flex-col flex-auto">
+    <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+             Otherwise, layout changes won't be registered and the view won't be updated! -->
     <router-outlet *ngIf="true"></router-outlet>
   </div>
 
   <!-- Footer -->
-  <div class="base-footer space-footer-bar">
-    <span class="font-medium text-secondary">{{ appConfig.copyRight }} &copy; {{ currentYear }}</span>
+  <div
+    class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden"
+  >
+    <span class="font-medium text-secondary">Fuse &copy; {{ currentYear }}</span>
   </div>
 </div>
 

@@ -3,7 +3,7 @@
 
 <!-- Navigation -->
 <fuse-vertical-navigation
-  class="dark:bg-custom-2"
+  class="dark bg-gray-900 print:hidden"
   [mode]="isScreenSmall ? 'over' : 'side'"
   [name]="'mainNavigation'"
   [navigation]="navigation.default"
@@ -12,21 +12,20 @@
   <!-- Navigation header hook -->
   <ng-container fuseVerticalNavigationContentHeader>
     <!-- Logo -->
-    <!-- Logo -->
     <div class="flex items-center h-20 p-6 pb-0">
       <!-- Light version -->
-      <img class="dark:hidden w-30" [src]="appConfig.logoTextOnLight" alt="Logo image" />
+      <img class="dark:hidden w-30" src="assets/images/logo/logo-text.svg" alt="Logo image" />
       <!-- Dark version -->
-      <img class="hidden dark:flex w-30" [src]="appConfig.logoTextOnDark" alt="Logo image" />
+      <img class="hidden dark:flex w-30" src="assets/images/logo/logo-text-on-dark.svg" alt="Logo image" />
     </div>
   </ng-container>
 </fuse-vertical-navigation>
 
 <!-- Wrapper -->
-<div class="flex flex-col flex-auto w-full min-w-0 dark:bg-custom-2">
+<div class="flex flex-col flex-auto w-full min-w-0">
   <!-- Header -->
   <div
-    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card rounded-2xl dark:bg-custom-1 print:hidden space-nav-bar"
+    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden"
   >
     <!-- Navigation toggle button -->
     <button mat-icon-button (click)="toggleNavigation('mainNavigation')">
@@ -56,9 +55,9 @@
 
   <!-- Footer -->
   <div
-    class="base-footer space-footer-bar"
+    class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden"
   >
-    <span class="font-medium text-secondary">{{ appConfig.copyRight }} &copy; {{ currentYear }}</span>
+    <span class="font-medium text-secondary">Fuse &copy; {{ currentYear }}</span>
   </div>
 </div>
 
