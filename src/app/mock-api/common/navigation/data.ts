@@ -79,6 +79,23 @@ const getAdminMenu = (): FuseNavigationItem[] => [
   },
 ];
 
+const getOwnerMenu = (): FuseNavigationItem[] => [
+  {
+    id: 'dashboard',
+    title: 'SIDEBAR.DASHBOARD',
+    type: 'basic',
+    icon: 'heroicons_outline:chart-pie',
+    link: `${basePath}/dashboard`,
+  },
+  {
+    id: 'users',
+    title: 'SIDEBAR.USERS',
+    type: 'basic',
+    icon: 'heroicons_outline:user-group',
+    link: `${basePath}/users`,
+  },
+];
+
 const getUserMenu = (): FuseNavigationItem[] => [
   {
     id: 'dashboard',
@@ -114,6 +131,8 @@ const getMenuItems = (role: TUserRoles): FuseNavigationItem[] => {
       return getSUperAdminMenu();
     case 'USER':
       return getUserMenu();
+    case 'OWNER':
+      return getOwnerMenu();
     default:
       return getDefaultMenu();
   }

@@ -1,8 +1,8 @@
 // Types
-export type Scheme = 'auto' | 'dark' | 'light';
-export type Screens = { [key: string]: string };
-export type Theme = 'theme-default' | string;
-export type Themes = { id: string; name: string }[];
+export type TScheme = 'auto' | 'dark' | 'light';
+export type TScreens = { [key: string]: string };
+export type TTheme = 'theme-default' | string;
+export type TThemes = { id: string; name: string }[];
 
 /**
  * IAppConfig interface. Update this interface to strictly type your config
@@ -10,8 +10,8 @@ export type Themes = { id: string; name: string }[];
  */
 export interface FuseConfig {
   layout: string;
-  scheme: Scheme;
-  screens: Screens;
-  theme: Theme;
-  themes: Themes;
+  scheme: TScheme;
+  screens: TScreens;
+  theme: TTheme;
+  themes: TThemes;
 }

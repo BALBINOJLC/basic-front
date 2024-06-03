@@ -79,15 +79,15 @@ export class AuthService {
 
   signOut(): void {
     if (isPlatformBrowser(this.platformId)) {
-      //localStorage.clear();
-      // this.store.dispatch(actions.AuthClean());
-      // this.auth.signOut();
-      //  this.router.navigate(['/auth/sign-in']);
+      localStorage.clear();
+      this.store.dispatch(actions.AuthClean());
+      //this.auth.signOut();
+      this.router.navigate(['/auth/sign-in']);
     }
   }
 
-  signUp(user: IAuthSignUp, invited: boolean, sendEmail: boolean): Observable<ISingUpSucces> {
-    const url = `${this.urlApi}/auth/signup/${invited}/${sendEmail}`;
+  signUp(user: IAuthSignUp): Observable<ISingUpSucces> {
+    const url = `${this.urlApi}/auth/register`;
     return this.httpClient.post<ISingUpSucces>(url, user, { headers: { 'no-token': 'no-token' } }).pipe(
       tap((resp) => this.handleSignUpResponse(resp)),
       switchMap((resp) => of(resp))
@@ -115,6 +115,7 @@ export class AuthService {
   checkAuthUser(): Observable<boolean> {
     return this.isAccessTokenValid().pipe(
       tap((isValid) => {
+        console.log(isValid);
         this._authenticated = isValid;
       }),
 
@@ -143,7 +144,7 @@ export class AuthService {
     if (isPlatformBrowser(this.platformId) && localStorage.getItem('token') && localStorage.getItem('user')) {
       const decryptedUser = this.decryptData(localStorage.getItem('user')!);
       const user = JSON.parse(decryptedUser);
-      this.idUserActive = user._id;
+      this.idUserActive = user.id;
       this.store.dispatch(actions.AuthLoadUser({ data: { user, token: localStorage.getItem('token')! } }));
     }
   }
@@ -194,18 +195,4 @@ export class AuthService {
       return resp;
     }
   }
-
-  /* private async signInWithSocialNetwork(network: TSocialNetwork): Promise<firebase.User | null> {
-    switch (network) {
-      case 'google':
-        return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((result) => result.user);
-      case 'facebook':
-        return this.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((result) => result.user);
-      case 'github':
-        return this.auth.signInWithPopup(new firebase.auth.GithubAuthProvider()).then((result) => result.user);
-      default:
-        console.error('Unsupported social network');
-        return null;
-    }
-  } */
 }

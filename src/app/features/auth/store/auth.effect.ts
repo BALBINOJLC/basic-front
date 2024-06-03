@@ -6,10 +6,7 @@ import { map, mergeMap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
-  constructor(
-    private actions$: Actions,
-    private _authService: AuthService
-  ) {}
+  constructor(private actions$: Actions, private _authService: AuthService) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
@@ -44,18 +41,14 @@ export class AuthEffects {
   registerEffects$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.AuthSignUp),
-      mergeMap(({ user, invited, sendEmail }) =>
-        this._authService.signUp(user, invited, sendEmail).pipe(map(() => authActions.AuthClean()))
-      )
+      mergeMap(({ user }) => this._authService.signUp(user).pipe(map(() => authActions.AuthClean())))
     );
   });
 
   registerSocialNetwork$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(authActions.AuthSignUpSocialNetwork),
-      mergeMap(({ user, invited, sendEmail }) =>
-        this._authService.signUp(user, invited, sendEmail).pipe(map(() => authActions.AuthSignIn({ user })))
-      )
+      mergeMap(({ user }) => this._authService.signUp(user).pipe(map(() => authActions.AuthSignIn({ user }))))
     );
   });
 

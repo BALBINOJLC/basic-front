@@ -1,5 +1,5 @@
 export const apiRestRoutes = {
-  gets: 'users',
+  gets: 'users/get-users',
   get: 'users',
   add: 'users',
   put: 'users',

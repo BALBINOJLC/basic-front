@@ -14,7 +14,7 @@ const customPalettes = {
 };
 
 /**
- * Themes
+ * TThemes
  */
 const themes = {
     // Default theme is required for theming system to work correctly!

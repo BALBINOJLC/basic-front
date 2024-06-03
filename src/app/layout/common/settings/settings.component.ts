@@ -6,7 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router } from '@angular/router';
 import { appThemeConfig } from '@config';
 import { FuseDrawerComponent } from '@fuse/components/drawer';
-import { FuseConfig, FuseConfigService, Scheme, Theme, Themes } from '@fuse/services/config';
+import { FuseConfig, FuseConfigService, TScheme, TTheme, TThemes } from '@fuse/services/config';
 
 import { Subject, takeUntil } from 'rxjs';
 
@@ -38,7 +38,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   layout: string;
   scheme: 'dark' | 'light';
   theme: string;
-  themes: Themes;
+  themes: TThemes;
 
   show: boolean = appThemeConfig.options.showSettings;
   showQuickChat: boolean = appThemeConfig.options.showQuickChat;
@@ -109,7 +109,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
    *
    * @param scheme
    */
-  setScheme(scheme: Scheme): void {
+  setScheme(scheme: TScheme): void {
     this._fuseConfigService.config = { scheme };
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('scheme', scheme);
@@ -121,7 +121,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
    *
    * @param theme
    */
-  setTheme(theme: Theme): void {
+  setTheme(theme: TTheme): void {
     this._fuseConfigService.config = { theme };
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('theme', theme);

@@ -1,4 +1,4 @@
-export type TUserRoles = 'ADMIN' | 'USER' | 'SUPER_ADMIN';
+export type TUserRoles = 'ADMIN' | 'USER' | 'SUPER_ADMIN' | 'OWNER';
 
 export type TNetworkSignIn = 'google' | 'facebook' | 'gitHub';
 

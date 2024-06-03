@@ -2,17 +2,17 @@
 
 import { Layout } from 'app/layout/layouts/layout.types';
 
-export type Scheme = 'auto' | 'dark' | 'light';
-export type Screens = { [key: string]: string };
-export type Theme = 'theme-default' | string;
-export type Themes = { id: string; name: string }[];
+export type TScheme = 'auto' | 'dark' | 'light';
+export type TScreens = { [key: string]: string };
+export type TTheme = 'theme-default' | string;
+export type TThemes = { id: string; name: string }[];
 
 export interface IAppConfig {
   layout: Layout;
-  scheme: Scheme;
-  screens: Screens;
-  theme: Theme;
-  themes: Themes;
+  scheme: TScheme;
+  screens: TScreens;
+  theme: TTheme;
+  themes: TThemes;
   options: {
     showNotifications: boolean;
     showQuickChat: boolean;
@@ -38,16 +38,16 @@ export interface IAppConfig {
  * object to set the defaults. To access, update and reset the config, use
  * FuseConfigService and its methods.
  *
- * "Screens" are carried over to the BreakpointObserver for accessing them within
+ * "TScreens" are carried over to the BreakpointObserver for accessing them within
  * components, and they are required.
  *
  * #18191e cambiar por #18191e
  *
- * "Themes" are required for Tailwind to generate themes.
+ * "TThemes" are required for Tailwind to generate themes.
  */
 
 export const appThemeConfig: IAppConfig = {
-  layout: 'compact',
+  layout: 'thin',
   scheme: 'dark',
   screens: {
     sm: '600px',
