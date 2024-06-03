@@ -90,8 +90,8 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.role && d.type) {
-          this.navigation = userMenu(d.role, d.type);
+        if (d && d.profiles && d.profiles.length > 0) {
+          this.navigation = userMenu(d.profiles);
         }
       });
 

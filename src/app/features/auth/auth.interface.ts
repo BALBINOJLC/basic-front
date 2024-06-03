@@ -1,4 +1,4 @@
-import { IUser, UserTypesType } from '@users';
+import { IUser} from '@users';
 import { TSocialNetwork } from './auth.types';
 
 export interface IPasswordForm {
@@ -19,7 +19,6 @@ export interface ISignUpForm {
     password        : IPasswordForm;
     passwordConfirm : string;
     policy          : boolean;
-    type            : UserTypesType;
     organization?   : string;
 }
 
@@ -36,7 +35,6 @@ export interface IAuthSignUp {
     first_name  : string;
     network?    : TSocialNetwork;
     org?        : string;
-    type        : UserTypesType;
     socialToken?: string;
 }
 
@@ -53,7 +51,6 @@ export interface IAuthSignUp {
     last_name   : string;
     first_name  : string;
     network?    : TSocialNetwork;
-    type        : UserTypesType;
     socialToken?: string;
 }
 

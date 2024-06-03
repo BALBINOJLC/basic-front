@@ -20,10 +20,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(
-    private authEventsService: AuthEventsService,
-    private store: Store
-  ) {}
+  constructor(private authEventsService: AuthEventsService, private store: Store) {}
 
   ngOnInit(): void {
     this.subscription.add(
@@ -41,7 +38,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: { password },
       first_name,
       last_name,
-      type,
     } = dataForm;
 
     const user: IAuthSignUp = {
@@ -49,7 +45,6 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: password.trim(),
       first_name,
       last_name,
-      type,
     };
 
     this.fStore.authSignUp({ user, invited: false, sendEmail: true });

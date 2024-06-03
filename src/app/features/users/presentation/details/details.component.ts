@@ -6,7 +6,7 @@ import { MainComponent } from '../main/main.component';
 import { ViewDetailsComponent } from './view/vew.component';
 import { EditDetailsComponent } from './edit/edit.component';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
-import { FromType, IQueryUser, IUser, IUserFilter } from '@users';
+import { TFrom, IQueryUser, IUser, IUserFilter } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { commonModules, materialToolsModules } from '@shared';
@@ -25,7 +25,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   fStore = new UserStoreService(this.store);
 
   id: string;
-  from!: FromType;
+  from!: TFrom;
   editMode: boolean = false;
   filter: IUserFilter = {};
 

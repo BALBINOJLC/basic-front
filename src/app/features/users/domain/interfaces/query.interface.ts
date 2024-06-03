@@ -1,7 +1,7 @@
 
 import { Query, RespApiGETS } from '@utils';
 import { IUser } from './users.interface';
-import { SortUserType } from '../types';
+import { TSortUser } from '../types';
 
 export interface IUserFilter {
   _id?: string;
@@ -28,7 +28,7 @@ export interface IUserUpdated {
 }
 
 export interface ISortUsers {
-  field: SortUserType;
+  field: TSortUser;
   order: number;
 }
 

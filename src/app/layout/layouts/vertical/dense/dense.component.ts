@@ -25,9 +25,16 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'dense-layout',
   templateUrl: './dense.component.html',
-  styleUrls: ['./dense.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  styles: `
+  .space-nav-bar {
 
+      width: calc(100% - 30px) !important;
+      margin: 10px;
+      position: relative;
+      left: 10px;
+  }
+  `,
   standalone: true,
   imports: [
     FuseLoadingBarComponent,
@@ -89,8 +96,8 @@ export class DenseLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.role && d.type) {
-          this.navigation = userMenu(d.role, d.type);
+        if (d && d.profiles && d.profiles.length > 0) {
+          this.navigation = userMenu(d.profiles);
         }
       });
 

@@ -25,7 +25,6 @@ import { UserComponent } from 'app/layout/common/user/user.component';
 import { userMenu } from 'app/mock-api/common/navigation/data';
 import { Observable, of, Subject, takeUntil } from 'rxjs';
 
-
 @Component({
   selector: 'compact-layout',
   templateUrl: './compact.component.html',
@@ -101,8 +100,8 @@ export class CompactLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.role && d.type) {
-          this.navigation = userMenu(d.role, d.type);
+        if (d && d.profiles && d.profiles.length > 0) {
+          this.navigation = userMenu(d.profiles);
         }
       });
 

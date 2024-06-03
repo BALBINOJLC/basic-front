@@ -2,7 +2,7 @@ import { Store } from '@ngrx/store';
 import * as actions from '@users';
 import { Observable } from 'rxjs';
 import {
-  FromType,
+  TFrom,
   IQueryUser,
   IQueryUsers,
   IUser,
@@ -33,7 +33,7 @@ export class UserStoreService {
     return this.store.select(selectUsers);
   }
 
-  adduser(user: IUser, from: FromType): void {
+  adduser(user: IUser, from: TFrom): void {
     this.store.dispatch(actions.UserAdd({ item: user, from }));
   }
 
@@ -41,7 +41,7 @@ export class UserStoreService {
     this.store.dispatch(actions.UserGet({ query }));
   }
 
-  getUsers(params: IQueryUsers, uType: FromType): void {
+  getUsers(params: IQueryUsers, uType: TFrom): void {
     this.store.dispatch(actions.UserGets({ params, uType }));
   }
 
@@ -53,7 +53,7 @@ export class UserStoreService {
     this.store.dispatch(actions.UserUpdate({ id, item }));
   }
 
-  deleteUser(id: string, from: FromType): void {
+  deleteUser(id: string, from: TFrom): void {
     this.store.dispatch(actions.UserDelete({ id, from }));
   }
 

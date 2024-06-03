@@ -25,7 +25,15 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'classic-layout',
   templateUrl: './classic.component.html',
-  styleUrls: ['./classic.component.scss'],
+  styles: `
+  .space-nav-bar {
+
+      width: calc(100% - 30px) !important;
+      margin: 10px;
+      position: relative;
+      left: 10px;
+  }
+  `,
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
@@ -86,8 +94,8 @@ export class ClassicLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.role && d.type) {
-          this.navigation = userMenu(d.role, d.type);
+        if (d && d.profiles && d.profiles.length > 0) {
+          this.navigation = userMenu(d.profiles);
         }
       });
 

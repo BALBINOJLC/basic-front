@@ -1,5 +1,5 @@
 import { IFile, IResponseApiGets } from '@utils';
-import { UserRolesType, UserTypesType } from '../types';
+import { TUserRoles } from '../types';
 
 export interface IUser {
     _id             : string | null;
@@ -10,8 +10,7 @@ export interface IUser {
     first_name      : string;
     last_name       : string;
     phone?          : string;
-    role            : UserRolesType;
-    type            : UserTypesType;
+    profiles        : IUserProfile[];
     photo_url       : IFile;
     access_token?   : string;
     userOrg?        : IUser;
@@ -32,4 +31,10 @@ export interface IResponseUserUpdated {
 
 export interface IResponseUserDeleted {
   message: string;
+}
+
+export interface IUserProfile {
+    id    : string;
+    role  : TUserRoles;
+    active: boolean;
 }

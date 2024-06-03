@@ -25,9 +25,16 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
   selector: 'thin-layout',
   templateUrl: './thin.component.html',
-  styleUrls: ['./thin.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  styles: `
+  .space-nav-bar {
 
+      width: calc(100% - 30px) !important;
+      margin: 10px;
+      position: relative;
+      left: 10px;
+  }
+  `,
   standalone: true,
   imports: [
     FuseLoadingBarComponent,
@@ -86,8 +93,8 @@ export class ThinLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.role && d.type) {
-          this.navigation = userMenu(d.role, d.type);
+        if (d && d.profiles && d.profiles.length > 0) {
+          this.navigation = userMenu(d.profiles);
         }
       });
 

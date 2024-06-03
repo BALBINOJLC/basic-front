@@ -5,7 +5,6 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { IPanelSettigns } from './interfaces';
 import { SettingsNotificationsComponent } from './notifications/notifications.component';
 import { SettingsPlanBillingComponent } from './plan-billing/plan-billing.component';
-import { SettingsTeamComponent } from './team/team.component';
 import { SettingsSecurityComponent } from './security/security.component';
 import { SettingsAccountComponent } from './account/account.component';
 import { MatIcon } from '@angular/material/icon';
@@ -30,7 +29,6 @@ import { CommonModule } from '@angular/common';
     SettingsNotificationsComponent,
     SettingsPlanBillingComponent,
     SettingsSecurityComponent,
-    SettingsTeamComponent,
   ],
 })
 export class SettingsComponent implements OnInit, OnDestroy {
@@ -44,10 +42,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    */
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _fuseMediaWatcherService: FuseMediaWatcherService
-  ) {}
+  constructor(private _changeDetectorRef: ChangeDetectorRef, private _fuseMediaWatcherService: FuseMediaWatcherService) {}
 
   ngOnInit(): void {
     // Setup available panels

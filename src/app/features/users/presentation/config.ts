@@ -1,4 +1,4 @@
-import { IUser, IUserAppState, UserRolesType, UserTypesType } from '@users';
+import { IUser, IUserAppState, TUserRoles } from '@users';
 
 export const userActions = 'USERS';
 export const userRouteBase = '/admin/users';
@@ -12,8 +12,7 @@ export const initialUser: IUser = {
   first_name: '',
   last_name: '',
   email: '',
-  role: 'USER',
-  type: 'CLIENT',
+  profiles: [],
   email_verify: false,
   is_active: false,
   photo_url: {
@@ -24,5 +23,5 @@ export const initialUser: IUser = {
   },
 };
 
-export const roles: UserRolesType[] = ['ADMIN', 'USER'];
-export const types: UserTypesType[] = ['CLIENT', 'OWNER'];
+export const roles: TUserRoles[] = ['ADMIN', 'USER'];
+

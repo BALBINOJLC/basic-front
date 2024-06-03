@@ -1,9 +1,7 @@
-export type UserRolesType = 'ADMIN' | 'USER' | 'SUPER_ADMIN';
+export type TUserRoles = 'ADMIN' | 'USER' | 'SUPER_ADMIN';
 
-export type UserTypesType = 'ORG' | 'CLIENT' | 'OWNER';
+export type TNetworkSignIn = 'google' | 'facebook' | 'gitHub';
 
-export type NetworkSignInType = 'google' | 'facebook' | 'gitHub';
+export type TSortUser = 'username' | 'display_name' | 'email' | 'createdAt' | 'updatedAt';
 
-export type SortUserType = 'username' | 'display_name' | 'email' | 'createdAt' | 'updatedAt';
-
-export type FromType = 'user' | 'client' | 'member' | 'null';
+export type TFrom = 'user' | 'client' | 'member' | 'null';

@@ -4,19 +4,14 @@ import { IFile } from '@utils';
 import { Observable, Subject } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { FormComponent } from './form.component';
-import { roles, translate, types } from '../../config';
+import { roles, translate } from '../../config';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormUserComponent } from 'app/shared/components/form/form-user/form-user.component';
 import { commonModules, formsModules, materialToolsModules } from '@shared';
 import { IUser, UserStoreService } from '@users';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Store } from '@ngrx/store';
-import { selectPlatform } from '@store';
-
-enum PlatformEnum {
-  WEB = 'web',
-  MOBILE = 'mobile',
-}
+import { PlatformEnum, selectPlatform } from '@store';
 
 @Component({
   selector: 'edit-details',
@@ -37,7 +32,6 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
   btnSave = 'BTNS.SAVE';
 
   roles = roles;
-  types = types;
   area = '+56';
   transloco = translate;
 

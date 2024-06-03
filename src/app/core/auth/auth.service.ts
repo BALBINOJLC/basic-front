@@ -29,18 +29,6 @@ export class AuthService {
     @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.loadUser();
-    this.firebase();
-  }
-
-  firebase(): void {
-    /* initializeApp(environment.firebase);
-    const provider = new GoogleAuthProvider();
-    // console.log(firebaseApp);
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-
-    const auth = getAuth();
-    auth.languageCode = 'it';
-    auth.useDeviceLanguage(); */
   }
 
   get accessToken(): string | undefined {
@@ -62,7 +50,8 @@ export class AuthService {
   }
 
   signIn(user: IAuthSignIn): Observable<ILoadUser> {
-    const url = `${this.urlApi}/auth/signin`;
+    const url = `${this.urlApi}/auth/login`;
+    console.log(user);
 
     const httpOptions = {
       headers: new HttpHeaders({

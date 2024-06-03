@@ -14,7 +14,6 @@ export class AuthEventsService {
     password: { password: '', passwordConfirm: '' },
     passwordConfirm: '',
     policy: false,
-    type: 'CLIENT',
     organization: '',
   });
   private authForgotPasswordEvent = new BehaviorSubject<{ email: string }>({ email: '' });
