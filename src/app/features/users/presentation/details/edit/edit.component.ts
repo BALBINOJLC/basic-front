@@ -57,7 +57,6 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.platform$ = this.store.select(selectPlatform);
-    console.log('this.user', this.user);
 
     if (this.user) {
       this.form.patchValue(this.user);
@@ -112,8 +111,6 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
         ...data,
         password: generateStrongPassword(),
       };
-      console.log('data', data);
-
       this.fStore.adduser(data, 'user');
     }
 

@@ -81,14 +81,16 @@ export class AppComponent {
   uiMessage(message: { message: string; status: number }): void {
     this.store.dispatch(actions.uIClean());
 
-    this._fuseConfirmationService.open({
-      actions: {
-        cancel: { show: false },
-        confirm: { show: true, label: 'OK', color: 'primary' },
-      },
-      message: this.trans.translate(message.message),
-      title: '',
-    });
+    if (message.message !== 'Token not found') {
+      this._fuseConfirmationService.open({
+        actions: {
+          cancel: { show: false },
+          confirm: { show: true, label: 'OK', color: 'primary' },
+        },
+        message: this.trans.translate(message.message),
+        title: '',
+      });
+    }
   }
 
   uiMessageUpdate(message: string, icon: string, duration: number): void {

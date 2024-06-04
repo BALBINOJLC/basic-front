@@ -11,10 +11,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
-import { MatPaginatorModule,} from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { TLayout } from '@utils';
 import { LayoutListComponent } from '../layouts/list/layout.list.component';
 import { LayoutGridComponent } from '../layouts/grid/layout.grid.component';
@@ -26,7 +26,7 @@ import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users'
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { PaginatorLoad, selectUIPaginator } from '@store';
-
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
   selector: 'clients-main',
@@ -54,11 +54,10 @@ export class MainComponent implements OnInit, OnDestroy {
   drawerMode: 'side' | 'over' = 'side';
   layout: TLayout = 'list';
 
-
   items$: Observable<IUserState>;
   itemsPage$: Observable<IUserState>;
   maxSize$: Observable<number>;
-  limit: number = 50;
+  limit: number = 10;
   offset: number = 0;
   sort: ISortUsers = {
     field: 'display_name',
@@ -79,6 +78,7 @@ export class MainComponent implements OnInit, OnDestroy {
     private _changeDetectorRef: ChangeDetectorRef,
     private _router: Router,
     private store: Store,
+    private _fuseMediaWatcherService: FuseMediaWatcherService,
     @Inject(PLATFORM_ID) private platformId: string
   ) {
     if (isPlatformBrowser(this.platformId)) {
@@ -92,6 +92,8 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.get();
     this.getsItemsPaginator();
+    this.drawerChanges();
+    this.mediaChanges();
   }
 
   search(query: string): void {
@@ -118,9 +120,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this._router.navigate(['./'], { relativeTo: this._activatedRoute });
     this._changeDetectorRef.markForCheck();
   }
-
-
-
 
   get(): void {
     this.url = this._router.url;
@@ -173,7 +172,6 @@ export class MainComponent implements OnInit, OnDestroy {
     });
   }
 
-
   getsItemsPaginator(): void {
     const paginator$ = this.store.select(selectUIPaginator);
     paginator$.subscribe((paginator) => {
@@ -183,6 +181,31 @@ export class MainComponent implements OnInit, OnDestroy {
     });
   }
 
+  drawerChanges(): void {
+    this.matDrawer.openedChange.subscribe((opened) => {
+      if (!opened) {
+        // Remove the selected contact when drawer closed
+        this.selected = null;
+        this.get();
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+      }
+    });
+  }
+
+  mediaChanges(): void {
+    this._fuseMediaWatcherService.onMediaChange$.pipe(takeUntil(this._unsubscribeAll)).subscribe(({ matchingAliases }) => {
+      // Set the drawerMode if the given breakpoint is active
+      if (matchingAliases.includes('lg')) {
+        this.drawerMode = 'side';
+      } else {
+        this.drawerMode = 'over';
+      }
+
+      // Mark for check
+      this._changeDetectorRef.markForCheck();
+    });
+  }
 
   private buildParams(): IQueryUsers {
     return {
@@ -192,7 +215,6 @@ export class MainComponent implements OnInit, OnDestroy {
       sort: this.sort,
     };
   }
-
 
   ngOnDestroy(): void {
     this.fStore.cleansUsers();

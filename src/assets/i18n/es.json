@@ -100,7 +100,8 @@
     "ERRORS": {
       "SIGNIN": {
         "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
-        "EMAIL_VALID": "Error al crear el usuario, el correo no es válido."
+        "EMAIL_VALID": "Error al crear el usuario, el correo no es válido.",
+        "EMAIL_NOT_VERIFIED": "El correo electrónico no ha sido verificado."
       },
       "PASSWORD_SAME_OLD": "La contraseña nueva no puede ser igual a la anterior",
       "SIGNIN.INCORRECT_PASSWORD": "Contraseña incorrecta"
