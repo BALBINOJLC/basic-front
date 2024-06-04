@@ -7,6 +7,8 @@ import { TFrom, IResposeGetUsers, IUser, IQueryUser, IQueryUsers, IUserUpdate } 
 export const UserGets       = createAction(`[${userActions}] GETS USERS`,   props<{ params: IQueryUsers; uType: TFrom }>());
 export const UserSearch     = createAction(`[${userActions}] SEARCH`,       props<{ params: IQueryUsers; query: string }>());
 export const UserLoads      = createAction(`[${userActions}] LOADS USERS`,  props<{ data: IResposeGetUsers }>());
+export const UserGetScroll  = createAction(`[${userActions}] GETS SCROLL`,  props<{ params: IQueryUsers; uType: TFrom }>());
+export const UserLoadScroll = createAction(`[${userActions}] LOADS SCROLL`, props<{ data: IResposeGetUsers }>());
 export const UserGet        = createAction(`[${userActions}] GET`,          props<{ query: IQueryUser }>());
 export const UserDelete     = createAction(`[${userActions}] DELETE`,       props<{ id: string; from: TFrom }>());
 export const UserUpdate     = createAction(`[${userActions}] UPDATE`,       props<{ id: string; item: IUserUpdate }>());

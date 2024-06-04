@@ -31,6 +31,21 @@ export class UsersEffects {
     )
   );
 
+  getsScroll$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.UserGetScroll),
+      mergeMap(({ params, uType }) =>
+        this._userRepository.getUsers(params).pipe(
+          map((data) => {
+            if (uType === 'user') {
+              return actions.UserLoadScroll({ data });
+            }
+          })
+        )
+      )
+    )
+  );
+
   get$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserGet),

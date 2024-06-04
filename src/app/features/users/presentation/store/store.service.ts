@@ -45,6 +45,10 @@ export class UserStoreService {
     this.store.dispatch(actions.UserGets({ params, uType }));
   }
 
+  getScroll(params: IQueryUsers, uType: TFrom): void {
+    this.store.dispatch(actions.UserGetScroll({ params, uType }));
+  }
+
   searchUsers(params: IQueryUsers, query: string): void {
     this.store.dispatch(actions.UserSearch({ params, query }));
   }

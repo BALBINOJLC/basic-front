@@ -13,7 +13,7 @@
       <router-outlet></router-outlet>
     </mat-drawer>
 
-    <mat-drawer-content class="flex flex-col">
+    <mat-drawer-content class="flex flex-col" (scroll)="onScroll($event)" #elementRef>
       <!-- Main -->
       <div class="flex flex-col flex-auto">
         <!-- Header -->
@@ -46,8 +46,6 @@
             <!--layout List-->
             <layout-list *ngIf="layout === 'list'" [items]="items.items" (view)="view($event)"></layout-list>
           </ng-container>
-
-          <ng-container *ngIf="itemsPage$ | async as items_per"> </ng-container>
         </ng-container>
         <!-- No clients -->
         <ng-template #noItems>

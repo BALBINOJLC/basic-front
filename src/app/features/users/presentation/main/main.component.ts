@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Inject,
   OnDestroy,
   OnInit,
@@ -25,7 +26,6 @@ import { iconScreen, translate } from '../config';
 import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
-import { PaginatorLoad, selectUIPaginator } from '@store';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
 @Component({
@@ -48,15 +48,13 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 })
 export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('matDrawer', { static: true }) matDrawer!: MatDrawer;
-
+  @ViewChild('elementRef', { static: true }) elementRef!: ElementRef;
   transloco = translate;
 
   drawerMode: 'side' | 'over' = 'side';
   layout: TLayout = 'list';
 
   items$: Observable<IUserState>;
-  itemsPage$: Observable<IUserState>;
-  maxSize$: Observable<number>;
   limit: number = 10;
   offset: number = 0;
   sort: ISortUsers = {
@@ -91,9 +89,23 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.get();
-    this.getsItemsPaginator();
     this.drawerChanges();
     this.mediaChanges();
+    if (isPlatformBrowser(this.platformId)) {
+      this.elementRef.nativeElement?.addEventListener('scroll', this.onScroll);
+    }
+  }
+
+  onScroll(event): void {
+    // get the height of the scroll
+    const height = event.target.scrollHeight - event.target.clientHeight;
+    // detect when the scroll is at the bottom
+    if (event.target.scrollTop >= height) {
+      console.log('scroll at the bottom');
+      // add more data
+      this.offset += this.limit;
+      this.eventPaginate(this.limit, this.offset);
+    }
   }
 
   search(query: string): void {
@@ -131,22 +143,6 @@ export class MainComponent implements OnInit, OnDestroy {
     };
     this.fStore.getUsers(params, 'user');
     this.items$ = this.fStore.see();
-    this.maxSize$ = this.fStore.seeMaxSize();
-    this.maxSize$.subscribe((maxSize) => {
-      this.loadPaginate(maxSize);
-    });
-  }
-
-  loadPaginate(items: number): void {
-    this.store.dispatch(
-      PaginatorLoad({
-        paginator: {
-          limit: this.limit,
-          offset: this.offset,
-          items: items,
-        },
-      })
-    );
   }
 
   eventPaginate(limit: number, offset: number): void {
@@ -158,27 +154,8 @@ export class MainComponent implements OnInit, OnDestroy {
       offset: this.offset,
       sort: this.sort,
     };
-    this.fStore.getUsers(params, 'user');
+    this.fStore.getScroll(params, 'user');
     this.items$ = this.fStore.see();
-    this.maxSize$ = this.fStore.seeMaxSize();
-    this.maxSize$.subscribe((maxSize) => {
-      this.store.dispatch(
-        PaginatorLoad({
-          paginator: {
-            items: maxSize,
-          },
-        })
-      );
-    });
-  }
-
-  getsItemsPaginator(): void {
-    const paginator$ = this.store.select(selectUIPaginator);
-    paginator$.subscribe((paginator) => {
-      if (paginator.limit) {
-        this.eventPaginate(paginator.limit, paginator.offset);
-      }
-    });
   }
 
   drawerChanges(): void {
