@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
-import { ITemplate } from '@template';
+import { ITemplate } from '@templates';
 import { ListTemplate1Component } from '../../components/list-1/list-1.component';
 
 @Component({

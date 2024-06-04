@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { createAction, props } from '@ngrx/store';
 import { templateActions } from '../config';
-import { IResposeGetTemplates, ITemplate, IQueryTemplate, IQueryTemplates, ITemplateUpdate } from '@template';
+import { IResposeGetTemplates, ITemplate, IQueryTemplate, IQueryTemplates, ITemplateUpdate } from '@templates';
 
 
 export const TemplateGets       = createAction(`[${templateActions}] GETS TEMPLATES`,   props<{ params: IQueryTemplates; }>());

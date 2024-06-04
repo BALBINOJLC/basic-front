@@ -23,7 +23,7 @@ import { HeaderPagesComponent } from 'app/shared/components/header-pages/header-
 import { commonModules, formsModules, materialToolsModules } from '@shared';
 import { MatDrawer } from '@angular/material/sidenav';
 import { iconScreen, translate } from '../config';
-import { IQueryTemplates, ISortTemplates, ITemplate, ITemplateFilter, ITemplateState } from '@template';
+import { IQueryTemplates, ISortTemplates, ITemplate, ITemplateFilter, ITemplateState } from '@templates';
 import { TemplateStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';

@@ -10,7 +10,7 @@ import {
   IQueryTemplates,
   TemplatesDataSource,
   ITemplateUpdate,
-} from '@template';
+} from '@templates';
 import { environment } from 'environments/environment';
 import { Observable, of, switchMap } from 'rxjs';
 import { apiRestRoutes } from './routes';

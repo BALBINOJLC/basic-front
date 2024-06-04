@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
-import { ITemplate } from '@template';
+import { ITemplate } from '@templates';
 
 @Component({
   selector: 'card-info-template-1',

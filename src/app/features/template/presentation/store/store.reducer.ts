@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Action, createReducer, on } from '@ngrx/store';
 import * as actions from './store.action';
-import { ITemplate, initialTemplate } from '@template';
+import { ITemplate, initialTemplate } from '@templates';
 
 export interface ITemplateState {
   items: ITemplate[];

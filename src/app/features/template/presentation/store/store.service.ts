@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import * as actions from '@template';
+import * as actions from '@templates';
 import { Observable } from 'rxjs';
 import {
   IQueryTemplate,
@@ -11,7 +11,7 @@ import {
   selectTemplateMaxSize,
   selectTemplateSelected,
   selectTemplates,
-} from '@template';
+} from '@templates';
 
 export class TemplateStoreService {
   constructor(private store: Store) {}

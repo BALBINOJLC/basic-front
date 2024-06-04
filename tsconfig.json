@@ -32,6 +32,7 @@
             "@pipes"    : ["app/shared/pipes/index"],
             "@auth"     : ["app/features/auth/index"],
             "@users"    : ["app/features/users/index"],
+            "@templates" : ["app/features/template/index"],
             "@data"     : ["app/data/fake"],
         },
     },

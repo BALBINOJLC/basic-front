@@ -1,4 +1,4 @@
-import { ITemplate, ITemplateAppState } from '@template';
+import { ITemplate, ITemplateAppState } from '@templates';
 
 export const templateActions = 'TEMPLATES';
 export const templateRouteBase = '/admin/templates';
