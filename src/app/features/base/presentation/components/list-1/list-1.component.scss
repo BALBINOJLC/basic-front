@@ -1,0 +1,47 @@
+@mixin div-list {
+  @apply grid grid-cols-2 md:grid-cols-3 gap-4 px-6 py-4 md:px-8 my-2 bg-white dark:bg-card rounded-lg shadow-sm cursor-pointer hover:bg-gray-100;
+}
+
+.div-list {
+  @include div-list;
+}
+
+@mixin list-name {
+  @apply capitalize text-gray-700 text-base sm:text-lg font-medium truncate dark:text-white;
+}
+
+.list-name {
+  @include list-name;
+}
+
+@mixin base-phone {
+  @apply rounded-full hover:bg-green-200 dark:hover:text-black px-3 py-1 text-md font-medium text-green-900 dark:text-white;
+}
+
+.base-phone {
+  @include base-phone;
+}
+
+@mixin a-phone {
+  @apply col-span-1 flex items-center justify-end;
+}
+
+.a-phone {
+  @include a-phone;
+}
+
+@mixin email-mobile {
+  @apply text-md md:font-medium font-normal truncate md:hidden;
+}
+
+.email-mobile {
+  @include email-mobile;
+}
+
+@mixin email-desktop {
+  @apply hidden md:flex col-span-1 items-center;
+}
+
+.email-desktop {
+  @include email-desktop;
+}

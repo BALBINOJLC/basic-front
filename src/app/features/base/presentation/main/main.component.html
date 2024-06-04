@@ -1,0 +1,65 @@
+<div class="absolute inset-0 flex flex-col overflow-hidden w-full">
+  <mat-drawer-container class="flex-auto h-full" (backdropClick)="onBackdropClicked()">
+    <!-- Drawer -->
+
+    <mat-drawer
+      class="w-full md:w-5/6 lg:w-4/6 xl:w-3/6 dark:bg-sicrux-1 h-full"
+      [mode]="drawerMode"
+      [opened]="false"
+      [position]="'end'"
+      [disableClose]="true"
+      #matDrawer
+    >
+      <router-outlet></router-outlet>
+    </mat-drawer>
+
+    <mat-drawer-content class="flex flex-col">
+      <!-- Main -->
+      <div class="flex flex-col flex-auto" #elementRef>
+        <!-- Header -->
+        <header-pages
+          class="fixed-header"
+          *ngVar="items$ | async as items"
+          [titlePlural]="transloco + '.TITLES' | transloco"
+          [titleSingle]="transloco + '.TITLE' | transloco"
+          [count]="items?.total_count"
+          (searchAction)="search($event)"
+          (addAction)="add()"
+          (cleanSearch)="get()"
+        ></header-pages>
+
+        <!-- Clients list -->
+        <div class="scrollable-content" (scroll)="onScroll($event)">
+          <ng-container *ngIf="items$ | async as items">
+            <div class="ml-auto mr-4">
+              <button (click)="setLayout('list')" mat-icon-button [matTooltip]="'BTNS.LIST_VIEW' | transloco">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:queue-list'"></mat-icon>
+              </button>
+
+              <button (click)="setLayout('grid')" mat-icon-button [matTooltip]="'BTNS.GRID_VIEW' | transloco">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:squares-2x2'"></mat-icon>
+              </button>
+            </div>
+
+            <!--layout Grid-->
+            <ng-container *ngIf="items.total_count; else noItems">
+              <!--layout Grid-->
+              <layout-grid *ngIf="layout === 'grid'" [bases]="items.items" (view)="view($event)"></layout-grid>
+              <!--layout List-->
+              <layout-list *ngIf="layout === 'list'" [items]="items.items" (view)="view($event)"></layout-list>
+            </ng-container>
+          </ng-container>
+        </div>
+        <!-- No clients -->
+        <ng-template #noItems>
+          <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+            <mat-icon class="icon-size-24" [svgIcon]="iconScreen"></mat-icon>
+            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary text-center">
+              {{ transloco + '.CLEAN_SCREEN' | transloco }}
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

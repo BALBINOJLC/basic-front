@@ -1,0 +1,17 @@
+<div class="div-list" (click)="view(base)">
+  <div class="flex items-center md:col-span-1">
+    <app-icon-image-fisrt-letter
+      [item]="base"
+      [itemType]="'BASE'"
+      [width]="2.5"
+      [height]="2.5"
+      [fontSize]="1"
+      [layoutType]="'ROUND'"
+    ></app-icon-image-fisrt-letter>
+
+    <div class="ml-3">
+      <p class="list-name">{{ base.name }}</p>
+      <div class="email-mobile">{{ base.description }}</div>
+    </div>
+  </div>
+</div>
