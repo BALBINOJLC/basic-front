@@ -1,12 +1,12 @@
 <!-- Meta Body -->
-<div class="flex flex-col px-6 w-full">
+@if (item) {
+<div class="flex flex-col px-3 w-full">
   <!-- Username Container -->
-  <div class="flex h-8 flex-row items-center text-3xl font-semibold">
+  <div class="flex h-8 flex-row items-center text-2xl font-semibold">
     <!-- Username -->
-
-    <span >{{ 'Balbino '}}</span>
+    <span>{{ item.first_name }} {{ item.last_name }}</span>
     <!-- User Active -->
-    <ng-container >
+    <ng-container *ngIf="item.is_active">
       <svg
         class="my-auto ml-2 h-5 fill-blue-400"
         xmlns="http://www.w3.org/2000/svg"
@@ -23,74 +23,23 @@
     </ng-container>
   </div>
 
-  <!-- Meta Badges -->
-  <div class="my-2 flex flex-row text-base font-semibold flex-wrap">
-    <!-- Badge Role -->
-    <ng-container >
-      <div class="flex flex-row items-center gap-1 mr-4">
-        <mat-icon [svgIcon]="'mat_solid:account_circle'"></mat-icon>
-        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ 'Posicion' }}</div>
-      </div>
-    </ng-container>
-
-    <!-- Badge Location -->
-    <div class="flex flex-row items-center gap-1 mr-4">
-      <mat-icon [svgIcon]="'mat_solid:location_on'"></mat-icon>
-      <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">País</div>
-    </div>
-
-    <!-- GitHub-->
-    <ng-container >
-      <div class="flex flex-row items-center gap-1 mr-4">
-        <mat-icon [svgIcon]="'feather:github'"></mat-icon>
-        <a href="" target="_blank" class="text-gray-800 dark:text-gray-200 hover:text-red-600">
-          {{ 'git hub' }}
-        </a>
-      </div>
-    </ng-container>
-
-    <!-- LinkedIn -->
-    <ng-container>
-      <div class="flex flex-row items-center gap-1 mr-4">
-        <mat-icon [svgIcon]="'feather:linkedin'"></mat-icon>
-        <a
-          href=""
-          target="_blank"
-          class="text-gray-800 dark:text-gray-200 hover:text-red-600"
-        >
-          {{ 'linkedin' }}
-        </a>
-      </div>
-    </ng-container>
-  </div>
-
   <!-- info -->
-  <div class="my-2 flex flex-row text-base flex-wrap">
+  <div class="my-3 flex flex-row text-base flex-wrap">
     <!-- mail -->
-    <ng-container >
+    <ng-container *ngIf="item.email">
       <div class="flex flex-row items-center gap-1 mr-4">
-        <mat-icon [svgIcon]="'mat_solid:attach_email'"></mat-icon>
-        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{' balbilasala@gmail' }}</div>
-      </div>
-    </ng-container>
-
-    <!-- Phone-->
-    <ng-container >
-      <div class="flex flex-row items-center gap-1 mr-4">
-        <mat-icon [svgIcon]="'mat_solid:phone_android'"></mat-icon>
-        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ '+5698813331' }}</div>
+        <mat-icon [svgIcon]="'mat_outline:email'"></mat-icon>
+        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ item.email }}</div>
       </div>
     </ng-container>
 
     <!-- role -->
-    <ng-container >
+    <ng-container *ngIf="item.profiles[0]">
       <div class="flex flex-row items-center gap-1 mr-4">
         <mat-icon [svgIcon]="'feather:user'"></mat-icon>
-        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ 'admin' }}</div>
+        <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ item.profiles[0].role }}</div>
       </div>
     </ng-container>
   </div>
-
-
-
 </div>
+}

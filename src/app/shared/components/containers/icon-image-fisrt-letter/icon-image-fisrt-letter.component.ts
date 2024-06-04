@@ -15,8 +15,8 @@ import { ImgProfilePipe, TypeofPipe } from '@pipes';
 export class IconImageFisrtLetterComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() item: any;
-  @Input() itemType: IconItemType;
-  @Input() layoutType: IconLayoutType = 'ROUND';
+  @Input({ required: true }) itemType: IconItemType;
+  @Input({ required: true }) layoutType: IconLayoutType = 'ROUND';
   @Input() fontSize: number;
   @Input() fontColor: string;
   @Input() width: number;
@@ -30,5 +30,7 @@ export class IconImageFisrtLetterComponent implements OnInit {
     this.itemType = 'USER';
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('this.itemType', this.item);
+  }
 }

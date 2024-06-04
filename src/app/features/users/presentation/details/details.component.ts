@@ -46,6 +46,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.user$ = this.fStore.seeUser();
     this.initialProsses();
     this.get();
   }

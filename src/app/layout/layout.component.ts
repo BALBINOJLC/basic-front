@@ -13,8 +13,9 @@ import { ClassyLayoutComponent } from './layouts/vertical/classy/classy.componen
 import { CompactLayoutComponent } from './layouts/vertical/compact/compact.component';
 import { DenseLayoutComponent } from './layouts/vertical/dense/dense.component';
 import { ThinLayoutComponent } from './layouts/vertical/thin/thin.component';
-import { IUser, UserStoreService } from '@users';
+import { IUser } from '@users';
 import { Store } from '@ngrx/store';
+import { AuthStoreService } from '@auth';
 
 @Component({
   selector: 'layout',
@@ -40,7 +41,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   scheme: 'dark' | 'light';
   theme: string;
   user$: Observable<IUser>;
-  fStore = new UserStoreService(this.store);
+  fStore = new AuthStoreService(this.store);
 
   private _unsubscribeAll: Subject<void> = new Subject<void>();
 

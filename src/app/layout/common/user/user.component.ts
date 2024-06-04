@@ -26,10 +26,7 @@ export class UserComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    */
-  constructor(
-    private _authService: AuthService,
-    private _router: Router
-  ) {}
+  constructor(private _authService: AuthService, private _router: Router) {}
 
   // -----------------------------------------------------------------------------------------------------
   // @ Lifecycle hooks
@@ -38,7 +35,9 @@ export class UserComponent implements OnInit, OnDestroy {
   /**
    * On init
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('user', this.user);
+  }
 
   /**
    * On destroy
