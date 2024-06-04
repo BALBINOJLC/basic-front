@@ -51,7 +51,10 @@
   <!-- Navigation footer hook -->
   <ng-container fuseVerticalNavigationContentFooter>
     <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
-      <img class="max-w-36" src="assets/images/logo/logo-text-on-dark.svg" />
+      <!-- Light version -->
+      <img class="dark:hidden w-10" [src]="appConfig.logoOnLight" [alt]="appConfig.copyRight" />
+      <!-- Dark version -->
+      <img class="hidden dark:flex w-10" [src]="appConfig.logoOnDark" [alt]="appConfig.copyRight" />
     </div>
   </ng-container>
 </fuse-vertical-navigation>

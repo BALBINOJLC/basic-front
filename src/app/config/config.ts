@@ -25,6 +25,8 @@ export interface IAppConfig {
   };
   copyRight: string;
   logo: string;
+  logoOnDark: string;
+  logoOnLight: string;
   logoTextOnDark: string;
   logoTextOnLight: string;
   bgColorDark: string;
@@ -48,7 +50,7 @@ export interface IAppConfig {
 
 export const appThemeConfig: IAppConfig = {
   layout: 'dense',
-  scheme: 'dark',
+  scheme: 'light',
   screens: {
     sm: '600px',
     md: '960px',
@@ -93,9 +95,11 @@ export const appThemeConfig: IAppConfig = {
     showFullScreen: false,
   },
 
-  copyRight: 'SICRUX | Todos los derechos reservados.',
-  logo: 'assets/images/logo/logo.svg',
-  logoTextOnDark: 'assets/images/logo/logo-text.png',
-  logoTextOnLight: 'assets/images/logo/logo-text.png',
+  copyRight: 'HPDME | Todos los derechos reservados.',
+  logo: 'assets/images/logo/logo.jpg',
+  logoOnDark: 'assets/images/logo/logo.jpg',
+  logoOnLight: 'assets/images/logo/logo.jpg',
+  logoTextOnDark: 'assets/images/logo/logo.jpg',
+  logoTextOnLight: 'assets/images/logo/logo.jpg',
   bgColorDark: '#190a11',
 };
