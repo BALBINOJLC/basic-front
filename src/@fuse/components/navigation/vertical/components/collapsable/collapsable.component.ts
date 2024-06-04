@@ -12,6 +12,7 @@ import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/nav
 import { FuseVerticalNavigationGroupItemComponent } from '@fuse/components/navigation/vertical/components/group/group.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
+import { TranslocoModule } from '@ngneat/transloco';
 import { filter, Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -31,6 +32,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
     FuseVerticalNavigationDividerItemComponent,
     FuseVerticalNavigationGroupItemComponent,
     FuseVerticalNavigationSpacerItemComponent,
+    TranslocoModule
   ],
 })
 export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {

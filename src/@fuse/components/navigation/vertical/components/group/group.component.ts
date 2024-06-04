@@ -9,6 +9,7 @@ import { FuseVerticalNavigationCollapsableItemComponent } from '@fuse/components
 import { FuseVerticalNavigationDividerItemComponent } from '@fuse/components/navigation/vertical/components/divider/divider.component';
 import { FuseVerticalNavigationSpacerItemComponent } from '@fuse/components/navigation/vertical/components/spacer/spacer.component';
 import { FuseVerticalNavigationComponent } from '@fuse/components/navigation/vertical/vertical.component';
+import { TranslocoModule } from '@ngneat/transloco';
 import { Subject, takeUntil } from 'rxjs';
 
 @Component({
@@ -26,6 +27,7 @@ import { Subject, takeUntil } from 'rxjs';
     FuseVerticalNavigationDividerItemComponent,
     forwardRef(() => FuseVerticalNavigationGroupItemComponent),
     FuseVerticalNavigationSpacerItemComponent,
+    TranslocoModule,
   ],
 })
 export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestroy {
@@ -43,10 +45,7 @@ export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestr
   /**
    * Constructor
    */
-  constructor(
-    private _changeDetectorRef: ChangeDetectorRef,
-    private _fuseNavigationService: FuseNavigationService
-  ) {}
+  constructor(private _changeDetectorRef: ChangeDetectorRef, private _fuseNavigationService: FuseNavigationService) {}
 
   // -----------------------------------------------------------------------------------------------------
   // @ Lifecycle hooks
