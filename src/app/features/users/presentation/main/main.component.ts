@@ -42,6 +42,21 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
     HeaderPagesComponent,
     MainComponent,
   ],
+  styles: [
+    `
+      .fixed-header {
+        position: sticky; /* Make the header sticky */
+        top: 0; /* Position it at the top of the viewport */
+        z-index: 10; /* Ensure the header stays on top during scrolling (optional) */
+        padding: 1rem; /* Add some padding for better look (optional) */
+      }
+
+      .scrollable-content {
+        overflow-y: auto; /* Enable vertical scrolling */
+        height: calc(100vh - 300px); /* Adjust height based on header height */
+      }
+    `,
+  ],
 
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -88,12 +103,25 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.items$ = this.fStore.see();
     this.get();
     this.drawerChanges();
     this.mediaChanges();
     if (isPlatformBrowser(this.platformId)) {
       this.elementRef.nativeElement?.addEventListener('scroll', this.onScroll);
     }
+  }
+
+  getMoreItems(limit: number, offset: number): void {
+    this.limit = limit;
+    this.offset = offset;
+    const params: IQueryUsers = {
+      filter: this.filter,
+      limit: this.limit,
+      offset: this.offset,
+      sort: this.sort,
+    };
+    this.fStore.getScroll(params, 'user');
   }
 
   onScroll(event): void {
@@ -104,7 +132,7 @@ export class MainComponent implements OnInit, OnDestroy {
       console.log('scroll at the bottom');
       // add more data
       this.offset += this.limit;
-      this.eventPaginate(this.limit, this.offset);
+      this.getMoreItems(this.limit, this.offset);
     }
   }
 
@@ -142,19 +170,6 @@ export class MainComponent implements OnInit, OnDestroy {
       sort: this.sort,
     };
     this.fStore.getUsers(params, 'user');
-    this.items$ = this.fStore.see();
-  }
-
-  eventPaginate(limit: number, offset: number): void {
-    this.limit = limit;
-    this.offset = offset;
-    const params: IQueryUsers = {
-      filter: this.filter,
-      limit: this.limit,
-      offset: this.offset,
-      sort: this.sort,
-    };
-    this.fStore.getScroll(params, 'user');
     this.items$ = this.fStore.see();
   }
 
