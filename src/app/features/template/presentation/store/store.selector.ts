@@ -3,7 +3,7 @@ import { ITemplateState } from './store.reducer';
 import { templateKeyStore } from '../config';
 
 // Selector para obtener el estado 'template' completo
-export const selectTemplate = createFeatureSelector<ITemplateState>(templateKeyStore);
+export const selectTemplate = createFeatureSelector<ITemplateState>(templateKeyStore as string);
 
 // Selector para obtener un listado de usuarios
 export const selectTemplates = createSelector(selectTemplate, (state: ITemplateState) => state.items);
