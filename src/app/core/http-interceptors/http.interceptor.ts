@@ -1,17 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpRequest, HttpInterceptor, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, Subscription, asapScheduler, catchError, map, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { selectAuthToken } from '@auth';
 import * as actions from '@store';
-import { IHttpError } from '@core';
+import { AuthService, IHttpError } from '@core';
 
 @Injectable()
 export class HttpApiInterceptor implements HttpInterceptor {
   token: string = '';
 
   tokenSubscription: Subscription;
+
+  authService = inject(AuthService);
 
   constructor(private store: Store) {
     this.tokenSubscription = this.store.select(selectAuthToken).subscribe((token) => {
@@ -53,6 +55,11 @@ export class HttpApiInterceptor implements HttpInterceptor {
 
   errorInterceptor(error: IHttpError): Observable<any> {
     console.log('errorInterceptor', error);
+
+    // validate code error
+    if (error.status === 401) {
+      this.authService.signOut();
+    }
 
     const dataError = {
       error: error.error,

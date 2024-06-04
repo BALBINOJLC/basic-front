@@ -5,7 +5,7 @@
         <ng-container>
           <div class="flex flex-col">
             <!-- Avatar -->
-            <ng-container *ngIf="user._id">
+            <ng-container *ngIf="user.id">
               <div class="relative -mt-16">
                 <!--todo hacer el upload para cargar las fotos-->
                 <!-- Upload / Remove avatar -->
@@ -34,7 +34,7 @@
         <div class="flex items-center justify-end mt-auto py-2 mb-4">
           <ng-container>
             <!--Delete-->
-            <ng-container *ngIf="user._id !== null">
+            <ng-container *ngIf="user.id !== null">
               <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
                 <mat-icon>delete</mat-icon>
                 <span class="ml-2">{{ 'BTNS.DELETE' | transloco }}</span>
@@ -57,7 +57,7 @@
 
           <ng-container *ngIf="platform === 'mobile'">
             <!-- Delete -->
-            <ng-container *ngIf="user._id !== null">
+            <ng-container *ngIf="user.id !== null">
               <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">
                 <mat-icon svgIcon="mat_outline:delete"></mat-icon>
               </button>

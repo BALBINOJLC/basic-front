@@ -1,12 +1,12 @@
 import { Query, RespApiGETS } from '@utils';
 
 export interface INewsLetterEntity {
-  _id?: string;
+  id?: string;
   email: string;
 }
 
 export interface INewsLetterFilter {
-  _id?: string;
+  id?: string;
   email?: string;
 }
 

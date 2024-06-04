@@ -8,7 +8,7 @@ export const iconScreen = 'feather:user-plus';
 export const userKeyStore: keyof IUserAppState = 'users';
 
 export const initialUser: IUser = {
-  _id: '',
+  id: '',
   first_name: '',
   last_name: '',
   email: '',

@@ -104,7 +104,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   view(item: IUser): void {
-    this._router.navigate(['./', item._id]);
+    this._router.navigate(['./', item.id]);
   }
 
   setLayout(layout: 'list' | 'grid'): void {

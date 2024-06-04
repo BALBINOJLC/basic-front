@@ -18,13 +18,10 @@ export class ListUser1Component {
   @Input({ required: true }) user: IUser;
   selectedUser!: IUser;
 
-  constructor(
-    private _router: Router,
-    private _activatedRoute: ActivatedRoute
-  ) {}
+  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {}
 
   view(user: IUser): void {
     this.selectedUser = user;
-    this._router.navigate(['./', user._id], { relativeTo: this._activatedRoute });
+    this._router.navigate(['./', user.id], { relativeTo: this._activatedRoute });
   }
 }

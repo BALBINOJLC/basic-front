@@ -71,7 +71,7 @@ export interface IResponseMessage {
 }
 
 export interface ISingUpSucces {
-    _id             : string;
+    id             : string;
     access_token?   : string;
     email           : string;
     message?        : string;

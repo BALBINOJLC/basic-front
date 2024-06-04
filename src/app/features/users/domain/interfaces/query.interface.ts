@@ -4,7 +4,7 @@ import { IUser } from './users.interface';
 import { TSortUser } from '../types';
 
 export interface IUserFilter {
-  _id?: string;
+  id?: string;
 }
 
 export interface IQueryUsers extends Query {
@@ -36,6 +36,6 @@ export interface ISingUpSucces {
   user_name : string;
   email     : string;
   message   : string;
-  _id       : string;
+  id       : string;
   user      : IUser;
 }

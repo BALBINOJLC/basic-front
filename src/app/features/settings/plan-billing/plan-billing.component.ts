@@ -12,7 +12,7 @@ import { FuseAlertComponent } from '@fuse/components/alert';
 import { MatInput } from '@angular/material/input';
 
 interface IPlan {
-  _id?: string;
+  id?: string;
   value: string;
   label: string;
   details: string;
@@ -102,6 +102,6 @@ export class SettingsPlanBillingComponent implements OnInit {
    * @param item
    */
   trackByFn(index: number, item: IPlan): string | number {
-    return item._id || index;
+    return item.id || index;
   }
 }

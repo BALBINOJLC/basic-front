@@ -54,7 +54,7 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
     if (this.user) {
       this.form.patchValue(this.user);
     }
-    if (this.user._id !== null) {
+    if (this.user.id !== null) {
       this.btnSave = 'BTNS.UPDATE';
     }
   }
@@ -80,7 +80,7 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
       .afterClosed()
       .subscribe((d) => {
         if (d === 'confirmed') {
-          this.fStore.deleteUser(this.user._id, 'user');
+          this.fStore.deleteUser(this.user.id, 'user');
         }
       });
   }
@@ -91,8 +91,8 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
       password: new Date().getTime().toString(),
     };
 
-    if (this.user._id !== null) {
-      this.fStore.updateUser(this.user._id, data);
+    if (this.user.id !== null) {
+      this.fStore.updateUser(this.user.id, data);
     } else {
       this.fStore.adduser(data, 'user');
     }

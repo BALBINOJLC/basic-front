@@ -25,6 +25,6 @@ export class CardInfoUserOneComponent {
   }
 
   view(user: IUser): void {
-    this._router.navigate(['./', user._id], { relativeTo: this._activatedRoute });
+    this._router.navigate(['./', user.id], { relativeTo: this._activatedRoute });
   }
 }

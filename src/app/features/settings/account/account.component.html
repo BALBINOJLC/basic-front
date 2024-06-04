@@ -10,7 +10,7 @@
         </div>
 
         <!-- Avatar -->
-        <ng-container *ngIf="user._id">
+        <ng-container *ngIf="user.id">
           <div class="flex justify-center relative w-1/2">
             <!-- Upload / Remove avatar -->
             <!-- <app-upload-file-theme
@@ -19,7 +19,7 @@
               [height]="12"
               [width]="8"
               [fontSize]="4"
-              (fileUploaded)="changeImgProfile($event, user._id)"
+              (fileUploaded)="changeImgProfile($event, user.id)"
               [key]="user.photo_url?.key"
             ></app-upload-file-theme> -->
           </div>
@@ -85,7 +85,7 @@
             [placeHolder]="translate + '.FIELDS.COUNTRY' | transloco"
             [defaultValue]="{
               name: user.country,
-              _id: '123'
+              id: '123'
             }"
           >
           </app-form-auto-complete> -->
@@ -105,7 +105,7 @@
       <!-- Actions -->
       <div class="flex items-center justify-end">
         <button mat-stroked-button type="button" (click)="cancel()">{{ 'BTNS.CANCEL' | transloco }}</button>
-        <button (click)="update(user._id)" class="ml-4" mat-flat-button type="submit" [color]="'primary'">
+        <button (click)="update(user.id)" class="ml-4" mat-flat-button type="submit" [color]="'primary'">
           {{ 'BTNS.SAVE' | transloco }}
         </button>
       </div>

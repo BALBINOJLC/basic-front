@@ -41,6 +41,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this._activatedRoute.params.subscribe((params) => {
       const id: string = params['id'];
       this.id = id;
+      this.filter = { id };
     });
   }
 
@@ -73,7 +74,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   get(): void {
     const query: IQueryUser = {
       filter: this.filter,
-      fields: ' ',
     };
 
     if (this.id !== 'new') {

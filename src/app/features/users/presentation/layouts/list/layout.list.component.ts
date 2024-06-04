@@ -28,6 +28,6 @@ export class LayoutListComponent {
    * @param item
    */
   trackByFn(index: number, item: IUser): string | number {
-    return item._id || index;
+    return item.id || index;
   }
 }

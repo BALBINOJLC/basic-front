@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { AuthService } from '@core';
 import {
@@ -41,7 +41,7 @@ export class UsersApiRestDataSource implements UsersDataSource {
     }
     return this.http.get<IResposeGetUsers>(url, { params: query }).pipe(
       switchMap((resp) => {
-        const userIsActive = resp.data.some((item) => item._id === this.#authService.idUserActive);
+        const userIsActive = resp.data.some((item) => item.id === this.#authService.idUserActive);
         return of(userIsActive ? { ...resp } : resp);
       })
     );
@@ -70,17 +70,24 @@ export class UsersApiRestDataSource implements UsersDataSource {
   }
 
   getUser({ fields, filter }: IQueryUser): Observable<IUser> {
-    let params = new HttpParams();
-    Object.keys(filter).forEach((key) => {
-      params = params.set(key, filter[key]);
-    });
+    let query = null;
 
-    let url = `${this.#urlApi}/${apiRestRoutes.get}`;
-    if (fields) {
-      url += `/${fields}`;
+    if (filter) {
+      console.log('filter', filter);
+
+      query = setQueryParams(filter);
     }
 
-    return this.http.get<IUser>(url, { params });
+    let url = `${this.#urlApi}/${apiRestRoutes.get}`;
+
+    if (fields) {
+      url = `${url}/${fields}`;
+    }
+    if (filter) {
+      url = `${url}?${query}`;
+    }
+
+    return this.http.get<IUser>(url);
   }
   addUser(data: IUser): Observable<IUser> {
     const url = `${this.#urlApi}/${apiRestRoutes.add}`;

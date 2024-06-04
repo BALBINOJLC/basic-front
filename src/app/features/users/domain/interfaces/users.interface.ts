@@ -2,7 +2,7 @@ import { IFile, IResponseApiGets } from '@utils';
 import { TUserRoles } from '../types';
 
 export interface IUser {
-    _id             : string | null;
+    id              : string | null;
     email_verify    : boolean;
     is_active       : boolean;
     display_name?   : string;

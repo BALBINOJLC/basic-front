@@ -81,11 +81,11 @@ export class SettingsNewsLetterComponent implements OnInit {
     };
 
     console.log('updateRole', newsLetter, newsLetterUpdated);
-    this.store.dispatch(actions.NewsLetterUpdate({ filter: { _id: newsLetter._id }, item: newsLetterUpdated }));
+    this.store.dispatch(actions.NewsLetterUpdate({ filter: { id: newsLetter.id }, item: newsLetterUpdated }));
   }
 
   deleteNewsLetter(newsLetter: INewsLetterEntity): void {
-    this.store.dispatch(actions.NewsLetterDelete({ id: newsLetter._id }));
+    this.store.dispatch(actions.NewsLetterDelete({ id: newsLetter.id }));
   }
 
   /**
@@ -95,6 +95,6 @@ export class SettingsNewsLetterComponent implements OnInit {
    * @param item
    */
   trackByFn(index: number, item: INewsLetterEntity): string | number {
-    return item._id || index;
+    return item.id || index;
   }
 }
