@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { FuseConfirmationConfig } from '@fuse/services/confirmation/confirmation.types';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
     selector     : 'fuse-confirmation-dialog',
@@ -27,7 +28,7 @@ import { FuseConfirmationConfig } from '@fuse/services/confirmation/confirmation
     ],
     encapsulation: ViewEncapsulation.None,
     standalone   : true,
-    imports      : [NgIf, MatButtonModule, MatDialogModule, MatIconModule, NgClass],
+    imports      : [NgIf, MatButtonModule, MatDialogModule, MatIconModule, NgClass, TranslocoModule],
 })
 export class FuseConfirmationDialogComponent
 {

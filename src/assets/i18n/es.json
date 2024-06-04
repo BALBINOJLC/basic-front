@@ -129,16 +129,17 @@
 
   "BTNS": {
     "ADD": "Agregar",
-    "SAVE": "Guardar",
+    "BACK": "Volver",
     "CANCEL": "Cancelar",
     "DELETE": "Eliminar",
     "EDIT": "Editar",
-    "BACK": "Volver",
-    "UPDATE": "Actualizar",
-    "LIST_VIEW": "Vista de Lista",
     "GRID_VIEW": "Vista de Cuadrícula",
+    "LIST_VIEW": "Vista de Lista",
     "RESET_LINK": "Enviar enlace de restablecimiento",
-    "RESET_PASSWORD": "Restablecer Contraseña"
+    "RESET_PASSWORD": "Restablecer Contraseña",
+    "SAVE": "Guardar",
+    "UPDATE": "Actualizar",
+    "YES": "Sí"
   },
 
   "USER": {
@@ -316,5 +317,9 @@
     "DASHBOARD": "Dashboard",
     "USERS": "Usuarios",
     "SETTINGS": "Ajustes"
+  },
+  "MS": {
+    "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar este elemento?",
+    "DELETE_INFO": "Este elemento no podrá ser recuperado."
   }
 }

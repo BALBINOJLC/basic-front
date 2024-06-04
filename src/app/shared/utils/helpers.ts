@@ -28,11 +28,44 @@ export const filterCountries = (countries: Country[]): IDataAutoComplete[] => {
 };
 
 export const generateStrongPassword = (): string => {
-  const length = 10; // define the desired length of the password
-  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'; // define the characters allowed in the password
+  const minLength = 12;
+  const minLowercase = 1;
+  const minUppercase = 1;
+  const minNumbers = 1;
+  const minSymbols = 1;
+  const length = minLength; // define the desired length of the password
+  const lowercaseCharset = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbersCharset = '0123456789';
+  const symbolsCharset = '!@#$%^&*()_+';
   let password = '';
-  for (let i = 0, n = charset.length; i < length; ++i) {
-    password += charset.charAt(Math.floor(Math.random() * n));
+
+  // Generate lowercase characters
+  for (let i = 0; i < minLowercase; i++) {
+    password += lowercaseCharset.charAt(Math.floor(Math.random() * lowercaseCharset.length));
   }
+
+  // Generate uppercase characters
+  for (let i = 0; i < minUppercase; i++) {
+    password += uppercaseCharset.charAt(Math.floor(Math.random() * uppercaseCharset.length));
+  }
+
+  // Generate numbers
+  for (let i = 0; i < minNumbers; i++) {
+    password += numbersCharset.charAt(Math.floor(Math.random() * numbersCharset.length));
+  }
+
+  // Generate symbols
+  for (let i = 0; i < minSymbols; i++) {
+    password += symbolsCharset.charAt(Math.floor(Math.random() * symbolsCharset.length));
+  }
+
+  // Generate remaining characters
+  const remainingLength = length - (minLowercase + minUppercase + minNumbers + minSymbols);
+  const charset = lowercaseCharset + uppercaseCharset + numbersCharset + symbolsCharset;
+  for (let i = 0; i < remainingLength; i++) {
+    password += charset.charAt(Math.floor(Math.random() * charset.length));
+  }
+
   return password;
 };
