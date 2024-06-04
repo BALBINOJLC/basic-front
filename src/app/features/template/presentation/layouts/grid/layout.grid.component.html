@@ -1,0 +1,13 @@
+<div class="flex flex-col flex-auto min-w-full">
+  <!-- Main -->
+  <div class="flex-auto p-4">
+    <ng-container *ngIf="templates">
+      <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        <ng-container *ngFor="let item of templates; let i = index; trackBy: trackByFn">
+          <card-info-template-1 [@fadeInBottom]="'*'" [template]="item" [labelLink]="'TEMPLATE.ACTIONS.SEE' | transloco">
+          </card-info-template-1>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>

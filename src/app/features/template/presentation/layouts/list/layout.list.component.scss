@@ -1,0 +1,23 @@
+@mixin text-list {
+  @apply capitalize text-gray-700 font-medium truncate dark:text-white;
+}
+
+.text-list {
+  @include text-list;
+}
+
+@mixin div-grid {
+  @apply grid grid-cols-3 gap-4 px-6 py-4 md:px-8 my-2;
+}
+
+.div-grid {
+  @include div-grid;
+}
+
+@mixin div-phone {
+  @apply col-span-1 flex items-center justify-end;
+}
+
+.div-phone{
+  @include div-phone;
+}

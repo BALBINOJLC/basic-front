@@ -319,6 +319,19 @@
     "USERS": "Usuarios",
     "SETTINGS": "Ajustes"
   },
+
+  "TEMPLATE": {
+    "TITLES": "Plantillas",
+    "FIELDS": {
+      "NAME": "Nombre",
+      "DESCRIPTION": "Descripción",
+      "ACTIVE": "Activo",
+      "STATUS": "Estado",
+      "CREATED_AT": "Creado",
+      "UPDATED_AT": "Actualizado",
+      "CLEAN_SCREEN": "No hay plantillas"
+    }
+  },
   "MS": {
     "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar este elemento?",
     "DELETE_INFO": "Este elemento no podrá ser recuperado."

@@ -1,0 +1,50 @@
+<div class="flex flex-col w-full items-center h-full">
+  <!-- Header -->
+  <div class="w-full flex items-center justify-end p-6">
+    <a class="font-bold pr-15 cursor-pointer" (click)="close()">
+      <mat-icon [svgIcon]="'heroicons_outline:x-mark'"></mat-icon>
+    </a>
+  </div>
+
+  <ng-container *ngIf="!editMode">
+    <ng-container *ngIf="template$ | async as item">
+      <div class="flex flex-col xl:flex-row relative p-6">
+        <!-- Img Profile-->
+        <div class="flex flex-row">
+          <div class="relative">
+            <div class="flex items-center justify-center w-32 h-32">
+              <app-icon-image-fisrt-letter
+                [item]="item"
+                [itemType]="'TEMPLATE'"
+                [layoutType]="'ROUND'"
+                [width]="8"
+                [height]="8"
+                [fontSize]="3"
+              ></app-icon-image-fisrt-letter>
+            </div>
+          </div>
+        </div>
+        <view-details [item]="item"></view-details>
+        <!-- Right Actions Container -->
+        <div class="flex flex-grow flex-col items-end justify-start mt-5 xl:mt-0">
+          <div class="flex items-center">
+            <button mat-stroked-button (click)="toggleEditMode(true)">
+              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:pencil-square'"></mat-icon>
+              <span class="ml-2">{{ 'TEMPLATE.FIELDS.EDIT' | transloco }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Edit mode -->
+  <ng-container *ngIf="editMode">
+    <ng-container *ngIf="template$ | async as template">
+      <!-- Contact form -->
+      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12 h-full">
+        <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [template]="template"></edit-details>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
