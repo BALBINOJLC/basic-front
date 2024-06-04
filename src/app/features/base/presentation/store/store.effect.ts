@@ -4,7 +4,7 @@ import * as actions from './store.action';
 import { map, mergeMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BasesRepositoryImpl } from 'app/features/base';
+import { BasesRepositoryImpl } from '@bases';
 import { baseRouteBase } from '../config';
 
 @Injectable()

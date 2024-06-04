@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { TranslocoModule } from '@ngneat/transloco';
-import { IBase } from 'app/features/base';
+import { IBase } from '@bases';
 import { commonModules } from '@shared';
 
 @Component({

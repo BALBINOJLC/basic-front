@@ -6,7 +6,7 @@ import { MainComponent } from '../main/main.component';
 import { ViewDetailsComponent } from './view/vew.component';
 import { EditDetailsComponent } from './edit/edit.component';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
-import { IQueryBase, IBase, IBaseFilter } from 'app/features/base';
+import { IQueryBase, IBase, IBaseFilter } from '@bases';
 import { BaseStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { commonModules, materialToolsModules } from '@shared';

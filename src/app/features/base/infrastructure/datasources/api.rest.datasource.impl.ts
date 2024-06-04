@@ -10,7 +10,7 @@ import {
   IQueryBases,
   BasesDataSource,
   IBaseUpdate,
-} from 'app/features/base';
+} from '@bases';
 import { environment } from 'environments/environment';
 import { Observable, of, switchMap } from 'rxjs';
 import { apiRestRoutes } from './routes';

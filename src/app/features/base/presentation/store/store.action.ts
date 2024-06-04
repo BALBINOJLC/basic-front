@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { createAction, props } from '@ngrx/store';
 import { baseActions } from '../config';
-import { IResposeGetBases, IBase, IQueryBase, IQueryBases, IBaseUpdate } from 'app/features/base';
+import { IResposeGetBases, IBase, IQueryBase, IQueryBases, IBaseUpdate } from '@bases';
 
 
 export const BaseGets       = createAction(`[${baseActions}] GETS BASES`,   props<{ params: IQueryBases; }>());
