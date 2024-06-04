@@ -1,14 +1,15 @@
-import { ChangeDetectorRef, Component, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Subject, Subscription, debounceTime, delay, of, takeUntil, tap } from 'rxjs';
+import { CommonModule, DOCUMENT } from '@angular/common';
+import { Subject, Subscription, debounceTime, takeUntil } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { selectUiState } from './store/reducers';
+import { PlatformEnum, selectUiState } from './store/reducers';
 import * as actions from './store/actions';
 import { IHttpError } from '@core';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
+import { Platform } from '@angular/cdk/platform';
 
 @Component({
   selector: 'app-root',
@@ -25,12 +26,23 @@ export class AppComponent {
   private _unsubscribeAll: Subject<void> = new Subject<void>();
   constructor(
     private translocoService: TranslocoService,
+    @Inject(DOCUMENT) private document: Document,
     private store: Store,
     private cd: ChangeDetectorRef,
     private _snackBar: MatSnackBar,
     private trans: TranslocoService,
-    private _fuseConfirmationService: FuseConfirmationService
-  ) {}
+    private _fuseConfirmationService: FuseConfirmationService,
+    private _platform: Platform
+  ) {
+    if (this._platform.IOS || this._platform.ANDROID) {
+      this._platform.isBrowser = false;
+      this.store.dispatch(actions.setPlatForm({ platform: PlatformEnum.MOBILE }));
+      this.document.body.classList.add('is-mobile');
+    } else {
+      this.store.dispatch(actions.setPlatForm({ platform: PlatformEnum.WEB }));
+      this.document.body.classList.add('is-web');
+    }
+  }
 
   ngOnInit(): void {
     this.store

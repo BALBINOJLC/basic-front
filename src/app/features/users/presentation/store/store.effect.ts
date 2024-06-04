@@ -22,8 +22,6 @@ export class UsersEffects {
       mergeMap(({ params, uType }) =>
         this._userRepository.getUsers(params).pipe(
           map((data) => {
-            console.log('data', data);
-
             if (uType === 'user') {
               return actions.UserLoads({ data });
             }
@@ -82,9 +80,5 @@ export class UsersEffects {
     )
   );
 
-  constructor(
-    private actions$: Actions,
-    private _userRepository: UsersRepositoryImpl,
-    private _router: Router
-  ) {}
+  constructor(private actions$: Actions, private _userRepository: UsersRepositoryImpl, private _router: Router) {}
 }

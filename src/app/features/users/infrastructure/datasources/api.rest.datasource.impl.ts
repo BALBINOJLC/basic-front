@@ -73,8 +73,6 @@ export class UsersApiRestDataSource implements UsersDataSource {
     let query = null;
 
     if (filter) {
-      console.log('filter', filter);
-
       query = setQueryParams(filter);
     }
 

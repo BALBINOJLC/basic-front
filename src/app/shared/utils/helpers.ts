@@ -1,6 +1,6 @@
 import { IDataAutoComplete } from '../components/form/interfaces';
 import { Country } from '../components/form/form-phone/interfaces';
-export const setQueryParams = (params: any): URLSearchParams => {
+export const setQueryParams = (params: object): URLSearchParams => {
   const queryParams = new URLSearchParams();
   Object.keys(params).forEach((key) => {
     queryParams.set(key, params[key]);
@@ -25,4 +25,14 @@ export const filterCountries = (countries: Country[]): IDataAutoComplete[] => {
   }
 
   return usersFiltered;
+};
+
+export const generateStrongPassword = (): string => {
+  const length = 10; // define the desired length of the password
+  const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+'; // define the characters allowed in the password
+  let password = '';
+  for (let i = 0, n = charset.length; i < length; ++i) {
+    password += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return password;
 };

@@ -7,8 +7,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ImgProfilePipe implements PipeTransform {
   transform(value: any): any {
-    console.log('value', value);
-
     if (typeof value === 'object') {
       const toString = JSON.stringify(value);
       if (toString.includes('url') && value.url !== null) {

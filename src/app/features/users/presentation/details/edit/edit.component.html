@@ -1,81 +1,125 @@
-<div class="w-full flex flex-col md:flex-row">
-  <div class="w-full min-h-full flex flex-col p-10">
-    Hola
-    <ng-container *ngIf="platform$ | async as platform">
-      <form [formGroup]="form">
-        <ng-container>
-          <div class="flex flex-col">
-            <!-- Avatar -->
-            <ng-container *ngIf="user.id">
-              <div class="relative -mt-16">
-                <!--todo hacer el upload para cargar las fotos-->
-                <!-- Upload / Remove avatar -->
-                <!-- <app-upload-file-theme
-                  [layoutType]="'ROUND'"
-                  [imagePlace]="item.photo_url"
-                  [height]="8"
-                  [width]="8"
-                  [fontSize]="4"
-                  (fileUploaded)="sendFile($event)"
-                  [key]="item.photo_url?.key"
-                ></app-upload-file-theme> -->
-              </div>
-            </ng-container>
-          </div>
-
-          <!--Info User-->
-          <div class="w-full">
-            <app-form-user class="col-span-4" [formControlName]="'customer'"></app-form-user>
-          </div>
-        </ng-container>
-      </form>
-
-      <!-- Actions -->
-      <ng-container>
-        <div class="flex items-center justify-end mt-auto py-2 mb-4">
-          <ng-container>
-            <!--Delete-->
-            <ng-container *ngIf="user.id !== null">
-              <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
-                <mat-icon>delete</mat-icon>
-                <span class="ml-2">{{ 'BTNS.DELETE' | transloco }}</span>
-              </button>
-            </ng-container>
-
-            <!--Save-->
-            <button mat-stroked-button color="primary" (click)="save()" class="mx-2" matTooltip="sasas">
-              <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:eye'"></mat-icon>
-
-              <span class="ml-2">{{ btnSave | transloco }}</span>
-            </button>
-
-            <!--Cancel-->
-            <button mat-stroked-button color="info" (click)="cancel(false)" [matTooltip]="'BTNS.CANCEL' | transloco">
-              <mat-icon>cancel</mat-icon>
-              <span class="ml-2">{{ 'BTNS.CANCEL' | transloco }}</span>
-            </button>
+<div class="w-full max-w-3xl min-h-full flex flex-col">
+  <ng-container>
+    <form [formGroup]="form">
+      <ng-container *ngIf="user">
+        <div class="flex flex-col">
+          <!-- Avatar -->
+          <ng-container *ngIf="user.id">
+            <div class="relative -mt-16">
+              <!-- Upload / Remove avatar -->
+              <!-- <app-upload-file-theme
+                [layoutType]="'ROUND'"
+                [imagePlace]="item.file"
+                [height]="8"
+                [width]="8"
+                [fontSize]="4"
+                (fileUploaded)="sendFile($event)"
+                [key]="item.file?.key"
+              ></app-upload-file-theme> -->
+            </div>
           </ng-container>
 
-          <ng-container *ngIf="platform === 'mobile'">
-            <!-- Delete -->
-            <ng-container *ngIf="user.id !== null">
-              <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">
-                <mat-icon svgIcon="mat_outline:delete"></mat-icon>
-              </button>
-            </ng-container>
+          <!--Info Base-->
+          <div class="p-2 grid sm:grid-cols-4 gap-6 w-full mt-8">
+            <!--First Name-->
+            <div class="sm:col-span-2">
+              <mat-form-field class="w-full">
+                <mat-label>{{ 'USER.FIELDS.FIRST_NAME' | transloco }}</mat-label>
+                <input
+                  matInput
+                  [formControlName]="'first_name'"
+                  [type]="'text'"
+                  #inputValue
+                  [placeholder]="'USER.FIELDS.FIRST_NAME' | transloco"
+                />
+                <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
+                <mat-error *ngIf="form.controls.first_name.touched && form.controls.first_name.hasError('required')">
+                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-            <!-- Save -->
-            <button mat-mini-fab color="primary" class="mx-2" [matTooltip]="btnSave | transloco" (click)="save()">
-              <mat-icon svgIcon="mat_outline:save"></mat-icon>
-            </button>
+            <!--Last Name-->
+            <div class="sm:col-span-2">
+              <mat-form-field class="w-full">
+                <mat-label>{{ 'USER.FIELDS.LAST_NAME' | transloco }}</mat-label>
+                <input
+                  matInput
+                  [formControlName]="'last_name'"
+                  [type]="'text'"
+                  #inputValue
+                  [placeholder]="'USER.FIELDS.LAST_NAME' | transloco"
+                />
+                <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
+                <mat-error *ngIf="form.controls.last_name.touched && form.controls.first_name.hasError('required')">
+                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-            <!-- Cancel -->
-            <button mat-mini-fab color="accent" [matTooltip]="'BTNS.CANCEL' | transloco" (click)="cancel(false)">
-              <mat-icon svgIcon="mat_outline:cancel"></mat-icon>
-            </button>
-          </ng-container>
+            <!--Email-->
+            <div class="sm:col-span-4">
+              <mat-form-field class="w-full">
+                <mat-label>{{ 'USER.FIELDS.EMAIL' | transloco }}</mat-label>
+                <input matInput [formControlName]="'email'" [type]="'text'" #inputValue [placeholder]="'USER.FIELDS.EMAIL' | transloco" />
+                <mat-icon class="icon-size-5" [svgIcon]="'mat_outline:email'" matSuffix></mat-icon>
+                <mat-error *ngIf="form.controls.email.touched && form.controls.first_name.hasError('required')">
+                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+
+            <!--IsActive-->
+            <div class="sm:col-span-4">
+              <mat-slide-toggle [checked]="user.active" class="w-full" [formControlName]="'active'">{{
+                'USER.FIELDS.ISACTIVE' | transloco
+              }}</mat-slide-toggle>
+            </div>
+          </div>
         </div>
       </ng-container>
-    </ng-container>
-  </div>
+    </form>
+    <!-- Actions -->
+    <div class="flex items-center justify-end mt-5 py-2 mb-4">
+      <ng-container>
+        <!--Delete-->
+        <ng-container *ngIf="user.id !== null">
+          <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
+            <mat-icon [svgIcon]="'mat_outline:delete'"></mat-icon>
+            <span class="ml-2">{{ 'BTNS.DELETE' | transloco }}</span>
+          </button>
+        </ng-container>
+        <!--Save-->
+        <button mat-stroked-button color="primary" (click)="save()" class="mx-2" [matTooltip]="btnSave | transloco">
+          <mat-icon [svgIcon]="'mat_outline:save'"></mat-icon>
+          <span class="ml-2">{{ btnSave | transloco }}</span>
+        </button>
+
+        <!--Cancel-->
+        <button mat-stroked-button color="secondary" (click)="cancel(false)" [matTooltip]="'BTNS.CANCEL' | transloco">
+          <mat-icon [svgIcon]="'mat_outline:cancel'"></mat-icon>
+          <span class="ml-2">{{ 'BTNS.CANCEL' | transloco }}</span>
+        </button>
+      </ng-container>
+      <!--platform mobile-->
+      <ng-container *ngIf="mobile">
+        <!-- Delete -->
+        <ng-container *ngIf="user.id !== null">
+          <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">
+            <mat-icon svgIcon="mat_outline:delete"></mat-icon>
+          </button>
+        </ng-container>
+
+        <!-- Save -->
+        <button mat-mini-fab color="primary" class="mx-2" [matTooltip]="btnSave | transloco" (click)="save()">
+          <mat-icon svgIcon="mat_outline:save"></mat-icon>
+        </button>
+
+        <!-- Cancel -->
+        <button mat-mini-fab color="accent" [matTooltip]="'BTNS.CANCEL' | transloco" (click)="cancel(false)">
+          <mat-icon svgIcon="mat_outline:cancel"></mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>

@@ -30,7 +30,5 @@ export class IconImageFisrtLetterComponent implements OnInit {
     this.itemType = 'USER';
   }
 
-  ngOnInit(): void {
-    console.log('this.itemType', this.item);
-  }
+  ngOnInit(): void {}
 }

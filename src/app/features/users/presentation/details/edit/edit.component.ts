@@ -1,6 +1,7 @@
+/* eslint-disable linebreak-style */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IFile } from '@utils';
+import { IFile, generateStrongPassword } from '@utils';
 import { Observable, Subject } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { FormComponent } from './form.component';
@@ -11,23 +12,29 @@ import { commonModules, formsModules, materialToolsModules } from '@shared';
 import { IUser, UserStoreService } from '@users';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Store } from '@ngrx/store';
-import { PlatformEnum, selectPlatform } from '@store';
+import { PlatformEnum, UIState, selectPlatform } from '@store';
+
+export const list = [
+  {
+    label: 'Item 01',
+    value: 'item01',
+  },
+];
 
 @Component({
   selector: 'edit-details',
   templateUrl: 'edit.component.html',
   standalone: true,
-  imports: [...commonModules, ...materialToolsModules, ...formsModules, RouterModule, MatPaginatorModule, FormUserComponent],
+  imports: [commonModules, materialToolsModules, formsModules, RouterModule, MatPaginatorModule, FormUserComponent],
 })
 export class EditDetailsComponent implements OnInit, OnDestroy {
   @Input({ required: true }) user: IUser;
 
   @Output() editModeEvent = new EventEmitter<boolean>();
   @Output() file = new EventEmitter<IFile>();
-
+  mobile: boolean = false;
   userActive$!: Observable<IUser>;
   platform$: Observable<PlatformEnum>;
-
   form: FormGroup;
   btnSave = 'BTNS.SAVE';
 
@@ -37,19 +44,20 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
 
   fFrom = new FormComponent(this.formBuilder);
   fStore = new UserStoreService(this.store);
-
+  @Input() item: IUser;
   private _unsubscribeAll: Subject<void> = new Subject<void>();
   constructor(
     private formBuilder: FormBuilder,
     private _router: Router,
     private _fuseConfirmationService: FuseConfirmationService,
-    private store: Store
+    private store: Store<{ ui: UIState }>
   ) {
     this.form = this.fFrom.form;
   }
 
   ngOnInit(): void {
     this.platform$ = this.store.select(selectPlatform);
+    console.log('this.user', this.user);
 
     if (this.user) {
       this.form.patchValue(this.user);
@@ -86,14 +94,26 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
   }
 
   save(): void {
-    const data = {
+    let data = {
       ...this.form.value,
-      password: new Date().getTime().toString(),
     };
+
+    // Delete all fields empty or null
+    Object.keys(data).forEach((key) => {
+      if (data[key] === '' || data[key] === null) {
+        delete data[key];
+      }
+    });
 
     if (this.user.id !== null) {
       this.fStore.updateUser(this.user.id, data);
     } else {
+      data = {
+        ...data,
+        password: generateStrongPassword(),
+      };
+      console.log('data', data);
+
       this.fStore.adduser(data, 'user');
     }
 

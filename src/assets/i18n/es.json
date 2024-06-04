@@ -134,6 +134,7 @@
     "DELETE": "Eliminar",
     "EDIT": "Editar",
     "BACK": "Volver",
+    "UPDATE": "Actualizar",
     "LIST_VIEW": "Vista de Lista",
     "GRID_VIEW": "Vista de Cuadrícula",
     "RESET_LINK": "Enviar enlace de restablecimiento",

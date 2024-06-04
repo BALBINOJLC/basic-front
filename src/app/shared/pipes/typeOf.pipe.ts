@@ -19,7 +19,7 @@ export class TypeofPipe implements PipeTransform {
         return task;
       } else if (toString.includes('"user":{')) {
         return user;
-      } else if (toString.includes('"photo_url":{')) {
+      } else if (toString.includes('"avatar":{')) {
         return image;
       } else {
         return project;

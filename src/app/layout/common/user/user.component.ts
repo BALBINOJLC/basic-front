@@ -35,9 +35,7 @@ export class UserComponent implements OnInit, OnDestroy {
   /**
    * On init
    */
-  ngOnInit(): void {
-    console.log('user', this.user);
-  }
+  ngOnInit(): void {}
 
   /**
    * On destroy

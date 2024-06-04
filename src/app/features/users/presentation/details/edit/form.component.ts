@@ -5,7 +5,10 @@ export class FormComponent {
 
   constructor(private _fd: FormBuilder) {
     this.form = this._fd.group({
-      customer: new FormControl('', [Validators.required]),
+      first_name: new FormControl('', [Validators.required]),
+      last_name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      active: new FormControl(false),
     });
   }
 }
