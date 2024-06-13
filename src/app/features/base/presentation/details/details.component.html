@@ -42,7 +42,7 @@
   <ng-container *ngIf="editMode">
     <ng-container *ngIf="base$ | async as base">
       <!-- Contact form -->
-      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12 h-full">
+      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12">
         <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [base]="base"></edit-details>
       </div>
     </ng-container>
