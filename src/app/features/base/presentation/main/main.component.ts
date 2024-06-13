@@ -20,7 +20,7 @@ import { TLayout } from '@utils';
 import { LayoutListComponent } from '../layouts/list/layout.list.component';
 import { LayoutGridComponent } from '../layouts/grid/layout.grid.component';
 import { HeaderPagesComponent } from 'app/shared/components/header-pages/header-pages.component';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { MatDrawer } from '@angular/material/sidenav';
 import { iconScreen, translate } from '../config';
 import { IQueryBases, ISortBases, IBase, IBaseFilter, IBaseState } from '@bases';
@@ -33,9 +33,9 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
   templateUrl: './main.component.html',
   standalone: true,
   imports: [
-    ...commonModules,
-    ...materialToolsModules,
-    ...formsModules,
+    ...CommonModules,
+    ...MaterialToolsModules,
+    ...FormsModules,
     MatPaginatorModule,
     LayoutListComponent,
     LayoutGridComponent,

@@ -4,13 +4,13 @@ import { FormEmailComponent } from 'app/shared/components';
 import { FormPasswordComponent } from 'app/shared/components';
 import { RouterModule } from '@angular/router';
 import { ThemePalette } from '@angular/material/core';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { AuthEventsService } from '@auth';
 
 @Component({
   selector: 'sign-up-form-component',
   standalone: true,
-  imports: [...commonModules, ...materialToolsModules, ...formsModules, FormEmailComponent, FormPasswordComponent, RouterModule],
+  imports: [...CommonModules, ...MaterialToolsModules, ...FormsModules, FormEmailComponent, FormPasswordComponent, RouterModule],
   templateUrl: './sign-up-form.component.html',
   styleUrl: './sign-up-form.component.scss',
 })

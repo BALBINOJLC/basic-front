@@ -6,7 +6,7 @@ import { MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatSelect } from '@angular/material/select';
 import { TranslocoModule } from '@ngneat/transloco';
-import { commonModules } from '@shared';
+import { CommonModules } from '@shared';
 import { MatRadioModule } from '@angular/material/radio';
 import { FuseAlertComponent } from '@fuse/components/alert';
 import { MatInput } from '@angular/material/input';
@@ -24,7 +24,7 @@ interface IPlan {
   templateUrl: './plan-billing.component.html',
   standalone: true,
   imports: [
-    commonModules,
+    CommonModules,
     ReactiveFormsModule,
     TranslocoModule,
     MatButtonModule,

@@ -8,7 +8,7 @@ import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { IFile, filterCountries } from '@utils';
 import { IDataAutoComplete } from '../../../shared/components/form/interfaces/index';
 import { countries } from '@data';
-import { FormEmailComponent, commonModules } from '@shared';
+import { FormEmailComponent, CommonModules } from '@shared';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatButton } from '@angular/material/button';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
@@ -23,7 +23,7 @@ import { AuthStoreService } from '@auth';
   templateUrl: './account.component.html',
   standalone: true,
   imports: [
-    commonModules,
+    CommonModules,
     ReactiveFormsModule,
     TranslocoModule,
     MatButton,

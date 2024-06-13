@@ -8,7 +8,7 @@ import { FormComponent } from './form.component';
 import { roles, translate } from '../../config';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormUserComponent } from 'app/shared/components/form/form-user/form-user.component';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { IUser, UserStoreService } from '@users';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Store } from '@ngrx/store';
@@ -25,7 +25,7 @@ export const list = [
   selector: 'edit-details',
   templateUrl: 'edit.component.html',
   standalone: true,
-  imports: [commonModules, materialToolsModules, formsModules, RouterModule, MatPaginatorModule, FormUserComponent],
+  imports: [CommonModules, MaterialToolsModules, FormsModules, RouterModule, MatPaginatorModule, FormUserComponent],
 })
 export class EditDetailsComponent implements OnInit, OnDestroy {
   @Input({ required: true }) user: IUser;

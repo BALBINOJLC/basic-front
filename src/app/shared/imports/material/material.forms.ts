@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-export const formsModules = [
+export const FormsModules = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,

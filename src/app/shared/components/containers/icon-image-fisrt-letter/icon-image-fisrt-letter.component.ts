@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { IconItemType, IconLayoutType } from './icon-item-type.types';
-import { commonModules, materialToolsModules } from 'app/shared/imports';
+import { CommonModules, MaterialToolsModules } from 'app/shared/imports';
 
 import { ImgProfilePipe, TypeofPipe } from '@pipes';
 
@@ -9,7 +9,7 @@ import { ImgProfilePipe, TypeofPipe } from '@pipes';
   selector: 'app-icon-image-fisrt-letter[itemType]',
   templateUrl: './icon-image-fisrt-letter.component.html',
   standalone: true,
-  imports: [...commonModules, ...materialToolsModules, TypeofPipe, ImgProfilePipe],
+  imports: [...CommonModules, ...MaterialToolsModules, TypeofPipe, ImgProfilePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IconImageFisrtLetterComponent implements OnInit {

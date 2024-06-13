@@ -14,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { commonModules, formsModules } from '@shared';
+import { CommonModules, FormsModules } from '@shared';
 import { validatePasswordMin } from '@utils';
 import { Subscription } from 'rxjs';
 
@@ -35,7 +35,7 @@ import { Subscription } from 'rxjs';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [...commonModules, ...formsModules, MatIconModule],
+  imports: [...CommonModules, ...FormsModules, MatIconModule],
 })
 export class FormPasswordComponent implements OnInit, OnDestroy, OnChanges {
   @Input() showConfirm: boolean;

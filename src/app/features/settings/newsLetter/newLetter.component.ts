@@ -7,7 +7,7 @@ import { Observable, Subject } from 'rxjs';
 import { INewsLetterEntity, IQueryNewsLetters } from './interface';
 
 import * as actions from './store';
-import { commonModules } from '@shared';
+import { CommonModules } from '@shared';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatIcon } from '@angular/material/icon';
 import { MatButton } from '@angular/material/button';
@@ -18,7 +18,7 @@ import { MatInput } from '@angular/material/input';
   selector: 'settings-newsLetter',
   templateUrl: './newsLetter.component.html',
   standalone: true,
-  imports: [commonModules, ReactiveFormsModule, TranslocoModule, MatIcon, MatButton, MatInput, MatError, MatLabel, MatFormField],
+  imports: [CommonModules, ReactiveFormsModule, TranslocoModule, MatIcon, MatButton, MatInput, MatError, MatLabel, MatFormField],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

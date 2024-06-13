@@ -9,14 +9,14 @@ import { MatDrawerToggleResult } from '@angular/material/sidenav';
 import { IQueryBase, IBase, IBaseFilter } from '@bases';
 import { BaseStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
-import { commonModules, materialToolsModules } from '@shared';
+import { CommonModules, MaterialToolsModules } from '@shared';
 
 @Component({
   selector: 'item-details',
   templateUrl: './details.component.html',
   host: { class: 'h-full flex justify-center' },
   standalone: true,
-  imports: [...commonModules, ...materialToolsModules, MainComponent, EditDetailsComponent, ViewDetailsComponent],
+  imports: [...CommonModules, ...MaterialToolsModules, MainComponent, EditDetailsComponent, ViewDetailsComponent],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

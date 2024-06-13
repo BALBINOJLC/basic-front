@@ -3,13 +3,13 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angu
 import { MatButton } from '@angular/material/button';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { TranslocoModule } from '@ngneat/transloco';
-import { commonModules } from '@shared';
+import { CommonModules } from '@shared';
 
 @Component({
   selector: 'settings-notifications',
   templateUrl: './notifications.component.html',
   standalone: true,
-  imports: [commonModules, TranslocoModule, ReactiveFormsModule, MatButton, MatSlideToggle],
+  imports: [CommonModules, TranslocoModule, ReactiveFormsModule, MatButton, MatSlideToggle],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

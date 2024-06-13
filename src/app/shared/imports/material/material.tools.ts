@@ -6,7 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-export const materialToolsModules = [
+export const MaterialToolsModules = [
   MatTooltipModule,
   MatIconModule,
   MatButtonModule,

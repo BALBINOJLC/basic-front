@@ -3,14 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { AuthEventsService } from '@auth';
-import { FormPasswordComponent, commonModules, formsModules } from '@shared';
+import { FormPasswordComponent, CommonModules, FormsModules } from '@shared';
 
 @Component({
   selector: 'reset-password-form-component',
   templateUrl: 'reset-password-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [...commonModules, formsModules, MatButtonModule, FormPasswordComponent, RouterModule],
+  imports: [...CommonModules, FormsModules, MatButtonModule, FormPasswordComponent, RouterModule],
 })
 export class ResetPasswordFormComponent implements OnInit {
   form: FormGroup;

@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { FormComponent } from './form.component';
 import { translate } from '../../config';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { IBase, BaseStoreService } from '@bases';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Store } from '@ngrx/store';
@@ -17,7 +17,7 @@ import { PlatformEnum, UIState, selectPlatform } from '@store';
   selector: 'edit-details',
   templateUrl: 'edit.component.html',
   standalone: true,
-  imports: [commonModules, materialToolsModules, formsModules, RouterModule, MatPaginatorModule],
+  imports: [CommonModules, MaterialToolsModules, FormsModules, RouterModule, MatPaginatorModule],
 })
 export class EditDetailsComponent implements OnInit, OnDestroy {
   @Input({ required: true }) base: IBase;

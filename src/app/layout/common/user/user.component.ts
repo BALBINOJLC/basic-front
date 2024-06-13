@@ -4,7 +4,7 @@ import { BooleanInput } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 import { IUser } from '@users';
 import { basePath } from 'app/mock-api/common/navigation/data';
-import { commonModules, materialToolsModules } from '@shared';
+import { CommonModules, MaterialToolsModules } from '@shared';
 import { AuthService } from '@core';
 
 @Component({
@@ -13,7 +13,7 @@ import { AuthService } from '@core';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'user',
-  imports: [...commonModules, ...materialToolsModules, RouterModule],
+  imports: [...CommonModules, ...MaterialToolsModules, RouterModule],
 })
 export class UserComponent implements OnInit, OnDestroy {
   static ngAcceptInputType_showAvatar: BooleanInput;

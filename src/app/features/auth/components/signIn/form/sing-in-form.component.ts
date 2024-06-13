@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthEventsService } from '@auth';
 import { AuthService } from '@core';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { FormEmailComponent } from 'app/shared/components';
 import { FormPasswordComponent } from 'app/shared/components';
 
@@ -12,7 +12,7 @@ import { FormPasswordComponent } from 'app/shared/components';
   standalone: true,
   templateUrl: './sing-in-form.component.html',
   styleUrl: './sing-in-form.component.scss',
-  imports: [...commonModules, ...formsModules, ...materialToolsModules, FormEmailComponent, FormPasswordComponent, RouterModule],
+  imports: [...CommonModules, ...FormsModules, ...MaterialToolsModules, FormEmailComponent, FormPasswordComponent, RouterModule],
 })
 export class FormComponent implements OnInit {
   rememberme = false;

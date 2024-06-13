@@ -3,7 +3,7 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angu
 import { Store } from '@ngrx/store';
 import { IAppState } from '@store';
 import * as actions from '@auth';
-import { FormPasswordComponent, commonModules } from '@shared';
+import { FormPasswordComponent, CommonModules } from '@shared';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatIcon } from '@angular/material/icon';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
@@ -16,7 +16,7 @@ import { IUserUpdate } from '@users';
   templateUrl: './security.component.html',
   standalone: true,
   imports: [
-    commonModules,
+    CommonModules,
     TranslocoModule,
     MatIcon,
     MatLabel,

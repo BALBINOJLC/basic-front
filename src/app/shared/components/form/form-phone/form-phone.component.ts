@@ -6,7 +6,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG
 import { Subscription } from 'rxjs';
 import { Country } from './interfaces';
 import { countries } from '@data';
-import { commonModules, formsModules } from 'app/shared/imports';
+import { CommonModules, FormsModules } from 'app/shared/imports';
 import { TranslocoModule } from '@ngneat/transloco';
 import { MatIcon } from '@angular/material/icon';
 
@@ -15,8 +15,8 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './form-phone.component.html',
   standalone: true,
   imports: [
-    commonModules,
-    formsModules,
+    CommonModules,
+    FormsModules,
     TranslocoModule,
     MatIcon
   ],

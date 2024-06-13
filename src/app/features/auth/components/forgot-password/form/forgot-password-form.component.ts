@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthEventsService } from '@auth';
-import { commonModules, formsModules, materialToolsModules } from '@shared';
+import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
 import { FormEmailComponent } from 'app/shared/components';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormEmailComponent } from 'app/shared/components';
   standalone: true,
   templateUrl: './forgot-password-form.component.html',
   styleUrl: './forgot-password-form.component.scss',
-  imports: [...commonModules, ...formsModules, ...materialToolsModules, FormEmailComponent, RouterModule],
+  imports: [...CommonModules, ...FormsModules, ...MaterialToolsModules, FormEmailComponent, RouterModule],
 })
 export class FormForgotPasswordComponent implements OnInit {
   form: FormGroup;

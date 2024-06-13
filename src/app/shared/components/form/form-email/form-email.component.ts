@@ -5,7 +5,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { commonModules, formsModules } from '@shared';
+import { CommonModules, FormsModules } from '@shared';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 
   standalone: true,
-  imports: [...commonModules, ...formsModules, MatIconModule],
+  imports: [...CommonModules, ...FormsModules, MatIconModule],
 })
 export class FormEmailComponent implements OnInit, OnChanges, OnDestroy {
   @Input() email: string = '';
