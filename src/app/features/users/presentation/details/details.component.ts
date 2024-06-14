@@ -6,7 +6,7 @@ import { MainComponent } from '../main/main.component';
 import { ViewDetailsComponent } from './view/vew.component';
 import { EditDetailsComponent } from './edit/edit.component';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
-import { TFrom, IQueryUser, IUser, IUserFilter } from '@users';
+import { TFrom, IQueryUser, IUser, IUserFilter, initialUser } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { CommonModules, MaterialToolsModules } from '@shared';
@@ -28,6 +28,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   from!: TFrom;
   editMode: boolean = false;
   filter: IUserFilter = {};
+  userDefault = initialUser;
 
   private _tagsPanelOverlayRef!: OverlayRef;
   private _unsubscribeAll: Subject<void> = new Subject<void>();
@@ -46,6 +47,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.id === 'new') {
+      this.toggleEditMode(true);
+    }
     this.user$ = this.fStore.seeUser();
     this.initialProsses();
     this.get();

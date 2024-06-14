@@ -40,11 +40,17 @@
 
   <!-- Edit mode -->
   <ng-container *ngIf="editMode">
+    @if (id === 'new') {
+    <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12">
+      <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [user]="userDefault"></edit-details>
+    </div>
+    } @else {
     <ng-container *ngIf="user$ | async as user">
       <!-- Contact form -->
-      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12 h-full">
+      <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12">
         <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [user]="user"></edit-details>
       </div>
     </ng-container>
+    }
   </ng-container>
 </div>
