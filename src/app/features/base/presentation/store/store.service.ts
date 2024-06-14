@@ -1,5 +1,5 @@
 import { Store } from '@ngrx/store';
-import * as actions from '@bases';
+import * as actions from '@base';
 import { Observable } from 'rxjs';
 import {
   IQueryBase,
@@ -11,7 +11,7 @@ import {
   selectBaseMaxSize,
   selectBaseSelected,
   selectBases,
-} from '@bases';
+} from '@base';
 
 export class BaseStoreService {
   constructor(private store: Store) {}

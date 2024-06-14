@@ -30,6 +30,7 @@
             "@shared"   : ["app/shared/index"],
             "@utils"    : ["app/shared/utils/index"],
             "@pipes"    : ["app/shared/pipes/index"],
+            "@base"     : ["app/features/base/index"],
             "@auth"     : ["app/features/auth/index"],
             "@users"    : ["app/features/users/index"],
             "@templates" : ["app/features/template/index"],

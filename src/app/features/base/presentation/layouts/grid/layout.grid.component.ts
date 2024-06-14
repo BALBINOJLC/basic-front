@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
-import { IBase } from '@bases';
+import { IBase } from '@base';
 import { CardInfoBaseOneComponent } from '../../components/card-info-1/card-info-1.component';
 
 @Component({

@@ -8,7 +8,7 @@ import { FormComponent } from './form.component';
 import { translate } from '../../config';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
-import { IBase, BaseStoreService } from '@bases';
+import { IBase, BaseStoreService } from '@base';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { Store } from '@ngrx/store';
 import { PlatformEnum, UIState, selectPlatform } from '@store';

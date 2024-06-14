@@ -8,7 +8,7 @@
 
   <ng-container *ngIf="!editMode">
     <ng-container *ngIf="base$ | async as item">
-      <div class="flex flex-col xl:flex-row relative p-6">
+      <div class="flex flex-col xl:flex-row relative">
         <!-- Img Profile-->
         <div class="flex flex-row">
           <div class="relative">
@@ -40,11 +40,17 @@
 
   <!-- Edit mode -->
   <ng-container *ngIf="editMode">
+    @if (id === 'new') {
+    <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12">
+      <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [base]="baseDefault"></edit-details>
+    </div>
+    } @else {
     <ng-container *ngIf="base$ | async as base">
       <!-- Contact form -->
       <div class="w-full lg:w-3/4 relative flex flex-col flex-auto items-center px-6 sm:px-12">
         <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [base]="base"></edit-details>
       </div>
     </ng-container>
+    }
   </ng-container>
 </div>

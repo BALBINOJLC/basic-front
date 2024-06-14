@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Action, createReducer, on } from '@ngrx/store';
 import * as actions from './store.action';
-import { IBase, initialBase } from '@bases';
+import { IBase, initialBase } from '@base';
 
 export interface IBaseState {
   items: IBase[];

@@ -1,4 +1,4 @@
-import { IBase, IBaseAppState } from '@bases';
+import { IBase, IBaseAppState } from '@base';
 
 export const baseActions = 'BASES';
 export const baseRouteBase = '/admin/bases';

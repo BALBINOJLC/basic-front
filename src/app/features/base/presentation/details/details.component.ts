@@ -6,7 +6,7 @@ import { MainComponent } from '../main/main.component';
 import { ViewDetailsComponent } from './view/vew.component';
 import { EditDetailsComponent } from './edit/edit.component';
 import { MatDrawerToggleResult } from '@angular/material/sidenav';
-import { IQueryBase, IBase, IBaseFilter } from '@bases';
+import { IQueryBase, IBase, IBaseFilter, initialBase } from '@base';
 import { BaseStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { CommonModules, MaterialToolsModules } from '@shared';
@@ -26,6 +26,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   id: string;
   editMode: boolean = false;
   filter: IBaseFilter = {};
+  baseDefault = initialBase;
 
   private _tagsPanelOverlayRef!: OverlayRef;
   private _unsubscribeAll: Subject<void> = new Subject<void>();
@@ -44,6 +45,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    if (this.id === 'new') {
+      this.toggleEditMode(true);
+    }
     this.base$ = this.fStore.seeBase();
     this.initialProsses();
     this.get();
