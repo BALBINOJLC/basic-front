@@ -18,7 +18,10 @@ export class ListBase1Component {
   @Input({ required: true }) base: IBase;
   selectedBase!: IBase;
 
-  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {}
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
   view(base: IBase): void {
     this.selectedBase = base;

@@ -45,7 +45,10 @@ export class FuseVerticalNavigationGroupItemComponent implements OnInit, OnDestr
   /**
    * Constructor
    */
-  constructor(private _changeDetectorRef: ChangeDetectorRef, private _fuseNavigationService: FuseNavigationService) {}
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _fuseNavigationService: FuseNavigationService
+  ) {}
 
   // -----------------------------------------------------------------------------------------------------
   // @ Lifecycle hooks

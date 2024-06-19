@@ -27,13 +27,12 @@ import { Subject, takeUntil } from 'rxjs';
   templateUrl: './thin.component.html',
   encapsulation: ViewEncapsulation.None,
   styles: `
-  .space-nav-bar {
-
+    .space-nav-bar {
       width: calc(100% - 30px) !important;
       margin: 10px;
       position: relative;
       left: 10px;
-  }
+    }
   `,
   standalone: true,
   imports: [

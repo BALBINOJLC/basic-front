@@ -32,7 +32,7 @@ import { filter, Subject, takeUntil } from 'rxjs';
     FuseVerticalNavigationDividerItemComponent,
     FuseVerticalNavigationGroupItemComponent,
     FuseVerticalNavigationSpacerItemComponent,
-    TranslocoModule
+    TranslocoModule,
   ],
 })
 export class FuseVerticalNavigationCollapsableItemComponent implements OnInit, OnDestroy {

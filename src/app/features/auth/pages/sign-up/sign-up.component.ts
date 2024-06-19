@@ -20,7 +20,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription = new Subscription();
 
-  constructor(private authEventsService: AuthEventsService, private store: Store) {}
+  constructor(
+    private authEventsService: AuthEventsService,
+    private store: Store
+  ) {}
 
   ngOnInit(): void {
     this.subscription.add(

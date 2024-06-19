@@ -24,4 +24,3 @@ export const initialUser: IUser = {
 };
 
 export const roles: TUserRoles[] = ['ADMIN', 'USER'];
-

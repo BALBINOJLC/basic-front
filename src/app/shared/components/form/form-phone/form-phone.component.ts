@@ -2,7 +2,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable arrow-parens */
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Country } from './interfaces';
 import { countries } from '@data';
@@ -14,12 +23,7 @@ import { MatIcon } from '@angular/material/icon';
   selector: 'app-form-phone[area]',
   templateUrl: './form-phone.component.html',
   standalone: true,
-  imports: [
-    CommonModules,
-    FormsModules,
-    TranslocoModule,
-    MatIcon
-  ],
+  imports: [CommonModules, FormsModules, TranslocoModule, MatIcon],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

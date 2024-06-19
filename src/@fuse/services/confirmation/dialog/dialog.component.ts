@@ -7,36 +7,30 @@ import { FuseConfirmationConfig } from '@fuse/services/confirmation/confirmation
 import { TranslocoModule } from '@ngneat/transloco';
 
 @Component({
-    selector     : 'fuse-confirmation-dialog',
-    templateUrl  : './dialog.component.html',
-    styles       : [
-        `
-            .fuse-confirmation-dialog-panel {
+  selector: 'fuse-confirmation-dialog',
+  templateUrl: './dialog.component.html',
+  styles: [
+    `
+      .fuse-confirmation-dialog-panel {
+        @screen md {
+          @apply w-128;
+        }
 
-                @screen md {
-                    @apply w-128;
-                }
-
-                .mat-mdc-dialog-container {
-
-                    .mat-mdc-dialog-surface {
-                        padding: 0 !important;
-                    }
-                }
-            }
-        `,
-    ],
-    encapsulation: ViewEncapsulation.None,
-    standalone   : true,
-    imports      : [NgIf, MatButtonModule, MatDialogModule, MatIconModule, NgClass, TranslocoModule],
+        .mat-mdc-dialog-container {
+          .mat-mdc-dialog-surface {
+            padding: 0 !important;
+          }
+        }
+      }
+    `,
+  ],
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [NgIf, MatButtonModule, MatDialogModule, MatIconModule, NgClass, TranslocoModule],
 })
-export class FuseConfirmationDialogComponent
-{
-    /**
-     * Constructor
-     */
-    constructor(@Inject(MAT_DIALOG_DATA) public data: FuseConfirmationConfig)
-    {
-    }
-
+export class FuseConfirmationDialogComponent {
+  /**
+   * Constructor
+   */
+  constructor(@Inject(MAT_DIALOG_DATA) public data: FuseConfirmationConfig) {}
 }

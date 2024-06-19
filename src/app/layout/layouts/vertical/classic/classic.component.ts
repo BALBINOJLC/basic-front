@@ -26,13 +26,12 @@ import { Subject, takeUntil } from 'rxjs';
   selector: 'classic-layout',
   templateUrl: './classic.component.html',
   styles: `
-  .space-nav-bar {
-
+    .space-nav-bar {
       width: calc(100% - 30px) !important;
       margin: 10px;
       position: relative;
       left: 10px;
-  }
+    }
   `,
   encapsulation: ViewEncapsulation.None,
   standalone: true,

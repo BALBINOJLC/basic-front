@@ -7,7 +7,6 @@ import { Store } from '@ngrx/store';
 import { AuthEventsService, AuthStoreService, selectAuthToken } from '@auth';
 import { Subscription, map } from 'rxjs';
 
-
 @Component({
   selector: 'app-sign-in',
   standalone: true,

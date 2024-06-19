@@ -18,7 +18,10 @@ export class ListUser1Component {
   @Input({ required: true }) user: IUser;
   selectedUser!: IUser;
 
-  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {}
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {}
 
   view(user: IUser): void {
     this.selectedUser = user;

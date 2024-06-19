@@ -13,7 +13,10 @@ export class FirebaseAuthService {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   user$: Observable<any>;
 
-  constructor(private afAuth: AngularFireAuth, private afs: AngularFirestore) {
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore
+  ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {

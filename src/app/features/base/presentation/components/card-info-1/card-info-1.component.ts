@@ -18,7 +18,10 @@ export class CardInfoBaseOneComponent {
   @Input() base!: IBase;
   @Input() labelLink: string;
 
-  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
+  constructor(
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {
     this.labelLink = 'SEE';
   }
 

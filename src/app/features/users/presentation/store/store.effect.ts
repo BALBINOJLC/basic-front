@@ -95,5 +95,9 @@ export class UsersEffects {
     )
   );
 
-  constructor(private actions$: Actions, private _userRepository: UsersRepositoryImpl, private _router: Router) {}
+  constructor(
+    private actions$: Actions,
+    private _userRepository: UsersRepositoryImpl,
+    private _router: Router
+  ) {}
 }

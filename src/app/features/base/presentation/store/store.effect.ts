@@ -12,9 +12,7 @@ export class BasesEffects {
   search$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.BaseSearch),
-      mergeMap(({ params, query }) =>
-        this._baseRepository.searchBases(params, query).pipe(map((data) => actions.BaseLoads({ data })))
-      )
+      mergeMap(({ params, query }) => this._baseRepository.searchBases(params, query).pipe(map((data) => actions.BaseLoads({ data }))))
     )
   );
 
@@ -48,9 +46,7 @@ export class BasesEffects {
     this.actions$.pipe(
       ofType(actions.BaseGet),
       mergeMap(({ query }) =>
-        this._baseRepository
-          .getBase({ fields: query.fields, filter: query.filter })
-          .pipe(map((item) => actions.BaseLoad({ item })))
+        this._baseRepository.getBase({ fields: query.fields, filter: query.filter }).pipe(map((item) => actions.BaseLoad({ item })))
       )
     )
   );
@@ -58,9 +54,7 @@ export class BasesEffects {
   update$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.BaseUpdate),
-      mergeMap(({ id, item }) =>
-        this._baseRepository.updateBase(id, item).pipe(map((data) => actions.BaseLoad({ item: data })))
-      )
+      mergeMap(({ id, item }) => this._baseRepository.updateBase(id, item).pipe(map((data) => actions.BaseLoad({ item: data }))))
     )
   );
 
@@ -91,5 +85,9 @@ export class BasesEffects {
     )
   );
 
-  constructor(private actions$: Actions, private _baseRepository: BasesRepositoryImpl, private _router: Router) {}
+  constructor(
+    private actions$: Actions,
+    private _baseRepository: BasesRepositoryImpl,
+    private _router: Router
+  ) {}
 }

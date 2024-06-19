@@ -2,7 +2,18 @@
 /* eslint-disable arrow-parens */
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, Output } from '@angular/core';
-import { NG_VALUE_ACCESSOR, NG_VALIDATORS, FormGroup, FormBuilder, Validators, FormControl, ReactiveFormsModule, FormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
+import {
+  NG_VALUE_ACCESSOR,
+  NG_VALIDATORS,
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+  ReactiveFormsModule,
+  FormsModule,
+  AbstractControl,
+  ValidationErrors,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -32,14 +43,7 @@ export interface IUserProfile {
     },
   ],
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatFormFieldModule,
-    TranslocoModule,
-    MatIconModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule, MatFormFieldModule, TranslocoModule, MatIconModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormUserComponent implements OnDestroy, OnChanges {
@@ -61,11 +65,11 @@ export class FormUserComponent implements OnDestroy, OnChanges {
     this.onTouched();
   }
 
-  get userFirstNameControl():AbstractControl {
+  get userFirstNameControl(): AbstractControl {
     return this.form.controls['firstName'];
   }
 
-  get userLastNameControl():AbstractControl {
+  get userLastNameControl(): AbstractControl {
     return this.form.controls['lastName'];
   }
 
@@ -73,7 +77,7 @@ export class FormUserComponent implements OnDestroy, OnChanges {
     return this.form.controls['email'];
   }
 
-  get userPhoneControl():AbstractControl {
+  get userPhoneControl(): AbstractControl {
     return this.form.controls['phone'];
   }
 
@@ -97,22 +101,22 @@ export class FormUserComponent implements OnDestroy, OnChanges {
     );
   }
 
-  ngOnChanges():void {
+  ngOnChanges(): void {
     if (this.userProfile) {
       this.form.patchValue(this.userProfile);
     }
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
-  
+
   //todo: anys que no pude resolver
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onChange: any = () => { };
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onTouched: any = () => { };
+  onChange: any = () => {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onTouched: any = () => {};
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerOnChange(fn: any): void {
     this.onChange = fn;
@@ -133,7 +137,7 @@ export class FormUserComponent implements OnDestroy, OnChanges {
     this.onTouched = fn;
   }
 
-  validate(_: FormControl): ValidationErrors | null  {
+  validate(_: FormControl): ValidationErrors | null {
     return this.form.valid ? null : { userName: { valid: false } };
   }
   emitForm(): void {

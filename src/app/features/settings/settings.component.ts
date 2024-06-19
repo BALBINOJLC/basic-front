@@ -42,7 +42,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   /**
    * Constructor
    */
-  constructor(private _changeDetectorRef: ChangeDetectorRef, private _fuseMediaWatcherService: FuseMediaWatcherService) {}
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _fuseMediaWatcherService: FuseMediaWatcherService
+  ) {}
 
   ngOnInit(): void {
     // Setup available panels

@@ -4,6 +4,7 @@
  "scripts": {
     "ng": "ng",
     "prebuild": "rimraf dist",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "start": "ng serve --port 4444",
     "start:o": "ng serve --port 4444 -o",

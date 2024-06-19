@@ -6,7 +6,10 @@ import { map, mergeMap } from 'rxjs';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private _authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private _authService: AuthService
+  ) {}
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
