@@ -1,15 +1,22 @@
 {
   "name": "backoffice-base-startups",
   "version": "0.0.1",
-  "scripts": {
+ "scripts": {
     "ng": "ng",
-    "start": "ng serve --configuration development --port 4202",
-    "start:o": "ng serve -o --configuration development --port 4202",
+    "prebuild": "rimraf dist",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "start": "ng serve --port 4444",
+    "start:o": "ng serve --port 4444 -o",
     "build": "ng build",
+    "build:production": "ng build --configuration production",
+    "build:staging": "ng build --configuration staging",
     "watch": "ng build --watch --configuration development",
-    "test": "ng build",
-    "serve:ssr:backoffice_base_startups": "node dist/backoffice_base_startups/server/server.mjs",
-    "release": "standard-version"
+    "test": "ng test",
+    "deploy:production": "ng deploy",
+    "deploy:staging": "git checkout staging && git merge develop && yarn build:staging && yarn release && git push --follow-tags origin staging && git push && git checkout develop && git merge staging && git push",
+    "deploy:main": "git checkout main && git merge staging && yarn build && yarn release && git push --follow-tags origin main && git push && git checkout staging && git merge main && git push && git checkout develop",
+    "release": "standard-version",
+    "standar-init": "standard-version --first-release"
   },
   "private": true,
   "dependencies": {
