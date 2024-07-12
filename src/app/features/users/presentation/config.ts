@@ -12,10 +12,10 @@ export const initialUser: IUser = {
   first_name: '',
   last_name: '',
   email: '',
-  profiles: [],
+  Profiles: [],
   email_verify: false,
   active: false,
-  avatar: {
+  Avatar: {
     url: '',
     name: '',
     size: 0,

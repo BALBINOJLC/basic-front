@@ -140,7 +140,6 @@ const getMenuItems = (role: TUserRoles): FuseNavigationItem[] => {
 
 export const userMenu = (profiles: IUserProfile[]): Navigation => {
   const activeProfile = profiles.find((profile) => profile.active);
-
   if (!activeProfile) {
     return {
       compact: baseMenu,

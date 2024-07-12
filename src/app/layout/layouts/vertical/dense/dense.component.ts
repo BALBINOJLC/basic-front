@@ -95,8 +95,8 @@ export class DenseLayoutComponent implements OnInit, OnDestroy {
       .select(selectAuthUser)
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((d) => {
-        if (d && d.profiles && d.profiles.length > 0) {
-          this.navigation = userMenu(d.profiles);
+        if (d && d.Profiles && d.Profiles.length > 0) {
+          this.navigation = userMenu(d.Profiles);
         }
       });
 

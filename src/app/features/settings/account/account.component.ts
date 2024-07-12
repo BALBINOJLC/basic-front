@@ -113,7 +113,7 @@ export class SettingsAccountComponent implements OnInit {
   changeImgProfile(file: IFile, userId: string): void {
     if (file) {
       const item: IUserUpdate = {
-        avatar: file,
+        Avatar: file,
       };
       this.fStoreU.updateUser(userId, item);
     }

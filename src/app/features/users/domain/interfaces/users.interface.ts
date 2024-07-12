@@ -4,15 +4,15 @@ import { TUserRoles } from '../types';
 export interface IUser {
     id              : string | null;
     email_verify    : boolean;
-    active       : boolean;
+    active          : boolean;
     display_name?   : string;
     email           : string;
     first_name      : string;
     last_name       : string;
     phone?          : string;
-    profiles        : IUserProfile[];
-    avatar       : IFile;
     access_token?   : string;
+    Avatar          : IFile;
+    Profiles        : IUserProfile[];
     userOrg?        : IUser;
     currentPassword?: string;
     newPassword?    : string;
