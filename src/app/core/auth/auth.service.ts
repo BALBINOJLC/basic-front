@@ -50,8 +50,7 @@ export class AuthService {
   }
 
   signIn(user: IAuthSignIn): Observable<ILoadUser> {
-    const url = `${this.urlApi}/auth/login`;
-    console.log(user);
+    const url = `${this.urlApi}/auth/signin`;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -87,7 +86,7 @@ export class AuthService {
   }
 
   signUp(user: IAuthSignUp): Observable<ISingUpSucces> {
-    const url = `${this.urlApi}/auth/register`;
+    const url = `${this.urlApi}/auth/signup`;
     return this.httpClient.post<ISingUpSucces>(url, user, { headers: { 'no-token': 'no-token' } }).pipe(
       tap((resp) => this.handleSignUpResponse(resp)),
       switchMap((resp) => of(resp))

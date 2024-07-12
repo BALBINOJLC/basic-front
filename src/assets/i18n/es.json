@@ -6,6 +6,7 @@
     "SIGNIN_SUCCESS": "Usuario autenticado exitosamente",
     "FORGOT_PASSWORD_SUCCESS": "Correo de restablecimiento de contraseña enviado exitosamente",
     "PASSWORD_RESET_SUCCESS": "Contraseña restablecida exitosamente",
+    "ALREADY_EXISTS": "El usuario ya existe",
 
     "SIGN_IN": {
       "TITLE": "Inicio de Sesión",
