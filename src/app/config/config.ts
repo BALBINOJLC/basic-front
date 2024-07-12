@@ -96,10 +96,10 @@ export const appThemeConfig: IAppConfig = {
   },
 
   copyRight: 'HPDME | Todos los derechos reservados.',
-  logo: 'assets/images/logo/logo.jpg',
-  logoOnDark: 'assets/images/logo/logo.jpg',
-  logoOnLight: 'assets/images/logo/logo.jpg',
-  logoTextOnDark: 'assets/images/logo/logo.jpg',
-  logoTextOnLight: 'assets/images/logo/logo.jpg',
+  logo: 'assets/images/logo/logo.png',
+  logoOnDark: 'assets/images/logo/logo.png',
+  logoOnLight: 'assets/images/logo/logo.png',
+  logoTextOnDark: 'assets/images/logo/logo-text-on-dark.png',
+  logoTextOnLight: 'assets/images/logo/logo-text-on-dark.png',
   bgColorDark: '#190a11',
 };
