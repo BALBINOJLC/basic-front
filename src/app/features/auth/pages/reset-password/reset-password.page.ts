@@ -42,14 +42,13 @@ export class AuthResetPasswordComponent implements OnInit {
     this.subscription.add(
       this.authEventsService.resetPasswordEvent$.subscribe((data) => {
         if (data && data.password) {
-          this.resetPassword(data);
+          this.resetPassword(data.password);
         }
       })
     );
   }
 
   resetPassword(dataForm: IPasswordForm): void {
-    const { password } = dataForm;
-    this.store.dispatch(actions.AuthResetPassword({ password, token: this.token }));
+    this.store.dispatch(actions.AuthResetPassword({ password: dataForm.password, token: this.token }));
   }
 }

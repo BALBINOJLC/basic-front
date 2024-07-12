@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { ISignInForm, ISignUpForm } from './auth.interface';
+import { IPasswordForm, ISignInForm, ISignUpForm } from './auth.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +17,13 @@ export class AuthEventsService {
     organization: '',
   });
   private authForgotPasswordEvent = new BehaviorSubject<{ email: string }>({ email: '' });
-  private authResetPasswordEvent = new BehaviorSubject<{ password: string; token: string }>({ password: '', token: '' });
+  private authResetPasswordEvent = new BehaviorSubject<{ password: IPasswordForm; token: string }>({
+    password: {
+      password: '',
+      passwordConfirm: '',
+    },
+    token: '',
+  });
 
   // Observable que los componentes pueden suscribirse
   signInEvent$ = this.authSignInEvent.asObservable();
@@ -40,7 +46,7 @@ export class AuthEventsService {
     this.authForgotPasswordEvent.next(event);
   }
 
-  emitResetPasswordEvent(event: { password: string; token: string }): void {
+  emitResetPasswordEvent(event: { password: IPasswordForm; token: string }): void {
     this.authResetPasswordEvent.next(event);
   }
 }

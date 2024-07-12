@@ -106,6 +106,9 @@
       },
       "PASSWORD_SAME_OLD": "La contraseña nueva no puede ser igual a la anterior",
       "SIGNIN.INCORRECT_PASSWORD": "Contraseña incorrecta"
+    },
+    "BTN": {
+      "RESET_LINK": "Enviar enlace de restablecimiento"
     }
   },
 
