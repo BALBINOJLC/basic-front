@@ -26,16 +26,14 @@ export class UsersApiRestDataSource implements UsersDataSource {
   constructor(private http: HttpClient) {}
 
   getUsers(params: IQueryUsers): Observable<IResposeGetUsers> {
-    const { limit, offset, fields, sort } = params;
+    const { limit, offset, sort } = params;
     let query = null;
     if (params.filter) {
       query = setQueryParams(params.filter);
     }
 
     let url = `${this.#urlApi}/${apiRestRoutes.gets}/${limit}/${offset}/${JSON.stringify(sort)}`;
-    if (fields) {
-      url = `${url}/${fields}`;
-    }
+
     if (query) {
       url = `${url}?${query}`;
     }

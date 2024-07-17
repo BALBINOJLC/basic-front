@@ -8,7 +8,7 @@ export class FormComponent {
       first_name: new FormControl('', [Validators.required]),
       last_name: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      active: new FormControl(false),
+      is_active: new FormControl(false),
     });
   }
 }

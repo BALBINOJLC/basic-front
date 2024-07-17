@@ -95,6 +95,7 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
   save(): void {
     let data = {
       ...this.form.value,
+      email_verify: this.form.get('is_active').value,
     };
 
     // Delete all fields empty or null

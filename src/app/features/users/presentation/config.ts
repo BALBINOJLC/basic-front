@@ -14,7 +14,7 @@ export const initialUser: IUser = {
   email: '',
   Profiles: [],
   email_verify: false,
-  active: false,
+  is_active: false,
   Avatar: {
     url: '',
     name: '',

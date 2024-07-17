@@ -4,7 +4,7 @@ import { TUserRoles } from '../types';
 export interface IUser {
     id              : string | null;
     email_verify    : boolean;
-    active          : boolean;
+    is_active       : boolean;
     display_name?   : string;
     email           : string;
     first_name      : string;
