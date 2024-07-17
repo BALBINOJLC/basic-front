@@ -57,6 +57,10 @@ export class UserStoreService {
     this.store.dispatch(actions.UserUpdate({ id, item }));
   }
 
+  updateProfile(id: string, item: IUserUpdate): void {
+    this.store.dispatch(actions.UserProfile({ id, item }));
+  }
+
   deleteUser(id: string, from: TFrom): void {
     this.store.dispatch(actions.UserDelete({ id, from }));
   }

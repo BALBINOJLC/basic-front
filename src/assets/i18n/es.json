@@ -145,7 +145,8 @@
     "RESET_PASSWORD": "Restablecer Contraseña",
     "SAVE": "Guardar",
     "UPDATE": "Actualizar",
-    "YES": "Sí"
+    "YES": "Sí",
+    "OK": "Aceptar"
   },
 
   "USER": {
@@ -155,6 +156,7 @@
     "ERRORS": {
       "NOT_FOUND": "Usuario no encontrado.",
       "CREATED": "Error al crear el usuario.",
+      "UPDATE": "Error al actualizar el usuario.",
       "CREATE": {
         "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
         "EMAIL_VALID": "Error al crear el usuario, el correo no es válido."
@@ -179,7 +181,9 @@
     },
     "PROFILE": {
       "TITLE": "Perfil",
-      "SUB_TITLE": "Información del Usuario"
+      "SUB_TITLE": "Información del Usuario",
+      "FORM_INVALID_TITLE": "Formulario Inválido",
+      "FORM_INVALID_MESSAGE": "Por favor, complete los campos requeridos"
     },
     "FIELDS": {
       "ADDRESSS": "Dirección",

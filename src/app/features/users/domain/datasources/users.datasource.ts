@@ -12,5 +12,7 @@ export abstract class UsersDataSource {
 
   abstract updateUser(id: string, data: IUserUpdate): Observable<IUser>;
 
+  abstract updateProfile(id: string, data: IUserUpdate): Observable<IUser>;
+
   abstract deleteUser(id: string): Observable<IResponseUserDeleted>;
 }

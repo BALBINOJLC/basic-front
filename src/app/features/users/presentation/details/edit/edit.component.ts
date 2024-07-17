@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { IFile, generateStrongPassword } from '@utils';
+import { IFile, deleteEmptyFields, generateStrongPassword } from '@utils';
 import { Observable, Subject } from 'rxjs';
 import { Router, RouterModule } from '@angular/router';
 import { FormComponent } from './form.component';
@@ -98,12 +98,7 @@ export class EditDetailsComponent implements OnInit, OnDestroy {
     };
 
     // Delete all fields empty or null
-    Object.keys(data).forEach((key) => {
-      if (data[key] === '' || data[key] === null) {
-        delete data[key];
-      }
-    });
-
+    data = deleteEmptyFields(data);
     if (this.user.id !== null) {
       this.fStore.updateUser(this.user.id, data);
     } else {

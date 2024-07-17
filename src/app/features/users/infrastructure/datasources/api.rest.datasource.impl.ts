@@ -93,12 +93,19 @@ export class UsersApiRestDataSource implements UsersDataSource {
   }
   updateUser(id: string, data: IUserUpdate): Observable<IUser> {
     const url = `${this.#urlApi}/${apiRestRoutes.put}/${id}`;
+    return this.http.patch<IResponseUserUpdated>(url, data).pipe(switchMap((resp) => of(resp.data)));
+  }
+
+  updateProfile(id: string, data: IUserUpdate): Observable<IUser> {
+    const url = `${this.#urlApi}/${apiRestRoutes.put}/${id}/profile`;
 
     return this.http.patch<IResponseUserUpdated>(url, data).pipe(
-      tap(() => {
-        //  const user = resp.data;
-        // const token = resp.data.access_token;
-        // this.#authService.saveStorage(token, user);
+      tap((resp) => {
+        console.log('resp', resp);
+
+        const user = resp.data;
+        const token = resp.access_token;
+        this.#authService.saveStorage(token, user);
       }),
       switchMap((resp) => of(resp.data))
     );

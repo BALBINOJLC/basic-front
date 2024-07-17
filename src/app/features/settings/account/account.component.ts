@@ -5,7 +5,7 @@ import { IAppState } from '@store';
 import { IUser, IUserUpdate } from '@users';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
-import { IFile, filterCountries } from '@utils';
+import { IFile, deleteEmptyFields, filterCountries } from '@utils';
 import { IDataAutoComplete } from '../../../shared/components/form/interfaces/index';
 import { countries } from '@data';
 import { FormEmailComponent, CommonModules } from '@shared';
@@ -62,7 +62,6 @@ export class SettingsAccountComponent implements OnInit {
       phone: [''],
       dni: [''],
       two_auth: [false],
-      country: ['', []],
     });
   }
 
@@ -75,13 +74,16 @@ export class SettingsAccountComponent implements OnInit {
     this.user$.pipe(takeUntil(this._unsubscribeAll)).subscribe((user) => {
       if (user) {
         // Create copy of object because the user is read-only
-        const copyUser = { ...user };
+        console.log('user', user);
 
-        Object.keys(copyUser).forEach((key) => {
-          if (copyUser[key] === null) {
-            delete copyUser[key];
-          }
-        });
+        let copyUser: IUser = { ...user };
+        copyUser = deleteEmptyFields(copyUser);
+
+        if (copyUser.phone_area && copyUser.phone) {
+          this.area = copyUser.phone_area;
+          copyUser.phone = copyUser.phone.replace(copyUser.phone_area, '');
+        }
+        console.log('copyUser', copyUser);
 
         this.form.patchValue(copyUser);
       }
@@ -96,22 +98,16 @@ export class SettingsAccountComponent implements OnInit {
     this.area = area;
   }
 
-  setCountry(data): void {
-    this.form.patchValue({ country: data.name });
-  }
-
   update(userId: string): void {
     if (this.form.valid) {
       const data = {
         ...this.form.value,
         phone: `${this.area}${this.form.value.phone}`,
-        address: {
-          address1: this.form.value.address1,
-          address2: this.form.value.address2,
-          userId,
-        },
+        phone_area: this.area,
       };
-      this.fStoreU.updateUser(userId, data);
+      // delete empty, null or undefined values
+      const dataClean = deleteEmptyFields(data);
+      this.fStoreU.updateProfile(userId, dataClean);
     } else {
       this._fuseConfirmationService.open({
         actions: {

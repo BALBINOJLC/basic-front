@@ -62,6 +62,13 @@ export class UsersEffects {
     )
   );
 
+  updateProfile$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.UserProfile),
+      mergeMap(({ id, item }) => this._userRepository.updateProfile(id, item).pipe(map((data) => actions.UserLoad({ item: data }))))
+    )
+  );
+
   add$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserAdd),

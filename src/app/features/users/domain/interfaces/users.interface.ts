@@ -11,7 +11,7 @@ export interface IUser {
     last_name       : string;
     dni?            : string;
     phone?          : string;
-    access_token?   : string;
+    phone_area?     : string;
     Avatar          : IFile;
     Profiles        : IUserProfile[];
     userOrg?        : IUser;
@@ -26,8 +26,9 @@ export interface IResposeGetUsers extends IResponseApiGets {
 }
 
 export interface IResponseUserUpdated {
-    data    : IUser;
-    message : string;
+    data         : IUser;
+    message      : string;
+    access_token?: string;
 }
 
 export interface IResponseUserDeleted {

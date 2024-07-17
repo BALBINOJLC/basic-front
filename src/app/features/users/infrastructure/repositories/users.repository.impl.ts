@@ -29,4 +29,8 @@ export class UsersRepositoryImpl implements UsersRepository {
   updateUser(id: string, data: IUserUpdate): Observable<IUser> {
     return this.dataSource.updateUser(id, data);
   }
+
+  updateProfile(id: string, data: IUserUpdate): Observable<IUser> {
+    return this.dataSource.updateProfile(id, data);
+  }
 }

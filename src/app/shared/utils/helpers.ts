@@ -69,3 +69,14 @@ export const generateStrongPassword = (): string => {
 
   return password;
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const deleteEmptyFields = (data: object): any => {
+  Object.keys(data).forEach((key) => {
+    if (data[key] === '' || data[key] === null || data[key] === undefined) {
+      delete data[key];
+    }
+  });
+
+  return data;
+};
