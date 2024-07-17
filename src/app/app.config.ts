@@ -1,3 +1,5 @@
+import { CalendarModule, DateAdapter as CalendarDateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
@@ -31,16 +33,14 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    /**Firebase */
+    // Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     providePerformance(() => getPerformance()),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     provideStorage(() => getStorage()),
-
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase },
-    // Servicios de tracking para Analytics
     ScreenTrackingService,
     UserTrackingService,
 
@@ -76,18 +76,9 @@ export const appConfig: ApplicationConfig = {
     provideTransloco({
       config: {
         availableLangs: [
-          {
-            id: 'en',
-            label: 'English',
-          },
-          {
-            id: 'es',
-            label: 'Spanish',
-          },
-          {
-            id: 'tr',
-            label: 'Turkish',
-          },
+          { id: 'en', label: 'English' },
+          { id: 'es', label: 'Spanish' },
+          { id: 'tr', label: 'Turkish' },
         ],
         defaultLang: 'es',
         fallbackLang: 'es',
@@ -96,6 +87,7 @@ export const appConfig: ApplicationConfig = {
       },
       loader: TranslocoHttpLoader,
     }),
+
     // Fuse
     provideAuthAPI(),
     provideIcons(),
@@ -109,9 +101,16 @@ export const appConfig: ApplicationConfig = {
 
     provideAnimationsAsync(),
     provideStore(appReducers),
-
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
     provideEffects(effects),
     provideRouterStore(),
+
+    // Angular Calendar
+    importProvidersFrom(
+      CalendarModule.forRoot({
+        provide: CalendarDateAdapter,
+        useFactory: adapterFactory,
+      })
+    ),
   ],
 };
