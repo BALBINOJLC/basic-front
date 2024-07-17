@@ -93,6 +93,8 @@
   <mwl-calendar-week-view
     [viewDate]="viewDate"
     [events]="events"
+    
+    (eventClicked)="handleEvent('Clicked', $event.event)"
     (dayHeaderClicked)="clickEventDay($event.day)"
     (hourSegmentClicked)="clickEventTime($event.date)"
   >

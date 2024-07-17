@@ -1,6 +1,6 @@
 import { CalendarModule, DateAdapter as CalendarDateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode, LOCALE_ID } from '@angular/core';
 import { PreloadAllModules, provideRouter, withInMemoryScrolling, withPreloading } from '@angular/router';
 import { LuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { appRoutes } from './app.routes';
@@ -30,6 +30,10 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { getAnalytics, provideAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
 import { getStorage, provideStorage } from '@angular/fire/storage';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
+
+registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -71,6 +75,7 @@ export const appConfig: ApplicationConfig = {
         },
       },
     },
+    { provide: LOCALE_ID, useValue: 'es' },
 
     // Transloco Config
     provideTransloco({
