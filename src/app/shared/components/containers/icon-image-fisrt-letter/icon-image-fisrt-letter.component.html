@@ -1,6 +1,6 @@
 <ng-container [ngSwitch]="itemType">
   <div *ngSwitchCase="'USER'">
-    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'avatar', name: 'display_name' }"></ng-template>
+    <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'Avatar', name: 'display_name' }"></ng-template>
   </div>
   <div *ngSwitchCase="'PROJECT'">
     <ng-template *ngTemplateOutlet="icon; context: { $implicit: item, file: 'logo', name: 'name' }"></ng-template>

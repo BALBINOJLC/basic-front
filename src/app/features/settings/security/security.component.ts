@@ -59,11 +59,15 @@ export class SettingsSecurityComponent implements OnInit {
 
   changePassword(): void {
     if (this.form.valid) {
+      const data = this.form.value;
       const user: IUserUpdate = this.form.value;
-      const newPassword = this.form.get('newPassword').value;
 
-      user.newPassword = newPassword.password;
-      this.store.dispatch(actions.AuthChangePassword({ user }));
+      const newPassword = data?.newPassword?.password;
+
+      if (newPassword) {
+        user.newPassword = newPassword;
+        this.store.dispatch(actions.AuthChangePassword({ user }));
+      }
     }
   }
 }

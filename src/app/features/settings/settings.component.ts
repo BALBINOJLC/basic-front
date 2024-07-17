@@ -62,12 +62,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
         title: 'SETTINGS.SECURITY.TITLE',
         description: 'SETTINGS.SECURITY.DESCRIPTION',
       },
-      {
-        id: 'integrations',
-        icon: 'mat_outline:apps',
-        title: 'SETTINGS.INTEGRATIONS.TITLE',
-        description: 'SETTINGS.INTEGRATIONS.DESCRIPTION',
-      },
     ];
 
     // Subscribe to media changes

@@ -104,13 +104,6 @@ const getUserMenu = (): FuseNavigationItem[] => [
     icon: 'heroicons_outline:chart-pie',
     link: `${basePath}/dashboard`,
   },
-  {
-    id: 'management',
-    title: 'SIDEBAR.MANAGEMENT',
-    type: 'basic',
-    icon: 'heroicons_outline:briefcase',
-    link: `${basePath}/management`,
-  },
 ];
 
 const getDefaultMenu = (): FuseNavigationItem[] => [

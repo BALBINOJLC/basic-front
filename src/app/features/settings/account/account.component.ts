@@ -3,7 +3,7 @@ import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators }
 import { Store } from '@ngrx/store';
 import { IAppState } from '@store';
 import { IUser, IUserUpdate } from '@users';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { IFile, filterCountries } from '@utils';
 import { IDataAutoComplete } from '../../../shared/components/form/interfaces/index';
@@ -72,6 +72,20 @@ export class SettingsAccountComponent implements OnInit {
 
   getUser(): void {
     this.user$ = this.fStoreA.seeUser();
+    this.user$.pipe(takeUntil(this._unsubscribeAll)).subscribe((user) => {
+      if (user) {
+        // Create copy of object because the user is read-only
+        const copyUser = { ...user };
+
+        Object.keys(copyUser).forEach((key) => {
+          if (copyUser[key] === null) {
+            delete copyUser[key];
+          }
+        });
+
+        this.form.patchValue(copyUser);
+      }
+    });
   }
 
   cancel(): void {
