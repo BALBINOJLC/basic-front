@@ -46,7 +46,7 @@ export class UsersApiRestDataSource implements UsersDataSource {
   }
 
   searchUsers(params: IQueryUsers, regexp: string): Observable<IResposeGetUsers> {
-    const { limit, offset, fields, sort, filter } = params;
+    const { limit, offset, sort, filter } = params;
 
     let query = null;
     if (filter) {
@@ -55,14 +55,9 @@ export class UsersApiRestDataSource implements UsersDataSource {
 
     let url = `${this.#urlApi}/${apiRestRoutes.search}/${limit}/${offset}/${JSON.stringify(sort)}/${regexp}`;
 
-    if (fields) {
-      url = `${url}/${fields}`;
-    }
     if (query) {
       url = `${url}?${query}`;
     }
-    console.log('url', url);
-    console.log('query', query);
 
     return this.http.get<IResposeGetUsers>(url);
   }

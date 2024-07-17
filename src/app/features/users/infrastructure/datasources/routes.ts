@@ -4,5 +4,5 @@ export const apiRestRoutes = {
   add: 'auth/signup',
   put: 'users',
   delete: 'users',
-  search: 'users/search-users',
+  search: 'users/search',
 };
