@@ -47,7 +47,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
       if (message) {
         this.store.dispatch(actions.showMessage({ message, status }));
       }
-      this.store.dispatch(actions.stopLoading());
+      asapScheduler.schedule(() => this.store.dispatch(actions.stopLoading()));
     }
 
     return event;
@@ -69,8 +69,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
     if (dataError.error) {
       this.store.dispatch(actions.showError({ error: dataError }));
     }
-    this.store.dispatch(actions.stopLoading());
-
+    asapScheduler.schedule(() => this.store.dispatch(actions.stopLoading()));
     return of(error);
   }
 
