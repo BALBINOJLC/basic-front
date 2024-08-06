@@ -33,6 +33,9 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
+
 registerLocaleData(localeEs);
 
 export const appConfig: ApplicationConfig = {
@@ -51,6 +54,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(withFetch()),
     importProvidersFrom(HttpClientModule),
+    provideLottieOptions({
+      player: () => player,
+    }),
+    provideLottieOptions({
+      player: () => import('lottie-web'),
+    }),
     HttpApiInterceptorProvider,
 
     provideRouter(appRoutes, withPreloading(PreloadAllModules), withInMemoryScrolling({ scrollPositionRestoration: 'enabled' })),

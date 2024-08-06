@@ -22,7 +22,7 @@ export class HttpApiInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    asapScheduler.schedule(() => this.store.dispatch(actions.stopLoading()));
+    asapScheduler.schedule(() => this.store.dispatch(actions.isLoading()));
 
     const handleRequest = (request: HttpRequest<unknown>): Observable<HttpEvent<unknown>> =>
       next.handle(request).pipe(

@@ -1,8 +1,7 @@
-<div *ngIf="loading">
-  <div class="loading-indicator fixed h-full w-full bg-black z-99">
-    <div class="spinner"></div>
-    <p>Cargando...</p>
+@if (isLoading$ | async) {
+  <div class="fixed inset-0 w-full h-full z-99 flex items-center justify-center bg-modal">
+    <ng-lottie class="w-40 h-40 imagenEncima" [options]="options" (animationCreated)="animationCreated($event)"></ng-lottie>
   </div>
-</div>
+}
 
 <router-outlet></router-outlet>
