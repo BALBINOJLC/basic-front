@@ -119,17 +119,22 @@
       "EMAIL": "Correo Electrónico",
       "PASSWORD": "Contraseña",
       "CONFIRM_PASSWORD": "Confirmar Contraseña",
+      "DISPLAY_NAME": "Nombre de visualización",
       "FIRST_NAME": "Nombre",
       "LAST_NAME": "Apellido",
+      "DNI": "RUT",
       "PHONE": "Teléfono",
-      "DNI": "Nº DNI"
+      "ADDRESS": "Dirección",
+      "BIRTH_DATE": "Fecha de nacimiento",
+      "USER_NAME": "Nombre de usuario"
     },
     "ERRORS": {
       "REQUIRED": "Campo requerido",
       "INVALID_EMAIL": "Correo electrónico inválido",
       "MIN_LENGTH": "Mínimo de caracteres no alcanzado",
       "MAX_LENGTH": "Máximo de caracteres excedido",
-      "PASSWORDS_DONT_MATCH": "Las contraseñas no coinciden"
+      "PASSWORDS_DONT_MATCH": "Las contraseñas no coinciden",
+      "PASSWORD-VALID": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
     }
   },
 
