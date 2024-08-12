@@ -41,7 +41,6 @@ export class AppComponent {
     private _platform: Platform
   ) {
     if (this._platform.IOS || this._platform.ANDROID) {
-      this._platform.isBrowser = false;
       this.store.dispatch(actions.setPlatForm({ platform: PlatformEnum.MOBILE }));
       this.document.body.classList.add('is-mobile');
     } else {

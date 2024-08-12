@@ -1,6 +1,9 @@
 {
   "name": "backoffice-base-startups",
   "version": "0.0.1",
+  "description": "This project was generated with Angular CLI version",
+  "author": "Startups",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "prebuild": "rimraf dist",
@@ -48,8 +51,10 @@
     "express": "^4.18.2",
     "highlight.js": "11.9.0",
     "lodash-es": "4.17.21",
+    "lottie-web": "^5.12.2",
     "luxon": "3.4.4",
     "ng-apexcharts": "1.9.0",
+    "ngx-lottie": "^12.0.0",
     "ngx-quill": "25.1.1",
     "perfect-scrollbar": "1.5.5",
     "rxjs": "~7.8.0",
