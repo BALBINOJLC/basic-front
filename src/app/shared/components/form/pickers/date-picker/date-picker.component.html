@@ -1,0 +1,17 @@
+<mat-form-field color="accent" class="w-full">
+  <mat-label *ngIf="showLabel" class="text-secondary">{{ label }}</mat-label>
+  <input
+    id="scrollRegister"
+    matInput
+    [placeholder]="label | transloco"
+    [matDatepicker]="picker1"
+    [formControl]="dateControl"
+    [min]="minDate"
+    [max]="maxDate"
+    [disabled]="disabled"
+    [matDatepickerFilter]="filter"
+    (dateInput)="getData()"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
