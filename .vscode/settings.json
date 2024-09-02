@@ -1,0 +1,11 @@
+{
+  "cSpell.words": ["BTNS", "transloco"],
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-*": {
+      "externalTemplate": true
+    },
+    "angular-component": {
+      "ngOnInit": true
+    }
+  }
+}
