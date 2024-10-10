@@ -2,16 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable arrow-parens */
 import { ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Country } from './interfaces';
 import { countries } from '@data';
@@ -49,10 +40,10 @@ export class FormPhoneComponent implements OnInit, OnChanges, OnDestroy {
   subscriptions: Subscription[];
   countries: Country[] = countries;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder) {
     this.subscriptions = [];
 
-    this.form = this.formBuilder.group({
+    this.form = this._formBuilder.group({
       phone: ['', [Validators.required]],
       area: [''],
     });
@@ -65,7 +56,7 @@ export class FormPhoneComponent implements OnInit, OnChanges, OnDestroy {
     );
   }
 
-  get phoneControl(): AbstractControl<any, any> {
+  get phoneControl(): AbstractControl<string, string> {
     return this.form.controls.phone;
   }
 
@@ -82,8 +73,8 @@ export class FormPhoneComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   set value(value: FormPhoneComponent) {
-    this.form.setValue({ phone: value, area: this.countries.find((country) => country.code === this.area).iso });
-    this.onChange(value);
+    this.form.setValue({ phone: value.phone, area: this.countries.find((country) => country.code === this.area).iso });
+    this.onChange(value.phone);
     this.onTouched();
   }
 
@@ -113,24 +104,22 @@ export class FormPhoneComponent implements OnInit, OnChanges, OnDestroy {
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: (value: string) => void = () => {};
+  onTouched: () => void = () => {};
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string) => void): void {
     this.onChange = fn;
   }
 
-  writeValue(value: any): void {
+  writeValue(value: FormPhoneComponent): void {
     if (value) {
       this.value = value;
-    }
-
-    if (value === null) {
+    } else if (value === null) {
       this.form.reset();
     }
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -153,7 +142,7 @@ export class FormPhoneComponent implements OnInit, OnChanges, OnDestroy {
    * @param index
    * @param item
    */
-  trackByFn(index: number, item: any): any {
+  trackByFn(index: number, item: Country): number | string {
     return item.id || index;
   }
 }

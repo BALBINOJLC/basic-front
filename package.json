@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "prebuild": "rimraf dist",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.html\" \"test/**/*.ts\"",
     "prepare": "husky",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "start": "ng serve --port 4444",

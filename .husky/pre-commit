@@ -1,11 +1,25 @@
 #!/bin/sh
+
 echo '🏗️👷 Styling, testing and building your project before committing'
 
+# Format staged files that Prettier can handle
+staged_files=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(js|jsx|ts|tsx|html|css|json|md)$')
+if [ -n "$staged_files" ]; then
+  echo 'Formatting staged files...'
+  echo "$staged_files" | xargs npx prettier --write
+
+  # Stage the formatted files
+  echo "$staged_files" | xargs git add
+else
+  echo 'No files to format.'
+fi
+
+# Run lint-staged
 npx lint-staged ||
-    (
-        echo '🤢🤮🤢🤮 Its RAW - Your styling looks disgusting. 🤢🤮🤢🤮
-            Prettier Check Failed. Run npm run format, add changes and try commit again.'
-        false
-    )
+  (
+    echo '🤢🤮🤢🤮 Its RAW - Your styling looks disgusting. 🤢🤮🤢🤮
+      Lint-staged failed. Please fix the issues and try committing again.'
+    false
+  )
 
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
