@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, Component, Inject } from '@angular/core';
+// Start of Selection
+import { ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Observable, Subject, Subscription, debounceTime, map, takeUntil } from 'rxjs';
+import { Observable, Subject, Subscription, debounceTime, map, of, takeUntil } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
 import { Store } from '@ngrx/store';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -20,92 +21,109 @@ import { AnimationItem } from 'lottie-web';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  isLoading$: Observable<boolean> = this.store.select(selectUiState).pipe(map((ui) => ui.isLoading));
+export class AppComponent implements OnInit {
+  isLoading$: Observable<boolean> = of(false);
   options: AnimationOptions = {
     path: '/assets/lottie/loadingLogo.json',
   };
 
-  title = 'backoffice_base_startups';
+  title = 'backOffice_base_startups';
 
   private subscription: Subscription = new Subscription();
-  private _unsubscribeAll: Subject<void> = new Subject<void>();
+  private unsubscribeAll: Subject<void> = new Subject<void>();
+
+  // eslint-disable-next-line max-params
   constructor(
-    private translocoService: TranslocoService,
-    @Inject(DOCUMENT) private document: Document,
-    private store: Store,
-    private cd: ChangeDetectorRef,
+    private _translocoService: TranslocoService,
+    @Inject(DOCUMENT) private _document: Document,
+    private _store: Store,
+    private _cd: ChangeDetectorRef,
     private _snackBar: MatSnackBar,
-    private trans: TranslocoService,
     private _fuseConfirmationService: FuseConfirmationService,
     private _platform: Platform
   ) {
-    if (this._platform.IOS || this._platform.ANDROID) {
-      this.store.dispatch(actions.setPlatForm({ platform: PlatformEnum.MOBILE }));
-      this.document.body.classList.add('is-mobile');
-    } else {
-      this.store.dispatch(actions.setPlatForm({ platform: PlatformEnum.WEB }));
-      this.document.body.classList.add('is-web');
-    }
+    this.initializePlatform();
   }
 
   ngOnInit(): void {
-    this.store
+    this.initializeLoadingObserver();
+    this.initializeUiStateListener();
+  }
+
+  private initializePlatform(): void {
+    const isMobile = this._platform.IOS || this._platform.ANDROID;
+    const platform = isMobile ? PlatformEnum.MOBILE : PlatformEnum.WEB;
+    this._store.dispatch(actions.setPlatForm({ platform }));
+    this._document.body.classList.add(isMobile ? 'is-mobile' : 'is-web');
+  }
+
+  private initializeLoadingObserver(): void {
+    this.isLoading$ = this._store.select(selectUiState).pipe(
+      takeUntil(this.unsubscribeAll),
+      debounceTime(2000),
+      map((ui) => ui.isLoading)
+    );
+  }
+
+  private initializeUiStateListener(): void {
+    this._store
       .select(selectUiState)
-      .pipe(takeUntil(this._unsubscribeAll), debounceTime(400))
+      .pipe(takeUntil(this.unsubscribeAll), debounceTime(400))
       .subscribe((ui) => {
         if (ui.error) {
-          this.uiErrors(ui.error);
+          this.handleUiError(ui.error);
         }
         if (ui.message) {
-          if (ui.message.message.includes('UPDATED') || ui.message.message.includes('DELETED')) {
-            this.uiMessageUpdate(ui.message.message, '👍🏽', 3000);
-          } else {
-            this.uiMessage(ui.message);
-          }
-          this.store.dispatch(actions.uIClean());
+          this.handleUiMessage(ui.message);
+          this._store.dispatch(actions.uIClean());
         }
-        this.cd.detectChanges();
+        this._cd.detectChanges();
       });
   }
 
-  animationCreated(animationItem: AnimationItem): void {
-    console.log(animationItem);
-  }
-
-  uiErrors(error: IHttpError): void {
-    this.store.dispatch(actions.uIClean());
+  private handleUiError(error: IHttpError): void {
+    this._store.dispatch(actions.uIClean());
     console.error('Error Api:', error);
     this._fuseConfirmationService.open({
       actions: {
         cancel: { show: false },
         confirm: { show: true, label: 'OK', color: 'primary' },
       },
-      message: this.trans.translate(error?.error.message?.toString()),
+      message: this._translocoService.translate(error?.error.message?.toString() || 'An error occurred'),
       title: '',
     });
   }
 
-  uiMessage(message: { message: string; status: number }): void {
-    this.store.dispatch(actions.uIClean());
-
-    if (message.message !== 'Token not found') {
+  private handleUiMessage(message: { message: string; status: number }): void {
+    if (message.message.includes('UPDATED') || message.message.includes('DELETED')) {
+      this.showSnackBarMessage(message.message, '👍🏽', 3000);
+    } else if (message.message !== 'Token not found') {
       this._fuseConfirmationService.open({
         actions: {
           cancel: { show: false },
           confirm: { show: true, label: 'OK', color: 'primary' },
         },
-        message: this.trans.translate(message.message),
+        message: this._translocoService.translate(message.message),
         title: '',
       });
     }
   }
 
-  uiMessageUpdate(message: string, icon: string, duration: number): void {
-    const messageT = this.trans.translate(message);
-    this._snackBar.open(messageT, icon, {
-      duration: duration,
+  private showSnackBarMessage(message: string, icon: string, duration: number): void {
+    const translatedMessage = this._translocoService.translate(message);
+    this._snackBar.open(translatedMessage, icon, {
+      duration,
       horizontalPosition: 'end',
     });
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    console.log(animationItem);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
+    this.subscription.unsubscribe();
   }
 }
