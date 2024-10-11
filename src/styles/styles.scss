@@ -4,3 +4,20 @@
 /* ----------------------------------------------------------------------------------------------------- */
 /* angular-cli file: src/styles.css */
 //@import "../../node_modules/angular-calendar/css/angular-calendar.css";
+
+.bg-modal::before {
+    content: "";
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+}
+
+.overImage {
+  position: relative;
+  z-index: 2;
+}
