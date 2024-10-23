@@ -1,5 +1,5 @@
 {
-  "cSpell.words": ["BTNS", "transloco"],
+  "cSpell.words": ["BTNS", "transloco", "tstr"],
   "angular-schematics.schematicsDefaultOptions": {
     "angular-*": {
       "externalTemplate": true

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
+// Validates if the input is a valid phone number
 export const validatePhone = (control: AbstractControl): ValidationErrors | null => {
   const phone = control.value;
   if (phone) {
@@ -15,19 +16,7 @@ export const validatePhone = (control: AbstractControl): ValidationErrors | null
   return null;
 };
 
-export const validateNumber = (control: AbstractControl): ValidationErrors | null => {
-  const number = control.value;
-  if (number) {
-    const numberRegex = /^[0-9]+(\.[0-9]+)?$/;
-    if (!numberRegex.test(number)) {
-      return {
-        number: true,
-      };
-    }
-  }
-  return null;
-};
-
+// Validates that there are no consecutive decimal points in a number
 export const validateNoRepeatPoint = (control: AbstractControl): ValidationErrors | null => {
   const number = control.value;
   if (number) {
@@ -41,33 +30,7 @@ export const validateNoRepeatPoint = (control: AbstractControl): ValidationError
   return null;
 };
 
-export const validateEmail = (control: AbstractControl): ValidationErrors | null => {
-  const email = control.value;
-  if (email) {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-    if (!emailRegex.test(email)) {
-      return {
-        email: true,
-      };
-    }
-  }
-  return null;
-};
-
-export const validatePassword = (control: AbstractControl): ValidationErrors | null => {
-  const password = control.value;
-  if (password) {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      return {
-        password: true,
-      };
-    }
-  }
-  return null;
-};
-
-// Regular expresion validate url
+// Validates if the input is a valid URL
 export const validateUrl = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
 
@@ -82,7 +45,7 @@ export const validateUrl = (control: AbstractControl): ValidationErrors | null =
   return null;
 };
 
-// Regular expression to validate url and no last text /
+// Validates if the input is a valid URL without a trailing slash
 export const validateUrlAndNoPathLast = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
   if (url) {
@@ -97,7 +60,7 @@ export const validateUrlAndNoPathLast = (control: AbstractControl): ValidationEr
   return null;
 };
 
-// Regular expression to validate have https:// in the beginning
+// Validates if the input is a valid URL with http:// or https:// at the beginning
 export const validateUrlWithHttp = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
   if (url) {
@@ -111,7 +74,7 @@ export const validateUrlWithHttp = (control: AbstractControl): ValidationErrors 
   return null;
 };
 
-// Regular expression to validate no have http:// or https://
+// Validates that the input does not start with http:// or https://
 export const validateNoHttp = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
   if (url) {
@@ -125,7 +88,7 @@ export const validateNoHttp = (control: AbstractControl): ValidationErrors | nul
   return null;
 };
 
-// regular expression to validate no first with http:// or https:// and last with .myshopify.com
+// Validates that the input does not start with http:// or https:// and does not end with .myshopify.com
 export const validateNoHttpAndDomain = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
   if (url) {
@@ -139,7 +102,7 @@ export const validateNoHttpAndDomain = (control: AbstractControl): ValidationErr
   return null;
 };
 
-// regular expression to validate no first with http:// or https:// and no last with .myshopify.com
+// Validates that the input does not start with http:// or https:// and does not end with .myshopify.com
 export const validateNoHttpAndNoDomain = (control: AbstractControl): ValidationErrors | null => {
   const url = control.value;
   if (url) {
@@ -153,51 +116,158 @@ export const validateNoHttpAndNoDomain = (control: AbstractControl): ValidationE
   return null;
 };
 
-// Valida Rut
+// Validates if the input is a valid Chilean RUT (Rol Único Tributario)
 export const validateRut = (control: AbstractControl): ValidationErrors | null => {
   const rutInput = control.value;
   if (rutInput) {
     const rutValid = {
-      // Validates the rut with its full string "XXXXXXXX-X"
-      validaRut: function (rutInput: string): boolean {
-        rutInput = rutInput.replace('-', '-');
-        if (!/^[0-9]+[-|-]{1}[0-9kK]{1}$/.test(rutInput)) return false;
-        const tmp = rutInput.split('-');
-        let digv = tmp[1];
-        const rut = tmp[0];
-        if (digv == 'K') digv = 'k';
-
-        // Return true if the RUT is valid, otherwise return false
-        return rutValid.dv(rut) == digv ? true : false;
+      cleanRut: function (rut: string): string {
+        return typeof rut === 'string' ? rut.replace(/^0+|[^0-9kK]+/g, '').toUpperCase() : '';
       },
+      validateRut: function (rutInput: string): boolean {
+        // Clean and format the RUT
+        const cleanRut = this.cleanRut(rutInput);
+        if (cleanRut.length < 2) return false;
+
+        const dv = cleanRut.charAt(cleanRut.length - 1);
+        const rutBody = cleanRut.slice(0, -1);
+
+        // Calculate and compare the verification digit
+        return this.dv(rutBody).toString() === dv.toLowerCase();
+      },
+      // eslint-disable-next-line @typescript-eslint/naming-convention
       dv: function (T: string | number): string | number {
         let M = 0,
           S = 1;
-        //@ts-ignore
-        for (; T; T = Math.floor(T / 10)) S = (S + (T % 10) * (9 - (M++ % 6))) % 11;
+        const tstr = T.toString();
+        for (let i = tstr.length - 1; i >= 0; i--) {
+          S = (S + parseInt(tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
+        }
         return S ? S - 1 : 'k';
       },
     };
-    if (!rutValid.validaRut(rutInput)) {
+
+    // Check if the RUT is valid
+    if (!rutValid.validateRut(rutInput)) {
       return { validateRut: true };
-    } else {
-      return null;
     }
-  } else {
-    return null;
   }
+
+  // If there's no value or it's valid, return null
+  return null;
 };
 
-// validate Password min 8 characters, 1 uppercase, 1 lowercase, 1 number and 1 special character
-export const validatePasswordMin = (control: AbstractControl): ValidationErrors | null => {
-  const passwordValid = control.value;
-  if (passwordValid) {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(passwordValid)) {
-      return {
-        passwordValid: true,
-      };
+// Validates if the input string is a valid Chilean RUT
+export const validateRutString = (rutInput: string): boolean => {
+  const rutValid = {
+    cleanRut: function (rut: string): string {
+      return typeof rut === 'string' ? rut.replace(/^0+|[^0-9kK]+/g, '').toUpperCase() : '';
+    },
+    validateRut: function (rutInput: string): boolean {
+      // Clean and format the RUT
+      const cleanRut = this.cleanRut(rutInput);
+      if (cleanRut.length < 2) return false;
+
+      const dv = cleanRut.charAt(cleanRut.length - 1);
+      const rutBody = cleanRut.slice(0, -1);
+
+      // Calculate and compare the verification digit
+      return this.dv(rutBody).toString() === dv.toLowerCase();
+    },
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    dv: function (T: string | number): string | number {
+      let M = 0,
+        S = 1;
+      const tstr = T.toString();
+      for (let i = tstr.length - 1; i >= 0; i--) {
+        S = (S + parseInt(tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
+      }
+      return S ? S - 1 : 'k';
+    },
+  };
+
+  // Check if the RUT is valid and return the result
+  return rutValid.validateRut(rutInput);
+};
+
+// Validates if the input is a valid email address
+export const validateEmail = (email: string): boolean => {
+  // Regular expression to validate email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+// Helper function to validate the password
+const isPasswordValid = (password: string): boolean => {
+  const minLength = 8;
+  const minLowercase = 1;
+  const minUppercase = 1;
+  const minNumbers = 1;
+  const minSymbols = 1;
+
+  const lowercaseCharset = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseCharset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbersCharset = '0123456789';
+  const symbolsCharset = '!@#$%^&*()_+{}[]|\\:;"\'<>,.?/~`';
+
+  let lowercaseCount = 0;
+  let uppercaseCount = 0;
+  let numberCount = 0;
+  let symbolCount = 0;
+
+  // Check each character in the password
+  for (const char of password) {
+    if (lowercaseCharset.includes(char)) {
+      lowercaseCount++;
+    } else if (uppercaseCharset.includes(char)) {
+      uppercaseCount++;
+    } else if (numbersCharset.includes(char)) {
+      numberCount++;
+    } else if (symbolsCharset.includes(char)) {
+      symbolCount++;
     }
   }
+
+  // Validate that the password meets the requirements
+  return (
+    password.length >= minLength &&
+    lowercaseCount >= minLowercase &&
+    uppercaseCount >= minUppercase &&
+    numberCount >= minNumbers &&
+    symbolCount >= minSymbols
+  );
+};
+
+// Validates if the input string is a valid password
+export const validatePasswordString = (password: string): boolean => {
+  return isPasswordValid(password);
+};
+
+// Validates if the input control value is a valid password
+export const validatePasswordControl = (control: AbstractControl): ValidationErrors | null => {
+  const password = control.value;
+  if (password && !isPasswordValid(password)) {
+    return { password: true };
+  }
   return null;
+};
+
+// Validates if the input value is greater than or equal to the minimum price
+export const validateMinPrice = (minPrice: number) => {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const value = control.value;
+    if (!value) {
+      return null; // Don't validate if the field is empty
+    }
+
+    // Remove currency symbol and thousand separators
+    const numericValue = parseInt(value.toString().replace(/[^\d]/g, ''), 10);
+    console.log(minPrice);
+    console.log(numericValue);
+    if (isNaN(numericValue) || numericValue < minPrice) {
+      return { minPrice: { required: minPrice, actual: numericValue } };
+    }
+
+    return null;
+  };
 };

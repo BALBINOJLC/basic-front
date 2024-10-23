@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -15,7 +16,6 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModules, FormsModules } from '@shared';
-import { validatePasswordMin } from '@utils';
 import { Subscription } from 'rxjs';
 
 @Component({
