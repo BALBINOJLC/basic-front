@@ -1,0 +1,15 @@
+@mixin auth-classic {
+    @apply flex items-center justify-center min-h-screen bg-custom-2;
+}
+
+.auth-classic {
+    @include auth-classic;
+}
+
+@mixin auth-classic-card {
+    @apply py-8 mx-5 px-4 sm:p-12 rounded-2xl shadow-2xl bg-custom-1 sm:w-140 sm:h-180 h-140 flex items-center justify-center;
+}
+
+.classic-card {
+    @include auth-classic-card;
+}

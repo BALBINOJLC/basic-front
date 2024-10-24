@@ -1,0 +1,50 @@
+<div class="flex flex-col w-full h-full">
+  <!-- Header -->
+  <div class="rw-full min-h-20 flex items-center justify-end p-6">
+    <!-- Close button -->
+    <button mat-icon-button [matTooltip]="'Close'" [routerLink]="['../']">
+      <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+    </button>
+  </div>
+  <ng-container *ngIf="!editMode">
+    <ng-container *ngIf="base$ | async as item">
+      <!-- Users -->
+      <div class="relative flex flex-col flex-auto items-center p-6 pt-0 sm:p-12 sm:pt-0">
+        <div class="w-full max-w-3xl">
+          <!-- Avatar and actions -->
+          <div class="flex flex-auto items-end -mt-16">
+            <!-- Actions -->
+            <div class="flex items-center ml-auto mb-1">
+              <button mat-stroked-button (click)="toggleEditMode(true)">
+                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_solid:pencil-alt'"></mat-icon>
+                <span class="ml-2">Edit</span>
+              </button>
+            </div>
+          </div>
+          <!--View Details-->
+          <view-details [item]="item"></view-details>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- Edit mode -->
+
+  <!-- Edit mode -->
+  <ng-container *ngIf="user$ | async as user">
+    <ng-container *ngIf="editMode">
+      @if (id === 'new') {
+        <div class="w-full relative flex flex-col flex-auto items-center px-6 sm:px-12">
+          <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [base]="baseDefault" [user]="user"></edit-details>
+        </div>
+      } @else {
+        <ng-container *ngIf="base$ | async as base">
+          <!-- Contact form -->
+          <div class="w-full relative flex flex-col flex-auto items-center px-6 sm:px-12">
+            <edit-details (editModeEvent)="toggleEditMode($event)" class="w-full h-full" [base]="base" [user]="user"></edit-details>
+          </div>
+        </ng-container>
+      }
+    </ng-container>
+  </ng-container>
+</div>

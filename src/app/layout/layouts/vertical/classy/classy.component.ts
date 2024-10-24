@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { NgIf } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,7 +11,7 @@ import { FuseLoadingBarComponent } from '@fuse/components/loading-bar';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { Store } from '@ngrx/store';
-import { IconImageFisrtLetterComponent } from '@shared';
+import { IconImageFirstLetterComponent } from '@shared';
 import { IUser } from '@users';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { LanguagesComponent } from 'app/layout/common/languages/languages.component';
@@ -43,7 +44,7 @@ import { Subject, takeUntil } from 'rxjs';
     MessagesComponent,
     RouterOutlet,
     QuickChatComponent,
-    IconImageFisrtLetterComponent,
+    IconImageFirstLetterComponent,
   ],
 })
 export class ClassyLayoutComponent implements OnInit, OnDestroy {

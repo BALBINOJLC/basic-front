@@ -19,7 +19,7 @@ export class CanDeactivateClientsDetails implements CanDeactivate<DetailsCompone
     while (nextRoute.firstChild) {
       nextRoute = nextRoute.firstChild;
     }
-    if (!nextState.url.includes('/users') && !nextState.url.includes('/clients')) {
+    if (!nextState.url.includes('/user')) {
       return true;
     }
 

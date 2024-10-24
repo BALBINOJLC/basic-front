@@ -1,8 +1,8 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Store } from '@ngrx/store';
 import * as actions from '@users';
 import { Observable } from 'rxjs';
 import {
-  TFrom,
   IQueryUser,
   IQueryUsers,
   IUser,
@@ -28,25 +28,28 @@ export class UserStoreService {
   seeUser(): Observable<IUser> {
     return this.store.select(selectUserSelected);
   }
+  seeUserLoadFile(user: IUser): void {
+    this.store.dispatch(actions.UserLoad({ item: user }));
+  }
 
   seeUsers(): Observable<IUser[]> {
     return this.store.select(selectUsers);
   }
 
-  adduser(user: IUser, from: TFrom): void {
-    this.store.dispatch(actions.UserAdd({ item: user, from }));
+  addUser(user: IUser): void {
+    this.store.dispatch(actions.UserAdd({ item: user }));
   }
 
-  getuser(query: IQueryUser): void {
+  getUser(query: IQueryUser): void {
     this.store.dispatch(actions.UserGet({ query }));
   }
 
-  getUsers(params: IQueryUsers, uType: TFrom): void {
-    this.store.dispatch(actions.UserGets({ params, uType }));
+  getUsers(params: IQueryUsers): void {
+    this.store.dispatch(actions.UserGets({ params }));
   }
 
-  getScroll(params: IQueryUsers, uType: TFrom): void {
-    this.store.dispatch(actions.UserGetScroll({ params, uType }));
+  getScroll(params: IQueryUsers): void {
+    this.store.dispatch(actions.UserGetScroll({ params }));
   }
 
   searchUsers(params: IQueryUsers, query: string): void {
@@ -57,12 +60,20 @@ export class UserStoreService {
     this.store.dispatch(actions.UserUpdate({ id, item }));
   }
 
-  updateProfile(id: string, item: IUserUpdate): void {
-    this.store.dispatch(actions.UserProfile({ id, item }));
+  deleteUser(id: string): void {
+    this.store.dispatch(actions.UserDelete({ id }));
   }
 
-  deleteUser(id: string, from: TFrom): void {
-    this.store.dispatch(actions.UserDelete({ id, from }));
+  deleteUserGallery(id_file: string): Observable<string> {
+    return new Observable((observer) => {
+      this.store.dispatch(actions.UserDeleteGallery({ id: id_file }));
+      observer.next(id_file);
+      observer.complete();
+    });
+  }
+
+  deleteUserPromo(user_promo: string, user_simple: string): void {
+    this.store.dispatch(actions.UserPromoDelete({ user_promo, user_simple }));
   }
 
   cleanUser(): void {

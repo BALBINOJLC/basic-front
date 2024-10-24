@@ -1,0 +1,19 @@
+@mixin div-list-users {
+  @apply grid sm:grid-cols-7 grid-cols-4 gap-4 p-3 md:py-5 md:px-8 border-b border-custom-1;
+}
+
+.div-list-users {
+  @include div-list-users;
+}
+
+@mixin text-list-users {
+  @apply capitalize text-white font-normal text-md truncate;
+}
+
+.text-list-users {
+  @include text-list-users;
+}
+
+.display {
+  display: none;
+}

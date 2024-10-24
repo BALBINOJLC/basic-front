@@ -1,5 +1,4 @@
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
 export class FormComponent {
   form: FormGroup;
 

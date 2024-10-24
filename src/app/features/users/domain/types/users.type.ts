@@ -1,7 +1,28 @@
-export type TUserRoles = 'ADMIN' | 'USER' | 'SUPER_ADMIN' | 'OWNER';
+export type TSortUser = 'name' | 'id' | 'createdAt' | 'updatedAt';
 
-export type TNetworkSignIn = 'google' | 'facebook' | 'gitHub';
+export enum ETypeEnum {
+  SIMPLE = 'SIMPLE',
+  PROMOS = 'PROMOS',
+  GIFTCARD = 'GIFTCARD',
+}
 
-export type TSortUser = 'username' | 'display_name' | 'email' | 'createdAt' | 'updatedAt';
+export enum EStatusEnum {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+}
+export type TAttachmentType = 'IMAGE' | 'PDF' | 'VIDEO';
 
-export type TFrom = 'user' | 'client' | 'member' | 'null';
+export type TAttachmentConcept =
+  | 'CERTIFICATE'
+  | 'CV'
+  | 'RECIPE'
+  | 'CERTIFICATE_TITLE'
+  | 'CERTIFICATE_TITLE_SPECIALTY'
+  | 'CERTIFICATE_HEALTH_SUPERINTENDENCY'
+  | 'CERTIFICATE_LIABILITY_INSURANCE'
+  | 'CERTIFICATE_HEALTH_SEREMI'
+  | 'RADIOGRAPHY'
+  | 'EVOLUTION_REPORT';
+
+export type TUserRoles = 'ADMIN' | 'SUPER_ADMIN' | 'USER' | 'OWNER';
+export type TStatus = 'AUTHORIZED' | 'PENDING' | 'REJECTED' | 'LOCKED' | 'CHECKING';

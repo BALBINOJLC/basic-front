@@ -49,8 +49,8 @@ export interface IAppConfig {
  */
 
 export const appThemeConfig: IAppConfig = {
-  layout: 'dense',
-  scheme: 'light',
+  layout: 'classy',
+  scheme: 'dark',
   screens: {
     sm: '600px',
     md: '960px',
@@ -95,7 +95,7 @@ export const appThemeConfig: IAppConfig = {
     showFullScreen: false,
   },
 
-  copyRight: 'HPDME | Todos los derechos reservados.',
+  copyRight: 'CETIUC | Todos los derechos reservados.',
   logo: 'assets/images/logo/logo.png',
   logoOnDark: 'assets/images/logo/logo.png',
   logoOnLight: 'assets/images/logo/logo.png',

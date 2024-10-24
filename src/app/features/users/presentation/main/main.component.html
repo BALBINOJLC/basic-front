@@ -1,21 +1,14 @@
-<div class="absolute inset-0 flex flex-col overflow-hidden w-full">
+<div class="md:absolute inset-0 flex flex-col min-w-0 overflow-hidden w-full">
   <mat-drawer-container class="flex-auto h-full" (backdropClick)="onBackdropClicked()">
     <!-- Drawer -->
 
-    <mat-drawer
-      class="w-full md:w-5/6 lg:w-4/6 xl:w-3/6 dark:bg-sicrux-1 h-full"
-      [mode]="drawerMode"
-      [opened]="false"
-      [position]="'end'"
-      [disableClose]="true"
-      #matDrawer
-    >
+    <mat-drawer class="w-full h-full" [mode]="drawerMode" [opened]="false" [position]="'end'" [disableClose]="true" #matDrawer>
       <router-outlet></router-outlet>
     </mat-drawer>
 
     <mat-drawer-content class="flex flex-col">
       <!-- Main -->
-      <div class="flex flex-col flex-auto" #elementRef>
+      <div class="flex flex-col flex-auto">
         <!-- Header -->
         <header-pages
           class="fixed-header"
@@ -26,21 +19,24 @@
           (searchAction)="search($event)"
           (addAction)="add()"
           (cleanSearch)="get()"
+          [showBtnAdd]="true"
         ></header-pages>
 
         <!-- Clients list -->
-        <div class="scrollable-content" (scroll)="onScroll($event)">
+        <div class="h-auto">
           <ng-container *ngIf="items$ | async as items">
-            <div class="ml-auto mr-4">
-              <button (click)="setLayout('list')" mat-icon-button [matTooltip]="'BTNS.LIST_VIEW' | transloco">
-                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:queue-list'"></mat-icon>
-              </button>
+            <div class="ml-auto flex justify-end mr-15">
+              <!-- <button
+                class="border md:w-20 md:rounded-3xl flex flex-row py-2 px-2"
+                (click)="drawer.toggle()"
+                [matTooltip]="'USER.FILTER' | transloco"
+                matTooltipPosition="above"
+              >
+                <mat-icon class="dark:text-white" [svgIcon]="'filter_alt'"></mat-icon>
 
-              <button (click)="setLayout('grid')" mat-icon-button [matTooltip]="'BTNS.GRID_VIEW' | transloco">
-                <mat-icon class="icon-size-5" [svgIcon]="'heroicons_outline:squares-2x2'"></mat-icon>
-              </button>
+                <h1 class="text-xs dark:text-white font-extrabold pl-1.5 pt-1 hidden md:block">{{ 'USER.FILTER' | transloco }}</h1>
+              </button> -->
             </div>
-
             <!--layout Grid-->
             <ng-container *ngIf="items.total_count; else noItems">
               <!--layout Grid-->
@@ -50,6 +46,19 @@
             </ng-container>
           </ng-container>
         </div>
+
+        <mat-paginator
+          class="sm:fixed right-0 sm:bottom-3 z-50 border-t bg-card dark:bg-custom-1 h-13"
+          [length]="maxSize$ | async"
+          [pageSize]="limit"
+          [pageSizeOptions]="[50, 75, 100]"
+          [showFirstLastButtons]="true"
+          (page)="eventPaginate($event)"
+          [showFirstLastButtons]="true"
+          hidePageSize="true"
+        >
+        </mat-paginator>
+
         <!-- No clients -->
         <ng-template #noItems>
           <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
@@ -61,5 +70,22 @@
         </ng-template>
       </div>
     </mat-drawer-content>
+
+    <mat-drawer
+      class="border-r-0 bg-black pr-4"
+      [mode]="drawerMode"
+      [opened]="false"
+      [position]="'start'"
+      [disableClose]="false"
+      [ngClass]="drawerWidth"
+      #drawer
+    >
+      <!--Sidebar Charts-->
+      <ng-container>
+        <div class="p-6 lg:py-8 lg:pl-4 lg:pr-0">
+          <sidebar-filters (filter)="filters($event)"></sidebar-filters>
+        </div>
+      </ng-container>
+    </mat-drawer>
   </mat-drawer-container>
 </div>

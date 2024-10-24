@@ -1,87 +1,99 @@
-<div class="w-full max-w-3xl min-h-full flex flex-col">
-  <ng-container>
-    <form [formGroup]="form">
-      <ng-container *ngIf="user">
-        <div class="flex flex-col">
-          <!-- Avatar -->
-          <ng-container *ngIf="user.id">
-            <div class="relative -mt-16">
-              <!-- Upload / Remove avatar -->
-              <!-- <app-upload-file-theme
-                [layoutType]="'ROUND'"
-                [imagePlace]="item.file"
-                [height]="8"
-                [width]="8"
-                [fontSize]="4"
-                (fileUploaded)="sendFile($event)"
-                [key]="item.file?.key"
-              ></app-upload-file-theme> -->
+<div class="w-full flex flex-col">
+  <div class="div-edit-users-text mb-10">
+    <h2 *ngIf="user.id !== null" class="text-bold text-3xl py-4">{{ 'USER.TITLE_EDIT' | transloco }}</h2>
+    <h2 *ngIf="user.id == null" class="text-bold text-3xl py-4">{{ 'USER.TITLE_ADD' | transloco }}</h2>
+  </div>
+
+  <div class="line-edit-users"></div>
+
+  <div class="div-edit-users">
+    <div class="div-edit-users-col">
+      <div class="div-edit-users-text">
+        <h2 class="text-bold text-xl py-2">{{ 'USER.EDIT.DATA_USER' | transloco }}</h2>
+        <h3 class="text-gray-500">{{ 'USER.EDIT.EDIT_USER_DESCRIPTION' | transloco }}</h3>
+      </div>
+
+      <div class="div-edit-users-card">
+        <form [formGroup]="form">
+          <ng-container *ngIf="user">
+            <div class="flex flex-col">
+              <!--Info User-->
+              <div class="div-edit-users-internal-card">
+                <div class="sm:col-span-2">
+                  <mat-form-field class="w-full">
+                    <mat-label>{{ 'USER.FIELDS.FIRST_NAME' | transloco }}</mat-label>
+                    <input
+                      matInput
+                      [formControlName]="'first_name'"
+                      [type]="'text'"
+                      #inputValue
+                      [placeholder]="'USER.FIELDS.FIRST_NAME' | transloco"
+                    />
+                    <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
+                    <mat-error *ngIf="form.controls.first_name.touched && form.controls.first_name.hasError('required')">
+                      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!--Last Name-->
+                <div class="sm:col-span-2">
+                  <mat-form-field class="w-full">
+                    <mat-label>{{ 'USER.FIELDS.LAST_NAME' | transloco }}</mat-label>
+                    <input
+                      matInput
+                      [formControlName]="'last_name'"
+                      [type]="'text'"
+                      #inputValue
+                      [placeholder]="'USER.FIELDS.LAST_NAME' | transloco"
+                    />
+                    <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
+                    <mat-error *ngIf="form.controls.last_name.touched && form.controls.first_name.hasError('required')">
+                      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!--Email-->
+                <div class="sm:col-span-4">
+                  <mat-form-field class="w-full">
+                    <mat-label>{{ 'USER.FIELDS.EMAIL' | transloco }}</mat-label>
+                    <input
+                      matInput
+                      [formControlName]="'email'"
+                      [type]="'text'"
+                      #inputValue
+                      [placeholder]="'USER.FIELDS.EMAIL' | transloco"
+                    />
+                    <mat-icon class="icon-size-5" [svgIcon]="'mat_outline:email'" matSuffix></mat-icon>
+                    <mat-error *ngIf="form.controls.email.touched && form.controls.first_name.hasError('required')">
+                      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <!--IsActive-->
+                <div class="sm:col-span-4">
+                  <mat-slide-toggle [checked]="user.is_active" class="w-full" [formControlName]="'is_active'">{{
+                    'USER.FIELDS.IS_ACTIVE' | transloco
+                  }}</mat-slide-toggle>
+                </div>
+              </div>
             </div>
           </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
 
-          <!--Info Base-->
-          <div class="p-2 grid sm:grid-cols-4 gap-6 w-full mt-8">
-            <!--First Name-->
-            <div class="sm:col-span-2">
-              <mat-form-field class="w-full">
-                <mat-label>{{ 'USER.FIELDS.FIRST_NAME' | transloco }}</mat-label>
-                <input
-                  matInput
-                  [formControlName]="'first_name'"
-                  [type]="'text'"
-                  #inputValue
-                  [placeholder]="'USER.FIELDS.FIRST_NAME' | transloco"
-                />
-                <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
-                <mat-error *ngIf="form.controls.first_name.touched && form.controls.first_name.hasError('required')">
-                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <!--Last Name-->
-            <div class="sm:col-span-2">
-              <mat-form-field class="w-full">
-                <mat-label>{{ 'USER.FIELDS.LAST_NAME' | transloco }}</mat-label>
-                <input
-                  matInput
-                  [formControlName]="'last_name'"
-                  [type]="'text'"
-                  #inputValue
-                  [placeholder]="'USER.FIELDS.LAST_NAME' | transloco"
-                />
-                <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
-                <mat-error *ngIf="form.controls.last_name.touched && form.controls.first_name.hasError('required')">
-                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <!--Email-->
-            <div class="sm:col-span-4">
-              <mat-form-field class="w-full">
-                <mat-label>{{ 'USER.FIELDS.EMAIL' | transloco }}</mat-label>
-                <input matInput [formControlName]="'email'" [type]="'text'" #inputValue [placeholder]="'USER.FIELDS.EMAIL' | transloco" />
-                <mat-icon class="icon-size-5" [svgIcon]="'mat_outline:email'" matSuffix></mat-icon>
-                <mat-error *ngIf="form.controls.email.touched && form.controls.first_name.hasError('required')">
-                  {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
-                </mat-error>
-              </mat-form-field>
-            </div>
-
-            <!--IsActive-->
-            <div class="sm:col-span-4">
-              <mat-slide-toggle [checked]="user.is_active" class="w-full" [formControlName]="'is_active'">{{
-                'USER.FIELDS.ISACTIVE' | transloco
-              }}</mat-slide-toggle>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </form>
+  <div class="line-edit-users"></div>
+</div>
+<!-- Actions -->
+<div class="div-edit-users">
+  <ng-container *ngIf="platform$ | async as platform">
     <!-- Actions -->
     <div class="flex items-center justify-end mt-5 py-2 mb-4">
-      <ng-container>
+      <ng-container *ngIf="platform === 'web'">
         <!--Delete-->
         <ng-container *ngIf="user.id !== null">
           <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
@@ -102,7 +114,7 @@
         </button>
       </ng-container>
       <!--platform mobile-->
-      <ng-container *ngIf="mobile">
+      <ng-container *ngIf="platform === 'mobile'">
         <!-- Delete -->
         <ng-container *ngIf="user.id !== null">
           <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">

@@ -1,49 +1,93 @@
-<div [formGroup]="form" class="mt-8">
-  <div class="rounded-md shadow-sm">
+<div [formGroup]="form" class="mt-8 w-full">
+  <div class="grid grid-cols-4 gap-6">
     <!-- First Name -->
-    <mat-form-field class="w-full">
-      <mat-label>{{ 'AUTH.SIGN_UP.FORMS.FIRST_NAME' | transloco }}</mat-label>
-      <input matInput [formControlName]="'first_name'" />
+    <mat-form-field class="col-span-4 md:col-span-2">
+      <mat-label for="first-name">{{ 'AUTH.SIGN_UP.FORMS.FIRST_NAME' | transloco }}</mat-label>
+      <input matInput id="first-name" [formControlName]="'first_name'" data-cy="input-first-name" />
       <mat-error *ngIf="form.get('first_name')?.hasError('required')">
         {{ 'AUTH.SIGN_UP.ERROR.REQUIRED' | transloco }}
       </mat-error>
     </mat-form-field>
 
-    <!-- LastName -->
-    <mat-form-field class="w-full">
-      <mat-label>{{ 'AUTH.SIGN_UP.FORMS.LAST_NAME' | transloco }}</mat-label>
-      <input matInput [formControlName]="'last_name'" />
+    <!-- Last Name -->
+    <mat-form-field class="col-span-4 md:col-span-2">
+      <mat-label for="last-name">{{ 'AUTH.SIGN_UP.FORMS.LAST_NAME' | transloco }}</mat-label>
+      <input matInput id="last-name" [formControlName]="'last_name'" data-cy="input-last-name" />
       <mat-error *ngIf="form.get('last_name')?.hasError('required')">
         {{ 'AUTH.SIGN_UP.ERROR.REQUIRED' | transloco }}
       </mat-error>
     </mat-form-field>
 
+    <!-- DNI -->
+    <mat-form-field class="col-span-4 md:col-span-2">
+      <mat-label for="dni">{{ 'AUTH.SIGN_UP.FORMS.DNI' | transloco }}</mat-label>
+      <input matInput id="dni" [formControlName]="'dni'" data-cy="input-dni" />
+      <mat-error *ngIf="form.get('dni')?.hasError('required')">
+        {{ 'AUTH.SIGN_UP.ERROR.REQUIRED' | transloco }}
+      </mat-error>
+      <!-- show error validateRut -->
+      <mat-error *ngIf="form.get('dni')?.hasError('validateRut')">
+        {{ 'AUTH.ERRORS.INVALID_RUT' | transloco }}
+      </mat-error>
+    </mat-form-field>
+
     <!-- Email field -->
-    <app-form-email [formControlName]="'email'" (setEmail)="setEmail($event)"> </app-form-email>
+    <app-form-email
+      class="col-span-4 md:col-span-2"
+      id="email"
+      [formControlName]="'email'"
+      (setEmail)="setEmail($event)"
+      data-cy="input-email"
+    ></app-form-email>
 
     <!-- Password field -->
-    <app-form-password formControlName="password" (setPassword)="setPassword($event)" [showConfirm]="true"></app-form-password>
+    <ng-container *ngIf="platform$ | async as platform">
+      <app-form-password
+        class="col-span-4"
+        formControlName="password"
+        id="password"
+        (setPassword)="setPassword($event)"
+        [showConfirm]="true"
+        [colSpan]="platform === 'web' ? 1 : 2"
+        data-cy="input-password"
+      ></app-form-password>
+    </ng-container>
 
-    <!-- Actions -->
-    <div class="flex justify-between w-full mt-1.5 mb-8">
-      <mat-checkbox [color]="'primary'">
-        <div class="not-account">
-          <span
-            >{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_1' | transloco }}
-            <a class="header-sign-up" [routerLink]="['/auth/sign-up']">{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_2' | transloco }}</a>
-            {{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_3' | transloco }}
-            <a class="header-sign-up" [routerLink]="['/auth/sign-up']">{{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_4' | transloco }}</a>
+    <!-- Terms and Conditions -->
+    <div class="flex flex-col space-y-3 mt-1.5 mb-6 col-span-4">
+      <div class="px-10 flex flex-col w-full">
+        <mat-slide-toggle [color]="'primary'" [formControlName]="'termsConditions'" id="obturacion_termoplastica" class="flex items-center">
+          <span class="font-bold">
+            {{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_1' | transloco }} {{ 'AUTH.SIGN_UP.FORMS.TERMS_AND_CONDITIONS_4' | transloco }}
           </span>
-        </div>
-      </mat-checkbox>
+        </mat-slide-toggle>
+      </div>
     </div>
 
     <!-- Submit button -->
-    <button class="w-full mt-6y" mat-flat-button [color]="'primary'" [disabled]="form.disabled" (click)="signUp()">
-      <span *ngIf="!form.disabled">
-        {{ 'AUTH.SIGN_UP.BTN.SIGN_UP' | transloco }}
-      </span>
-      <mat-progress-spinner *ngIf="form.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
-    </button>
+    <div class="flex justify-center col-span-4">
+      <button
+        class="mt-6 w-80"
+        mat-flat-button
+        [color]="'primary'"
+        [disabled]="form.disabled"
+        (click)="signUp()"
+        id="sign-up-button"
+        data-cy="button-sign-up"
+      >
+        <span *ngIf="!form.disabled">
+          {{ 'AUTH.SIGN_UP.BTN.SIGN_UP' | transloco }}
+        </span>
+        <mat-progress-spinner *ngIf="form.disabled" [diameter]="24" [mode]="'indeterminate'"></mat-progress-spinner>
+      </button>
+    </div>
+
+    <!-- Sign In Link -->
+    <div class="not-account col-span-4">
+      <span>{{ 'AUTH.SIGN_UP.ALREADY_ACCOUNT' | transloco }}</span>
+      <a class="header-sign-up text-white" [routerLink]="['/auth/sign-in']" id="sign-in-link" data-cy="link-sign-in">
+        {{ 'AUTH.SIGN_UP.SIGN_IN' | transloco }}
+      </a>
+    </div>
   </div>
 </div>

@@ -6,7 +6,7 @@
     "SIGNIN_SUCCESS": "Usuario autenticado exitosamente",
     "FORGOT_PASSWORD_SUCCESS": "Correo de restablecimiento de contraseña enviado exitosamente",
     "PASSWORD_RESET_SUCCESS": "Contraseña restablecida exitosamente",
-    "ALREADY_EXISTS": "El usuario ya existe",
+
     "PASSWORD_CHANGED": "Contraseña cambiada exitosamente",
 
     "SIGN_IN": {
@@ -27,6 +27,7 @@
         "PASSWORD_VALID": "La contraseña es incorrecta",
         "PASSWORD_CONFIRM_ERROR": "Las contraseñas no coinciden"
       },
+
       "FORMS": {
         "FIRST_NAME": "Nombre",
         "LAST_NAME": "Apellido",
@@ -43,6 +44,7 @@
     },
 
     "SIGN_UP": {
+      "SUBTITLE": "Regístrate para continuar",
       "TITLE": "Regístrate",
       "EMAIL": "Correo Electrónico",
       "PASSWORD": "Contraseña",
@@ -60,6 +62,7 @@
         "PASSWORD_CONFIRM_ERROR": "Las contraseñas no coinciden"
       },
       "FORMS": {
+        "DNI": "RUT",
         "FIRST_NAME": "Nombre",
         "LAST_NAME": "Apellido",
         "EMAIL": "Correo electrónico",
@@ -69,7 +72,7 @@
         "TERMS_AND_CONDITIONS_1": "Acepto los",
         "TERMS_AND_CONDITIONS_2": "Términos y Condiciones",
         "TERMS_AND_CONDITIONS_3": "y",
-        "TERMS_AND_CONDITIONS_4": "las Políticas de Privacidad"
+        "TERMS_AND_CONDITIONS_4": "Acepto los Términos y Condiciones"
       },
       "BTN": {
         "SIGN_UP": "Crear cuenta",
@@ -100,6 +103,8 @@
     },
 
     "ERRORS": {
+      "ALREADY_EXISTS": "El usuario ya existe",
+      "INVALID_RUT": "Rut invalido tiene un rut valido",
       "SIGNIN": {
         "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
         "EMAIL_VALID": "Error al crear el usuario, el correo no es válido.",
@@ -115,26 +120,73 @@
 
   "FORMS": {
     "FIELDS": {
-      "SEARCH": "Buscar",
-      "EMAIL": "Correo Electrónico",
-      "PASSWORD": "Contraseña",
-      "CONFIRM_PASSWORD": "Confirmar Contraseña",
-      "DISPLAY_NAME": "Nombre de visualización",
-      "FIRST_NAME": "Nombre",
-      "LAST_NAME": "Apellido",
-      "DNI": "RUT",
-      "PHONE": "Teléfono",
+      "TERMSCONDITIONS": "Términos y Condiciones",
+      "EMAIL_CLINIC": "Correo electrónico de la clínica*",
+      "INIT": "Inicio",
+      "END": "Fin",
+      "DATE_RANGE": "Rango de fechas",
       "ADDRESS": "Dirección",
       "BIRTH_DATE": "Fecha de nacimiento",
-      "USER_NAME": "Nombre de usuario"
+      "CERTIFICATE_CLINIC_HEALTH": "Adjuntar Certificado Seremi de Salud (PDF)*",
+      "CERTIFICATE_HEALTH_SUPERINTENDENCY": "Adjuntar certificado de superintendencia de salud (PDF)*",
+      "CERTIFICATE_LIABILITY_INSURANCE": "Adjuntar seguro de responsabilidad civil (PDF)*",
+      "CERTIFICATE_TITLE_SPECIALTY": "Adjuntar certificado de título de especialidad (PDF)*",
+      "CERTIFICATE_TITLE": "Adjuntar certificado de título (PDF)*",
+      "CLINIC_ID": "ID Clínica",
+      "CLINIC_NAME": "Nombre de la clínica",
+      "COMMUNE": "Comuna",
+      "CONFIRM_PASSWORD": "Confirmar Contraseña",
+      "CV": "Adjuntar CV (PDF)",
+      "DATE_TIME": "Fecha y Hora",
+      "DISPLAY_NAME": "Nombre de visualización",
+      "DNI_CLINIC": "RUT de la clínica",
+      "DNI": "RUT",
+      "EMAIL": "Correo Electrónico*",
+      "EQUIPMENTS": "Equipos con los que cuenta el centro",
+      "FIRST_NAME": "Nombre",
+      "INSTRUMENTACIONMECANIZADA": "Instrumentación mecanizada",
+      "LAST_NAME": "Apellido (paterno y materno)",
+      "MATERIALS": "Materiales que suministra el centro",
+      "OBTURACIONTERMOPLASTICA": "Obturación termoplástica",
+      "PASSWORD": "Contraseña*",
+      "PATIENT_ID": "ID Paciente",
+      "PHONE_CLINIC": "Teléfono",
+      "PHONE": "Teléfono",
+      "REGION": "Región",
+      "SEARCH": "Buscar",
+      "SOCIAL_NAME": "Razón social",
+      "TIMEZONE": "Zona Horaria",
+      "TREATMENT_USER_TREATMENT_TYPE_ID": "Tipo de tratamiento",
+      "TREATMENT_ID": "ID Tratamiento",
+      "UNIVERSITY_POST_GRADE": "Universidad (Postgrado)",
+      "UNIVERSITY_PRE_GRADE": "Universidad (Pregrado)",
+      "USER_NAME": "Nombre de usuario",
+      "YEAR_GRADUATION_DENTIST": "Año de egreso carrera Odontología",
+      "YEAR_GRADUATION_ENDODONTIST": "Año de egreso especialidad Endodoncia",
+      "UPLOAD": {
+        "SELECT_FILE": "Seleccionar archivo"
+      }
     },
     "ERRORS": {
-      "REQUIRED": "Campo requerido",
-      "INVALID_EMAIL": "Correo electrónico inválido",
-      "MIN_LENGTH": "Mínimo de caracteres no alcanzado",
-      "MAX_LENGTH": "Máximo de caracteres excedido",
+      "FIELDS_REQUIRED": "Todos los campos son requeridos",
+      "INVALID_EVALUATION": "Evaluación inválida",
+      "INVALID_FORM_EVALUATION": "Formulario de evaluación inválido",
+      "NEGATIVE_VALUE": "El valor no puede ser negativo",
+      "TITLE": "El formulario contiene errores",
+      "RUT_INVALID": "RUT inválido",
+      "REQUIRED_TRUE": "Campo debe ser verdadero",
+      "UNKNOWN": "Error desconocido",
       "PASSWORDS_DONT_MATCH": "Las contraseñas no coinciden",
-      "PASSWORD-VALID": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial"
+      "PASSWORD_CONFIRM": "Debe confirmar la contraseña",
+      "PASSWORD_VALID": "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial",
+      "REQUIRED": "Este campo es obligatorio",
+      "MIN_VALUE": "El valor debe ser mayor o igual a {{min}}",
+      "MAX_VALUE": "El valor debe ser menor o igual a {{max}}",
+      "MIN_LENGTH": "Debe tener al menos {{min}} caracteres",
+      "MAX_LENGTH": "Debe tener como máximo {{max}} caracteres",
+      "INVALID_EMAIL": "El correo electrónico no es válido",
+      "PASSWORDS_NOT_MATCH": "Las contraseñas no coinciden",
+      "INVALID_INPUT": "Entrada no válida"
     }
   },
 
@@ -155,46 +207,61 @@
   },
 
   "USER": {
+    "REASON_REJECTED": "Razón de rechazo",
+    "SEND_NOTIFICATION": "Mandar notificación",
+    "CLOSED": "Cerrar",
     "TITLES": "Usuarios",
     "TITLE": "Usuario",
+    "FOR_STATUS": "Estado",
     "CLEAN_SCREEN": "No se encontraron usuarios",
+    "ATTACHMENT_DELETED": "Archivo eliminado exitosamente",
     "ERRORS": {
       "NOT_FOUND": "Usuario no encontrado.",
       "CREATED": "Error al crear el usuario.",
       "UPDATE": "Error al actualizar el usuario.",
+      "UPDATE_TREATMENTS": "Error al actualizar los costos de los tratamientos del usuario.",
       "CREATE": {
         "EMAIL_EXIST": "Error al crear el usuario, el correo ya existe.",
         "EMAIL_VALID": "Error al crear el usuario, el correo no es válido."
       }
     },
+
     "SUCCESS": {
       "CREATED": "El usuario fue creado exitosamente.",
       "UPDATED": "El usuario fue actualizado exitosamente.",
       "DELETED": "El usuario fue eliminado exitosamente.",
-      "ADD_MASIVE": "Usuarios añadidos exitosamente."
+      "ADD_MASIVE": "Usuarios añadidos exitosamente.",
+      "ADD_ADDRESS": "Dirección añadida exitosamente.",
+      "REMOVE_ADDRESS": "Dirección eliminada exitosamente."
     },
+
     "ROLE": {
       "ADMIN": "Administrador",
       "USER": "Usuario",
       "CLIENT": "Cliente"
     },
-    "TYPE": {
-      "ORG": "Organización",
-      "USER": "Usuario",
-      "OWNER": "Super Administrador",
-      "CLIENT": "Cliente"
-    },
+
     "PROFILE": {
       "TITLE": "Perfil",
       "SUB_TITLE": "Información del Usuario",
       "FORM_INVALID_TITLE": "Formulario Inválido",
       "FORM_INVALID_MESSAGE": "Por favor, complete los campos requeridos"
     },
+
+    "STATUS_VIEW": {
+      "AUTHORIZED": "Autorizado",
+      "PENDING": "Pendiente",
+      "REJECTED": "Rechazado",
+      "LOCKED": "Bloqueado",
+      "CHECKING": "Revisando"
+    },
+
     "FIELDS": {
-      "ADDRESSS": "Dirección",
+      "ADDRESS_HERE": "Dirección",
       "BIRTHDAY_DATE": "Fecha de Nacimiento",
       "DATE_ADMISSION": "Fecha de Admisión",
       "DNI": "Número de Identificación",
+      "RUT": "RUT",
       "COUNTRY": "País",
       "REGION": "Región",
       "COMMUNE": "Comuna",
@@ -209,16 +276,19 @@
       "FIRST_NAME": "Nombre",
       "GITHUB_PROFILE": "Perfil de GitHub",
       "INSTAGRAM": "Instagram",
-      "ISACTIVE": "¿Activo?",
+      "IS_ACTIVE": "¿Activo?",
       "LAST_NAME": "Apellido",
       "LASTNAME": "Apellido",
+      "UNIVERSITY_PRE_GRADE": "Universidad de estudio de Pregrado",
+      "YEAR_GRADUATION_DENTIST": "Año de egreso carrera Odontología",
+      "YEAR_GRADUATION_ENDODONTIST": "Año de egreso especialidad Endodoncia",
+      "UNIVERSITY_POST_GRADE": "Universidad de estudio de Postgrado",
       "LINKEDIN_PROFILE": "Perfil de LinkedIn",
       "NAME": "Nombre",
       "EDIT": "Editar",
       "PASSWORD": "Contraseña",
       "PHONE": "Teléfono",
       "POSITION": "Posición",
-      "REGISTER_H": "¿Registrar Horas?",
       "ROLE": "Rol",
       "SALARY": "Salario",
       "STATE": "Estado",
@@ -234,6 +304,7 @@
         "ADDRESS_2": "Dirección 2"
       }
     },
+
     "ACTIONS": {
       "CREATE": "Crear",
       "UPDATE": "Actualizar",
@@ -253,7 +324,21 @@
     },
     "MS": {
       "DELETE_CONFIRM": "¿Estás seguro de que quieres eliminar al usuario?",
-      "DELETE_INFO": "Este usuario no podrá ser recuperado."
+      "DELETE_INFO": "Este usuario no podrá ser recuperado.",
+      "PROFILE_CHECKING": {
+        "TITLE": "Perfil en revisión",
+        "DESCRIPTION": "Tu perfil está siendo revisado por el equipo de Endonet, en breve te notificaremos el resultado.",
+        "BTN": "Seguir"
+      }
+    },
+    "EDIT": {
+      "MINUTES": "minutos",
+      "*": "*",
+      "FILES": {}
+    },
+    "ALERTS": {
+      "WELCOME": "¡Bienvenido a Endonet!",
+      "DESCRIPTION_WELCOME": "Debes completar la información de tu perfil para poder empezar a trabajar con nosotros"
     }
   },
 
@@ -322,13 +407,35 @@
 
   "LAYOUT": {
     "LIST": {
+      "EVALUATION_CLINIC": "Evaluación Clínica",
+      "EVALUATION_ENDODONTIST": "Evaluación Endodoncista",
+      "COMMUNE": "Comuna",
+      "SCORE": "Puntaje",
+      "AMOUNT": "Monto",
+      "CLINIC": "Clínica",
+      "ACTIONS": "Acciones",
+      "ADDRESS": "Dirección",
+      "COMMUNES": "Comunas",
+      "DATE": "Fecha",
+      "DESCRIPTION": "Descripción",
+      "DETAIL": "Detalle",
+      "DNI": "RUT del representante",
+      "EMAIL": "Correo electrónico",
+      "ENDODONTIST": "Endodoncista",
+      "FAVORITE": "Favoritos",
+      "ID": "ID",
       "NAME": "Nombre",
-      "EMAIL": "Email",
-      "PHONE": "Teléfono"
+      "NEED_TOOTH": "Necesita diente",
+      "PATIENT": "Paciente",
+      "PHONE": "Teléfono",
+      "STATUS": "Estado",
+      "TREATMENT": "Tratamiento",
+      "LOCKED": "Bloqueado"
     }
   },
 
   "SIDEBAR": {
+    "LOG_OUT": "Cerrar Sesión",
     "DASHBOARD": "Dashboard",
     "USERS": "Usuarios",
     "SETTINGS": "Ajustes"

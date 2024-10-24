@@ -80,3 +80,23 @@ export const deleteEmptyFields = (data: object): any => {
 
   return data;
 };
+
+export const generateRandomRut = (): string => {
+  const randomNumber = Math.floor(Math.random() * 100000000); // Hasta 99,999,999
+
+  const dv = calculateDv(randomNumber);
+
+  const formattedRut = `${randomNumber}-${dv}`;
+
+  return formattedRut;
+};
+
+function calculateDv(rutNumber: number): string {
+  let M = 0,
+    S = 1;
+  for (; rutNumber; rutNumber = Math.floor(rutNumber / 10)) {
+    S = (S + (rutNumber % 10) * (9 - (M++ % 6))) % 11;
+  }
+  return S ? String(S - 1) : 'k';
+}
+console.table([1, 2, 3, 4, 5].map(() => generateRandomRut()));

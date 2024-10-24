@@ -1,24 +1,43 @@
-<div class="flex flex-col flex-auto min-w-full">
-  <!-- Main -->
-  <div class="flex-auto p-4">
+<div class="div-layout-users-1">
+  <div class="flex-auto">
     <div class="div-grid">
-      <div class="flex items-center col-span-1">
-        <div class="ml-3">
-          <p class="text-list">{{ 'LAYOUT.LIST.NAME' | transloco  }}</p>
-        </div>
+      <!-- Sku -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list">{{ 'LAYOUT.LIST.ID' | transloco }}</p>
       </div>
-      <div class="col-span-1 md:flex items-center hidden">
-        <p class="text-list">{{ 'LAYOUT.LIST.EMAIL' | transloco  }}</p>
+
+      <!-- Users -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list">{{ 'LAYOUT.LIST.NAME' | transloco }}</p>
       </div>
-      <div class="col-span-1 md:flex items-center justify-end hidden">
-        <span class="text-list">{{ 'LAYOUT.LIST.PHONE' | transloco  }}</span>
+
+      <!-- Type users -->
+      <div class="div-layout-users">
+        <span class="text-list">{{ 'LAYOUT.LIST.EMAIL' | transloco }}</span>
+      </div>
+      <!-- Type users -->
+      <div class="div-layout-users">
+        <span class="text-list"></span>
+      </div>
+      <!-- Type users -->
+      <div class="div-layout-users">
+        <span class="text-list"></span>
+      </div>
+      <!-- Type users -->
+      <div class="div-layout-users">
+        <span class="text-list"></span>
+      </div>
+
+      <!-- Actions -->
+      <div class="div-layout-users-2">
+        <span class="text-list">{{ 'LAYOUT.LIST.ACTIONS' | transloco }}</span>
       </div>
     </div>
     <ng-container *ngIf="items">
-      <div class="w-full mb-20 relative">
+      <div class="w-full relative">
         <ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn">
           <!-- Group -->
-          <ng-container *ngIf="i === 0 || item.display_name!.charAt(0) !== items[i - 1].display_name!.charAt(0)"> </ng-container>
+          <ng-container *ngIf="i === 0 || item.first_name!.charAt(0) !== items[i - 1].first_name!.charAt(0)"> </ng-container>
           <list-user-1 [user]="item"></list-user-1>
         </ng-container>
       </div>

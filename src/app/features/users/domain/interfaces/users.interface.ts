@@ -1,33 +1,51 @@
+import { TAttachmentConcept, TAttachmentType, TStatus, TUserRoles } from '@users';
 import { IFile, IResponseApiGets } from '@utils';
-import { TUserRoles } from '../types';
 
 export interface IUser {
-    id              : string | null;
-    email_verify    : boolean;
-    is_active       : boolean;
-    display_name?   : string;
-    email           : string;
-    first_name      : string;
-    last_name       : string;
-    dni?            : string;
-    phone?          : string;
-    phone_area?     : string;
-    Avatar          : IFile;
-    Profiles        : IUserProfile[];
-    userOrg?        : IUser;
-    currentPassword?: string;
-    newPassword?    : string;
+  id                                   :  string;
+  display_name                         :  string;
+  email                                :  string;
+  dni                                  :  string;
+  email_verify                         :  boolean;
+  first_name                           :  string;
+  is_active                            :  boolean;
+  status                               :  TStatus;
+  last_name                            :  string;
+  phone                                :  string;
+  phone_area                           :  string;
+  address                              :  string;
+  birth_date                           :  string;
+  user_name                            :  string;
+  is_new                               :  boolean;
+  currentPassword?                     :  string;
+  newPassword?                         :  string;
+  reason_rejection                     :  string | null;
+  Profiles?                            :  IUserProfile[];
+  Avatar                               :  IUserAvatar;
+
 }
-  
+
 export interface IUserUpdate extends Partial<IUser> {}
 
-export interface IResposeGetUsers extends IResponseApiGets {
+export interface IResponseGetUsers extends IResponseApiGets {
     data: IUser[];
 }
 
 export interface IResponseUserUpdated {
-    data         : IUser;
-    message      : string;
+  data         : IUser;
+  message      : string;
+  access_token?: string;
+}
+
+export interface IFileGalleryUsers {
+  id:string
+  File: IFile;
+  User: IUser;
+}
+
+export interface IResponseUserUpdated {
+    data    : IUser;
+    message : string;
     access_token?: string;
 }
 
@@ -35,8 +53,32 @@ export interface IResponseUserDeleted {
   message: string;
 }
 
+
 export interface IUserProfile {
-    id    : string;
-    role  : TUserRoles;
-    active: boolean;
+  id?                     :    string;
+  role                    :    TUserRoles;
+  active                  :    boolean;
+  user_id?                :    string;
+
+  Attachments?            :    IAttachment[];
+
+  user                    :    IUser
+
+  points                  :    number;
+
+}
+
+
+export interface IUserAvatar {
+  file_id  ?: string;
+  user_id  ?: string;
+  File      : IFile;
+}
+export interface IAttachment {
+  user_profile_id :    string;
+  type            :    TAttachmentType;
+  concept         :    TAttachmentConcept;
+  description?    :    string;
+  required        :    boolean;
+  File?           :    IFile;
 }

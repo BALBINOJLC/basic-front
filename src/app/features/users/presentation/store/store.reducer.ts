@@ -9,6 +9,7 @@ export interface IUserState {
   per_page: number;
   total_count: number;
   selected: IUser | null;
+  selectedFiles: IUser | null;
 }
 
 export interface IUserAppState {
@@ -19,7 +20,8 @@ const initialState: IUserState = {
   page: 0,
   per_page: 0,
   total_count: 0,
-  selected: initialUser,
+  selected: null,
+  selectedFiles: initialUser,
   items: [],
 };
 
@@ -42,6 +44,7 @@ const _reducer = createReducer(
     page: data.page,
     total_count: data.total_count,
   }))
+
 );
 
 export const usersReducer = (state: IUserState, action: Action): IUserState =>

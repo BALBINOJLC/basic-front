@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -32,6 +33,7 @@ export class HeaderPagesComponent implements OnInit, OnDestroy {
   @Input() showBtnDownload!: boolean;
   @Input() btnDownload!: string;
   @Input() btnAdd!: string;
+  @Input() showBtnAdd!: boolean;
   form: FormGroup;
   private _unsubscribeAll: Subject<void> = new Subject<void>();
   constructor(

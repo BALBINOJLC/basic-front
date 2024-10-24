@@ -11,6 +11,7 @@ export class AuthEventsService {
     email: '',
     last_name: '',
     first_name: '',
+    dni: '',
     password: { password: '', passwordConfirm: '' },
     passwordConfirm: '',
     policy: false,

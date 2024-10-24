@@ -1,0 +1,91 @@
+<div class="md:absolute inset-0 flex flex-col min-w-0 overflow-hidden w-full">
+  <mat-drawer-container class="flex-auto h-full" (backdropClick)="onBackdropClicked()">
+    <!-- Drawer -->
+
+    <mat-drawer class="w-full h-full" [mode]="drawerMode" [opened]="false" [position]="'end'" [disableClose]="true" #matDrawer>
+      <router-outlet></router-outlet>
+    </mat-drawer>
+
+    <mat-drawer-content class="flex flex-col">
+      <!-- Main -->
+      <div class="flex flex-col flex-auto">
+        <!-- Header -->
+        <header-pages
+          class="fixed-header"
+          *ngVar="items$ | async as items"
+          [titlePlural]="transloco + '.TITLES' | transloco"
+          [titleSingle]="transloco + '.TITLE' | transloco"
+          [count]="items?.total_count"
+          (searchAction)="search($event)"
+          (addAction)="add()"
+          (cleanSearch)="get()"
+          [showBtnAdd]="true"
+        ></header-pages>
+
+        <!-- Clients list -->
+        <div class="h-auto">
+          <ng-container *ngIf="items$ | async as items">
+            <div class="ml-auto flex justify-end mr-15">
+              <!-- <button
+                class="border md:w-20 md:rounded-3xl flex flex-row py-2 px-2"
+                (click)="drawer.toggle()"
+                [matTooltip]="'BASE.FILTER' | transloco"
+                matTooltipPosition="above"
+              >
+                <mat-icon class="dark:text-white" [svgIcon]="'filter_alt'"></mat-icon>
+
+                <h1 class="text-xs dark:text-white font-extrabold pl-1.5 pt-1 hidden md:block">{{ 'BASE.FILTER' | transloco }}</h1>
+              </button> -->
+            </div>
+            <!--layout Grid-->
+            <ng-container *ngIf="items.total_count; else noItems">
+              <!--layout Grid-->
+              <layout-grid *ngIf="layout === 'grid'" [bases]="items.items" (view)="view($event)"></layout-grid>
+              <!--layout List-->
+              <layout-list *ngIf="layout === 'list'" [items]="items.items" (view)="view($event)"></layout-list>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <mat-paginator
+          class="sm:fixed right-0 sm:bottom-3 z-50 border-t bg-card dark:bg-black h-13"
+          [length]="maxSize$ | async"
+          [pageSize]="limit"
+          [pageSizeOptions]="[50, 75, 100]"
+          [showFirstLastButtons]="true"
+          (page)="eventPaginate($event)"
+          [showFirstLastButtons]="true"
+          hidePageSize="true"
+        >
+        </mat-paginator>
+
+        <!-- No clients -->
+        <ng-template #noItems>
+          <div class="flex flex-auto flex-col items-center justify-center bg-gray-100 dark:bg-transparent">
+            <mat-icon class="icon-size-24" [svgIcon]="iconScreen"></mat-icon>
+            <div class="mt-4 text-2xl font-semibold tracking-tight text-secondary text-center">
+              {{ transloco + '.CLEAN_SCREEN' | transloco }}
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </mat-drawer-content>
+
+    <mat-drawer
+      class="border-r-0 bg-black pr-4"
+      [mode]="drawerMode"
+      [opened]="false"
+      [position]="'start'"
+      [disableClose]="false"
+      [ngClass]="drawerWidth"
+      #drawer
+    >
+      <!--Sidebar Charts-->
+      <ng-container>
+        <div class="p-6 lg:py-8 lg:pl-4 lg:pr-0">
+          <sidebar-filters (filter)="filters($event)"></sidebar-filters>
+        </div>
+      </ng-container>
+    </mat-drawer>
+  </mat-drawer-container>
+</div>

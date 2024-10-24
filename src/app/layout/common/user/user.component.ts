@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { BooleanInput } from '@angular/cdk/coercion';

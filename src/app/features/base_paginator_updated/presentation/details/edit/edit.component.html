@@ -1,0 +1,108 @@
+<div class="w-full flex flex-col">
+  <div class="div-edit-bases-text mb-10">
+    <h2 *ngIf="base.id !== null" class="text-bold text-3xl py-4">{{ 'BASE.TITLE_EDIT' | transloco }}</h2>
+    <h2 *ngIf="base.id == null" class="text-bold text-3xl py-4">{{ 'BASE.TITLE_ADD' | transloco }}</h2>
+  </div>
+
+  <div class="line-edit-bases"></div>
+
+  <div class="div-edit-bases">
+    <div class="div-edit-bases-col">
+      <div class="div-edit-bases-text">
+        <h2 class="text-bold text-xl py-2">{{ 'BASE.EDIT.DATA_BASE' | transloco }}</h2>
+        <h3 class="text-gray-500">{{ 'BASE.EDIT.EDIT_BASE_DESCRIPTION' | transloco }}</h3>
+      </div>
+
+      <div class="div-edit-bases-card">
+        <form [formGroup]="form">
+          <ng-container *ngIf="base">
+            <div class="flex flex-col">
+              <!--Info Base-->
+              <div class="div-edit-bases-internal-card">
+                <!--Max_price-->
+                <div class="col-span-4">
+                  <mat-form-field class="w-full">
+                    <mat-label>{{ 'BASE.EDIT.VALUE_BASE' | transloco }}</mat-label>
+                    <input
+                      matInput
+                      [formControlName]="'amount'"
+                      [type]="'text'"
+                      #inputValue
+                      [placeholder]="'BASE.FIELDS.NAME' | transloco"
+                    />
+                    <mat-icon class="icon-size-5" [svgIcon]="'person'" matSuffix></mat-icon>
+                    <mat-error *ngIf="form.controls.amount.touched && form.controls.amount.hasError('required')">
+                      {{ 'FORMS.ERRORS.REQUIRED' | transloco }}
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-span-4">
+                  <mat-form-field class="w-full">
+                    <mat-label>{{ 'BASE.EDIT.DESCRIPTION' | transloco }}</mat-label>
+                    <textarea
+                      matInput
+                      [formControlName]="'description'"
+                      [type]="'text'"
+                      #inputValue
+                      [placeholder]="'BASE.EDIT.DESCRIPTION' | transloco"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="line-edit-bases"></div>
+</div>
+<!-- Actions -->
+<div class="div-edit-bases">
+  <ng-container *ngIf="platform$ | async as platform">
+    <!-- Actions -->
+    <div class="flex items-center justify-end mt-5 py-2 mb-4">
+      <ng-container *ngIf="platform === 'web'">
+        <!--Delete-->
+        <ng-container *ngIf="base.id !== null">
+          <button mat-stroked-button color="warn" (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
+            <mat-icon [svgIcon]="'mat_outline:delete'"></mat-icon>
+            <span class="ml-2">{{ 'BTNS.DELETE' | transloco }}</span>
+          </button>
+        </ng-container>
+        <!--Save-->
+        <button mat-stroked-button color="primary" (click)="save()" class="mx-2" [matTooltip]="btnSave | transloco">
+          <mat-icon [svgIcon]="'mat_outline:save'"></mat-icon>
+          <span class="ml-2">{{ btnSave | transloco }}</span>
+        </button>
+
+        <!--Cancel-->
+        <button mat-stroked-button color="secondary" (click)="cancel(false)" [matTooltip]="'BTNS.CANCEL' | transloco">
+          <mat-icon [svgIcon]="'mat_outline:cancel'"></mat-icon>
+          <span class="ml-2">{{ 'BTNS.CANCEL' | transloco }}</span>
+        </button>
+      </ng-container>
+      <!--platform mobile-->
+      <ng-container *ngIf="platform === 'mobile'">
+        <!-- Delete -->
+        <ng-container *ngIf="base.id !== null">
+          <button mat-mini-fab color="warn" [matTooltip]="'BTNS.DELETE' | transloco" (click)="deleteD()">
+            <mat-icon svgIcon="mat_outline:delete"></mat-icon>
+          </button>
+        </ng-container>
+
+        <!-- Save -->
+        <button mat-mini-fab color="primary" class="mx-2" [matTooltip]="btnSave | transloco" (click)="save()">
+          <mat-icon svgIcon="mat_outline:save"></mat-icon>
+        </button>
+
+        <!-- Cancel -->
+        <button mat-mini-fab color="accent" [matTooltip]="'BTNS.CANCEL' | transloco" (click)="cancel(false)">
+          <mat-icon svgIcon="mat_outline:cancel"></mat-icon>
+        </button>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

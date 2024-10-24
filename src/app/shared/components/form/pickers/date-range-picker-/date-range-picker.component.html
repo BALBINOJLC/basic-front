@@ -1,0 +1,23 @@
+<div class="flex min-w-full">
+  <div class="flex flex-auto justify-end">
+    <div class="flex flex-auto min-w-60">
+      <form [formGroup]="form" class="flex flex-auto">
+        <mat-form-field class="flex-auto text-xs w-60" appearance="outline">
+          <mat-label class="text-secondary"> {{ 'FORMS.FIELDS.DATE_RANGE' | transloco }} </mat-label>
+          <mat-date-range-input [rangePicker]="picker" [min]="minDate || null" [max]="maxDate || null">
+            <input matStartDate [placeholder]="'FORMS.FIELDS.INIT' | transloco" (focus)="picker.open()" formControlName="initDate" />
+            <input
+              matEndDate
+              [placeholder]="'FORMS.FIELDS.END' | transloco"
+              (focus)="picker.open()"
+              (dateInput)="getData()"
+              formControlName="dueDate"
+            />
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</div>

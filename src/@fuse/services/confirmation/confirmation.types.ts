@@ -10,7 +10,7 @@ export interface FuseConfirmationConfig {
     confirm?: {
       show?: boolean;
       label?: string;
-      color?: 'primary' | 'accent' | 'warn';
+      color?: 'primary' | 'accent' | 'warn' | 'basic' | 'info' | 'success' | 'warning' | 'error';
     };
     cancel?: {
       show?: boolean;

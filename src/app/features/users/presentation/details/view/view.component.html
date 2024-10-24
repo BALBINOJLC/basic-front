@@ -1,37 +1,24 @@
 <!-- Meta Body -->
 @if (item) {
-  <div class="flex flex-col px-3 w-full">
-    <!-- Username Container -->
-    <div class="flex h-8 flex-row items-center text-2xl font-semibold">
-      <!-- Username -->
-      <span>{{ item.first_name }} {{ item.last_name }}</span>
-      <!-- User Active -->
-      <ng-container *ngIf="item.is_active">
-        <svg
-          class="my-auto ml-2 h-5 fill-blue-400"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          version="1.1"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"
-          />
-        </svg>
-      </ng-container>
-    </div>
-
-    <!-- info -->
-    <div class="my-3 flex flex-row text-base flex-wrap">
-      <!-- mail -->
-      <ng-container *ngIf="item.email">
-        <div class="flex flex-row items-center gap-1 mr-4">
-          <mat-icon [svgIcon]="'mat_outline:email'"></mat-icon>
-          <div class="text-gray-800 dark:text-gray-200 hover:text-red-600">{{ item.email }}</div>
-        </div>
-      </ng-container>
-    </div>
+  <!-- Name -->
+  <div class="mt-3 text-4xl font-bold truncate">
+    <span *ngIf="item?.first_name">{{ item?.first_name }}</span>
+    <span *ngIf="!item?.first_name">{{ item?.first_name }}</span>
+  </div>
+  <div class="flex flex-col mt-4 pt-6 border-t space-y-8">
+    <!-- email -->
+    <ng-container *ngIf="item.first_name">
+      <div class="flex sm:items-center">
+        <mat-icon [svgIcon]="'heroicons_outline:mail'"></mat-icon>
+        <div class="ml-6 leading-6">{{ item.first_name }}</div>
+      </div>
+    </ng-container>
+    <!-- role -->
+    <ng-container *ngIf="item.first_name">
+      <div class="flex sm:items-center">
+        <mat-icon [svgIcon]="'heroicons_outline:finger-print'"></mat-icon>
+        <div class="ml-6 leading-6">{{ item.first_name }}</div>
+      </div>
+    </ng-container>
   </div>
 }

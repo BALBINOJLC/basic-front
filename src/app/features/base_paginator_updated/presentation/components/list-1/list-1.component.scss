@@ -1,0 +1,19 @@
+@mixin div-list-bases {
+  @apply grid sm:grid-cols-7 grid-cols-4 gap-4 p-3 md:py-5 md:px-8 border-b border-gray-100;
+}
+
+.div-list-bases {
+  @include div-list-bases;
+}
+
+@mixin text-list-bases {
+  @apply capitalize text-black font-normal text-md truncate;
+}
+
+.text-list-bases {
+  @include text-list-bases;
+}
+
+.display {
+  display: none;
+}

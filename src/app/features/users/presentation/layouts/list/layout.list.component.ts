@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListUser1Component } from '../../components/list-user-1/list-user-1.component';
 import { TranslocoModule } from '@ngneat/transloco';
 import { IUser } from '@users';
+import { ListUser1Component } from '../../components/list-1/list-1.component';
 
 @Component({
   selector: 'layout-list',

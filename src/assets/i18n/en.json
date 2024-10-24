@@ -16,7 +16,8 @@
         "REQUIERED": "Field is required",
         "EMAIL": "Must enter a valid Email",
         "PASSWORD_VALID": "The password is incorrect",
-        "PASSWORD_CONFIRM_ERROR": "Passwords do not match"
+        "PASSWORD_CONFIRM_ERROR": "Passwords do not match",
+        "INVALID_RUT": "Rut invalido tiene que ser de la forma 12345678-9"
       },
       "FORMS": {
         "EMAIL": "Email",

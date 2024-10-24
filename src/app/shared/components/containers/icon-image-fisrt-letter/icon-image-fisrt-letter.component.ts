@@ -6,13 +6,13 @@ import { CommonModules, MaterialToolsModules } from 'app/shared/imports';
 import { ImgProfilePipe, TypeofPipe } from '@pipes';
 
 @Component({
-  selector: 'app-icon-image-fisrt-letter[itemType]',
-  templateUrl: './icon-image-fisrt-letter.component.html',
+  selector: 'app-icon-image-first-letter[itemType]',
+  templateUrl: './icon-image-first-letter.component.html',
   standalone: true,
   imports: [...CommonModules, ...MaterialToolsModules, TypeofPipe, ImgProfilePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class IconImageFisrtLetterComponent implements OnInit {
+export class IconImageFirstLetterComponent implements OnInit {
   @Input() items: any[] = [];
   @Input() item: any;
   @Input({ required: true }) itemType: IconItemType;

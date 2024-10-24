@@ -1,0 +1,46 @@
+<div class="div-layout-bases-1">
+  <div class="flex-auto">
+    <div class="div-grid">
+      <!-- Sku -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list">{{ 'LAYOUT.LIST.ID' | transloco }}</p>
+      </div>
+
+      <!-- Bases -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list">{{ 'LAYOUT.LIST.AMOUNT' | transloco }}</p>
+      </div>
+
+      <!-- Type bases -->
+      <div class="div-layout-bases">
+        <span class="text-list">{{ 'LAYOUT.LIST.DESCRIPTION' | transloco }}</span>
+      </div>
+      <!-- Type bases -->
+      <div class="div-layout-bases">
+        <span class="text-list"></span>
+      </div>
+      <!-- Type bases -->
+      <div class="div-layout-bases">
+        <span class="text-list"></span>
+      </div>
+      <!-- Type bases -->
+      <div class="div-layout-bases">
+        <span class="text-list"></span>
+      </div>
+
+      <!-- Actions -->
+      <div class="div-layout-bases-2">
+        <span class="text-list">{{ 'LAYOUT.LIST.ACTIONS' | transloco }}</span>
+      </div>
+    </div>
+    <ng-container *ngIf="items">
+      <div class="w-full relative">
+        <ng-container *ngFor="let item of items; let i = index; trackBy: trackByFn">
+          <!-- Group -->
+          <ng-container *ngIf="i === 0 || item.description!.charAt(0) !== items[i - 1].description!.charAt(0)"> </ng-container>
+          <list-base-1 [base]="item"></list-base-1>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>

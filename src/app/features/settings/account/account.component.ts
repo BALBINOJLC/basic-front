@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { IAppState } from '@store';
-import { IUser, IUserUpdate } from '@users';
+import { IUser, IUserAvatar, IUserUpdate } from '@users';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { IFile, deleteEmptyFields, filterCountries } from '@utils';
@@ -45,14 +45,14 @@ export class SettingsAccountComponent implements OnInit {
   area = '+56';
   countries: IDataAutoComplete[] = filterCountries(countries);
 
-  fStoreU = new UserStoreService(this.store);
-  fStoreA = new AuthStoreService(this.store);
+  fStoreU = new UserStoreService(this._store);
+  fStoreA = new AuthStoreService(this._store);
 
-  private _unsubscribeAll: Subject<void> = new Subject<void>();
+  private unsubscribeAll: Subject<void> = new Subject<void>();
 
   constructor(
     private _formBuilder: UntypedFormBuilder,
-    private store: Store<IAppState>,
+    private _store: Store<IAppState>,
     private _fuseConfirmationService: FuseConfirmationService
   ) {
     this.form = this._formBuilder.group({
@@ -61,7 +61,6 @@ export class SettingsAccountComponent implements OnInit {
       email: ['', Validators.required],
       phone: [''],
       dni: [''],
-      two_auth: [false],
     });
   }
 
@@ -71,7 +70,7 @@ export class SettingsAccountComponent implements OnInit {
 
   getUser(): void {
     this.user$ = this.fStoreA.seeUser();
-    this.user$.pipe(takeUntil(this._unsubscribeAll)).subscribe((user) => {
+    this.user$.pipe(takeUntil(this.unsubscribeAll)).subscribe((user) => {
       if (user) {
         // Create copy of object because the user is read-only
         console.log('user', user);
@@ -107,7 +106,7 @@ export class SettingsAccountComponent implements OnInit {
       };
       // delete empty, null or undefined values
       const dataClean = deleteEmptyFields(data);
-      this.fStoreU.updateProfile(userId, dataClean);
+      this.fStoreU.updateUser(userId, dataClean);
     } else {
       this._fuseConfirmationService.open({
         actions: {
@@ -122,8 +121,11 @@ export class SettingsAccountComponent implements OnInit {
 
   changeImgProfile(file: IFile, userId: string): void {
     if (file) {
+      const avatar: IUserAvatar = {
+        File: file,
+      };
       const item: IUserUpdate = {
-        Avatar: file,
+        Avatar: avatar,
       };
       this.fStoreU.updateUser(userId, item);
     }

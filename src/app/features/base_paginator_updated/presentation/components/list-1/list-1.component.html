@@ -1,0 +1,40 @@
+<div class="flex flex-col flex-auto hover:bg-gray-100">
+  <div class="flex-auto">
+    <div class="div-list-bases">
+      <!-- Sku -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list-bases">{{ base.id }}</p>
+      </div>
+      <!-- Bases -->
+      <div class="col-span-1 flex items-center">
+        <p class="text-list-bases">
+          {{ base.amount | currencyCLP }}
+        </p>
+      </div>
+      <!-- Type bases -->
+      <div class="col-span-1 sm:flex items-end justify-end hidden">
+        <span class="text-list-bases">{{ base.description }}</span>
+      </div>
+      <div class="col-span-1 sm:flex items-center justify-center hidden">
+        <span class="text-list-bases"></span>
+      </div>
+      <div class="col-span-1 sm:flex items-center justify-center hidden">
+        <span class="text-list-bases"></span>
+      </div>
+      <div class="col-span-1 sm:flex items-center justify-center hidden">
+        <span class="text-list-bases"></span>
+      </div>
+      <!-- Actions -->
+      <div class="col-span-1 flex items-center justify-end gap-3">
+        <!-- Edit -->
+        <button (click)="view(base)" [matTooltip]="'BTNS.VIEW' | transloco">
+          <mat-icon class="text-lg sm:text-xl hover:text-appia">remove_red_eye</mat-icon>
+        </button>
+        <!-- Delete-->
+        <!-- <button (click)="deleteD()" [matTooltip]="'BTNS.DELETE' | transloco">
+          <mat-icon class="text-lg sm:text-xl hover:text-appia">delete</mat-icon>
+        </button> -->
+      </div>
+    </div>
+  </div>
+</div>

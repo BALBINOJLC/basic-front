@@ -17,7 +17,7 @@ export class ResetPasswordFormComponent implements OnInit {
   rememberme = false;
   constructor(
     private _formBuilder: FormBuilder,
-    private authEventsService: AuthEventsService
+    private _authEventsService: AuthEventsService
   ) {
     this.form = this._formBuilder.group({
       password: ['', Validators.required],
@@ -34,7 +34,7 @@ export class ResetPasswordFormComponent implements OnInit {
 
   signIn(): void {
     if (this.form.valid) {
-      this.authEventsService.emitResetPasswordEvent(this.form.value);
+      this._authEventsService.emitResetPasswordEvent(this.form.value);
     } else {
       this.showAlert();
     }

@@ -1,3 +1,5 @@
+/* eslint-disable max-params */
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable arrow-parens */
 import {
   ChangeDetectionStrategy,
@@ -15,18 +17,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 import { isPlatformBrowser } from '@angular/common';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { TLayout } from '@utils';
 import { LayoutListComponent } from '../layouts/list/layout.list.component';
 import { LayoutGridComponent } from '../layouts/grid/layout.grid.component';
 import { HeaderPagesComponent } from 'app/shared/components/header-pages/header-pages.component';
-import { CommonModules, FormsModules, MaterialToolsModules } from '@shared';
+import { CommonModules, FormsModules, IFilters, MaterialToolsModules, SidebarFiltersComponent } from '@shared';
 import { MatDrawer } from '@angular/material/sidenav';
 import { iconScreen, translate } from '../config';
-import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState } from '@users';
+import { IQueryUsers, ISortUsers, IUser, IUserFilter, IUserState, selectUserMaxSize } from '@users';
 import { UserStoreService } from '../store/store.service';
 import { Store } from '@ngrx/store';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { AuthStoreService } from '@auth';
 
 @Component({
   selector: 'clients-main',
@@ -34,13 +37,14 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
   standalone: true,
   imports: [
     ...CommonModules,
-    ...MaterialToolsModules,
     ...FormsModules,
+    ...MaterialToolsModules,
     MatPaginatorModule,
     LayoutListComponent,
     LayoutGridComponent,
     HeaderPagesComponent,
     MainComponent,
+    SidebarFiltersComponent,
   ],
   styles: [
     `
@@ -53,7 +57,7 @@ import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 
       .scrollable-content {
         overflow-y: auto; /* Enable vertical scrolling */
-        height: calc(100vh - 300px); /* Adjust height based on header height */
+        height: calc(100vh - 300px); /* Adjust height userd on header height */
       }
     `,
   ],
@@ -65,19 +69,24 @@ export class MainComponent implements OnInit, OnDestroy {
   @ViewChild('matDrawer', { static: true }) matDrawer!: MatDrawer;
   @ViewChild('elementRef', { static: true }) elementRef!: ElementRef;
   transloco = translate;
-
+  drawerWidth = 'w-2/3 sm:w-72 lg:w-100';
   drawerMode: 'side' | 'over' = 'side';
   layout: TLayout = 'list';
 
-  items$: Observable<IUserState>;
   limit: number = 10;
   offset: number = 0;
   sort: ISortUsers = {
-    field: 'display_name',
-    order: 1,
+    field: 'createdAt',
+    order: -1,
   };
 
+  items$: Observable<IUserState>;
+  user$: Observable<IUser>;
+  maxSize$: Observable<number>;
+
+  fStoreAuth = new AuthStoreService(this.store);
   fStore = new UserStoreService(this.store);
+
   selected!: IUser;
   filter: IUserFilter = {};
 
@@ -103,37 +112,19 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.items$ = this.fStore.see();
+    this.userActive();
     this.get();
+    this.items$ = this.fStore.see();
+    this.userActive();
     this.drawerChanges();
     this.mediaChanges();
-    if (isPlatformBrowser(this.platformId)) {
-      this.elementRef.nativeElement?.addEventListener('scroll', this.onScroll);
-    }
   }
 
-  getMoreItems(limit: number, offset: number): void {
-    this.limit = limit;
-    this.offset = offset;
-    const params: IQueryUsers = {
-      filter: this.filter,
-      limit: this.limit,
-      offset: this.offset,
-      sort: this.sort,
-    };
-    this.fStore.getScroll(params, 'user');
-  }
-
-  onScroll(event): void {
-    // get the height of the scroll
-    const height = event.target.scrollHeight - event.target.clientHeight;
-    // detect when the scroll is at the bottom
-    if (event.target.scrollTop >= height) {
-      console.log('scroll at the bottom');
-      // add more data
-      this.offset += this.limit;
-      this.getMoreItems(this.limit, this.offset);
-    }
+  userActive(): void {
+    this.user$ = this.fStoreAuth.seeUser();
+    this.user$.subscribe((user) => {
+      console.log('user', user);
+    });
   }
 
   search(query: string): void {
@@ -149,13 +140,6 @@ export class MainComponent implements OnInit, OnDestroy {
     this._router.navigate(['./', item.id]);
   }
 
-  setLayout(layout: 'list' | 'grid'): void {
-    this.layout = layout;
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('view', layout);
-    }
-  }
-
   onBackdropClicked(): void {
     this._router.navigate(['./'], { relativeTo: this._activatedRoute });
     this._changeDetectorRef.markForCheck();
@@ -169,8 +153,24 @@ export class MainComponent implements OnInit, OnDestroy {
       offset: this.offset,
       sort: this.sort,
     };
-    this.fStore.getUsers(params, 'user');
-    this.items$ = this.fStore.see();
+    this.fStore.getUsers(params);
+    this.maxSize$ = this.store.select(selectUserMaxSize);
+  }
+
+  eventPaginate(event: PageEvent): void {
+    let paginate = 0;
+    const limit = event.pageSize;
+    paginate = event.pageIndex * event.pageSize;
+    this.limit = limit;
+    this.offset = paginate;
+
+    const params: IQueryUsers = {
+      filter: this.filter,
+      limit: this.limit,
+      offset: this.offset,
+      sort: this.sort,
+    };
+    this.fStore.getUsers(params);
   }
 
   drawerChanges(): void {
@@ -183,6 +183,10 @@ export class MainComponent implements OnInit, OnDestroy {
         this._changeDetectorRef.markForCheck();
       }
     });
+  }
+
+  filters(type: IFilters): void {
+    console.log('filtered:', type);
   }
 
   mediaChanges(): void {

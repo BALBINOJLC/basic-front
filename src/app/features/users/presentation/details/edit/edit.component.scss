@@ -1,0 +1,67 @@
+@mixin line-edit-users {
+  @apply border-t border-gray-300 border-dashed py-8;
+}
+
+.line-edit-users {
+  @include line-edit-users;
+}
+
+@mixin line-edit-users {
+  @apply border-t border-gray-300 border-dashed py-4 sm:py-8;
+}
+
+.line-edit-users {
+  @include line-edit-users;
+}
+
+@mixin div-edit-users {
+  @apply w-full flex flex-col mb-12;
+}
+
+.div-edit-users {
+  @include div-edit-users;
+}
+
+@mixin div-edit-users-img-upload {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 mb-12;
+}
+
+@mixin div-edit-users-img-gallery {
+  @apply grid grid-cols-1 md:grid-cols-5 gap-4 mb-12;
+}
+
+.div-edit-users-img-upload {
+  @include div-edit-users-img-upload;
+}
+
+@mixin div-edit-users-col {
+  @apply grid grid-cols-1 md:grid-cols-5 gap-4;
+}
+
+.div-edit-users-col {
+  @include div-edit-users-col;
+}
+
+@mixin div-edit-users-text {
+  @apply flex flex-col md:col-span-2;
+}
+
+.div-edit-users-text {
+  @include div-edit-users-text;
+}
+
+@mixin div-edit-users-card {
+  @apply col-span-3 bg-custom-1 rounded-md shadow-sm border;
+}
+
+.div-edit-users-card {
+  @include div-edit-users-card;
+}
+
+@mixin div-edit-users-internal-card {
+  @apply grid grid-cols-4 gap-6 p-6 sm:p-9 w-full;
+}
+
+.div-edit-users-internal-card {
+  @include div-edit-users-internal-card;
+}

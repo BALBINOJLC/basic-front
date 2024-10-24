@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable arrow-parens */
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as actions from './store.action';
@@ -5,7 +6,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersRepositoryImpl } from '@users';
-import { userRouteBase } from '../config';
+import { userRouteUser } from '../config';
 
 @Injectable()
 export class UsersEffects {
@@ -19,12 +20,10 @@ export class UsersEffects {
   gets$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserGets),
-      mergeMap(({ params, uType }) =>
+      mergeMap(({ params }) =>
         this._userRepository.getUsers(params).pipe(
           map((data) => {
-            if (uType === 'user') {
-              return actions.UserLoads({ data });
-            }
+            return actions.UserLoads({ data });
           })
         )
       )
@@ -34,12 +33,10 @@ export class UsersEffects {
   getsScroll$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserGetScroll),
-      mergeMap(({ params, uType }) =>
+      mergeMap(({ params }) =>
         this._userRepository.getUsers(params).pipe(
           map((data) => {
-            if (uType === 'user') {
-              return actions.UserLoadScroll({ data });
-            }
+            return actions.UserLoadScroll({ data });
           })
         )
       )
@@ -58,27 +55,24 @@ export class UsersEffects {
   update$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserUpdate),
-      mergeMap(({ id, item }) => this._userRepository.updateUser(id, item).pipe(map((data) => actions.UserLoad({ item: data }))))
-    )
-  );
-
-  updateProfile$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(actions.UserProfile),
-      mergeMap(({ id, item }) => this._userRepository.updateProfile(id, item).pipe(map((data) => actions.UserLoad({ item: data }))))
+      mergeMap(({ id, item }) =>
+        this._userRepository.updateUser(id, item).pipe(
+          map(() => {
+            this._router.navigate([userRouteUser]);
+            return actions.UserClean();
+          })
+        )
+      )
     )
   );
 
   add$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserAdd),
-      mergeMap(({ item, from }) =>
+      mergeMap(({ item }) =>
         this._userRepository.addUser(item).pipe(
           map(() => {
-            if (from === 'user') {
-              this._router.navigate([userRouteBase]);
-            }
-
+            this._router.navigate([userRouteUser]);
             return actions.UserClean();
           })
         )
@@ -89,13 +83,36 @@ export class UsersEffects {
   delete$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.UserDelete),
-      mergeMap(({ id, from }) =>
+      mergeMap(({ id }) =>
         this._userRepository.deleteUser(id).pipe(
           map(() => {
-            if (from === 'user') {
-              this._router.navigate([userRouteBase]);
-            }
             return actions.UserClean();
+          })
+        )
+      )
+    )
+  );
+
+  deleteGallery$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.UserDeleteGallery),
+      mergeMap(({ id }) =>
+        this._userRepository.deleteUserGallery(id).pipe(
+          map(() => {
+            return actions.UserGalleryClean();
+          })
+        )
+      )
+    )
+  );
+
+  deleteUser$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.UserPromoDelete),
+      mergeMap(({ user_promo, user_simple }) =>
+        this._userRepository.deleteUserPromo(user_promo, user_simple).pipe(
+          map(() => {
+            return actions.UserGalleryClean();
           })
         )
       )

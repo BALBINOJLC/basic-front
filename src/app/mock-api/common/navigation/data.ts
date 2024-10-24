@@ -19,6 +19,17 @@ const baseMenu: FuseNavigationItem[] = [
     type: 'divider',
   },
   {
+    id: 'SIDEBAR.LOG_OUT',
+    title: 'SIDEBAR.LOG_OUT',
+    type: 'basic',
+    icon: 'heroicons_outline:logout',
+    link: '/expired/sign-out',
+  },
+  {
+    id: 'divider',
+    type: 'divider',
+  },
+  {
     id: 'documentation.changelog',
     title: 'version',
     type: 'basic',
@@ -41,7 +52,7 @@ const getSUperAdminMenu = (): FuseNavigationItem[] => [
   },
   {
     id: 'users',
-    title: 'SIDEBAR.STUDENTS',
+    title: 'SIDEBAR.USERS',
     type: 'basic',
     icon: 'heroicons_outline:user-group',
     link: `${basePath}/users`,
@@ -62,20 +73,6 @@ const getAdminMenu = (): FuseNavigationItem[] => [
     type: 'basic',
     icon: 'heroicons_outline:user-group',
     link: `${basePath}/users`,
-  },
-  {
-    id: 'users',
-    title: 'SIDEBAR.COLLEGES',
-    type: 'basic',
-    icon: 'mat_outline:location_city',
-    link: `${basePath}/colegios`,
-  },
-  {
-    id: 'license',
-    title: 'SIDEBAR.LICENSES',
-    type: 'basic',
-    icon: 'heroicons_outline:identification',
-    link: `${basePath}/licencias-activas`,
   },
 ];
 

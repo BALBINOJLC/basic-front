@@ -1,9 +1,4 @@
 <div>
-  <div class="w-full max-w-40 sm:w-40 mx-auto">
-    <img *ngIf="appConfig.scheme === 'dark'" [src]="appConfig.logoTextOnDark" />
-    <img *ngIf="appConfig.scheme === 'light'" [src]="appConfig.logoTextOnLight" />
-  </div>
-
   <div class="header-sign-in-title">{{ 'AUTH.SIGN_IN.TITLE' | transloco }}</div>
   <span class="header-subtitle">{{ 'AUTH.SIGN_IN.SIGN_IN_SUBTITLE' | transloco }}</span>
   <div class="not-account">

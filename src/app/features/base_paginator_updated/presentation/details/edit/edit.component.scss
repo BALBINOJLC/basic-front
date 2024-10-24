@@ -1,0 +1,67 @@
+@mixin line-edit-bases {
+  @apply border-t border-gray-300 border-dashed py-8;
+}
+
+.line-edit-bases {
+  @include line-edit-bases;
+}
+
+@mixin line-edit-bases {
+  @apply border-t border-gray-300 border-dashed py-4 sm:py-8;
+}
+
+.line-edit-bases {
+  @include line-edit-bases;
+}
+
+@mixin div-edit-bases {
+  @apply w-full flex flex-col mb-12;
+}
+
+.div-edit-bases {
+  @include div-edit-bases;
+}
+
+@mixin div-edit-bases-img-upload {
+  @apply grid grid-cols-1 md:grid-cols-3 gap-4 mb-12;
+}
+
+@mixin div-edit-bases-img-gallery {
+  @apply grid grid-cols-1 md:grid-cols-5 gap-4 mb-12;
+}
+
+.div-edit-bases-img-upload {
+  @include div-edit-bases-img-upload;
+}
+
+@mixin div-edit-bases-col {
+  @apply grid grid-cols-1 md:grid-cols-5 gap-4;
+}
+
+.div-edit-bases-col {
+  @include div-edit-bases-col;
+}
+
+@mixin div-edit-bases-text {
+  @apply flex flex-col md:col-span-2;
+}
+
+.div-edit-bases-text {
+  @include div-edit-bases-text;
+}
+
+@mixin div-edit-bases-card {
+  @apply col-span-3 bg-gray-50 rounded-md shadow-sm border;
+}
+
+.div-edit-bases-card {
+  @include div-edit-bases-card;
+}
+
+@mixin div-edit-bases-internal-card {
+  @apply grid grid-cols-4 gap-6 p-6 sm:p-9 w-full;
+}
+
+.div-edit-bases-internal-card {
+  @include div-edit-bases-internal-card;
+}

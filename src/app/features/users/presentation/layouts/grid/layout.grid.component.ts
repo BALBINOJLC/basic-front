@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@ngneat/transloco';
-import { CardInfoUserOneComponent } from '../../components/card-info-user-1/card-info-user-1.component';
 import { IUser } from '@users';
+import { CardInfoUserOneComponent } from '../../components/card-info-1/card-info-1.component';
 
 @Component({
   selector: 'layout-grid',

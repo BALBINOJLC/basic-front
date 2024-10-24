@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable no-useless-escape */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { AbstractControl, ValidationErrors } from '@angular/forms';
@@ -135,13 +136,12 @@ export const validateRut = (control: AbstractControl): ValidationErrors | null =
         // Calculate and compare the verification digit
         return this.dv(rutBody).toString() === dv.toLowerCase();
       },
-      // eslint-disable-next-line @typescript-eslint/naming-convention
       dv: function (T: string | number): string | number {
         let M = 0,
           S = 1;
-        const tstr = T.toString();
-        for (let i = tstr.length - 1; i >= 0; i--) {
-          S = (S + parseInt(tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
+        const Tstr = T.toString();
+        for (let i = Tstr.length - 1; i >= 0; i--) {
+          S = (S + parseInt(Tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
         }
         return S ? S - 1 : 'k';
       },
@@ -174,13 +174,12 @@ export const validateRutString = (rutInput: string): boolean => {
       // Calculate and compare the verification digit
       return this.dv(rutBody).toString() === dv.toLowerCase();
     },
-    // eslint-disable-next-line @typescript-eslint/naming-convention
     dv: function (T: string | number): string | number {
       let M = 0,
         S = 1;
-      const tstr = T.toString();
-      for (let i = tstr.length - 1; i >= 0; i--) {
-        S = (S + parseInt(tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
+      const Tstr = T.toString();
+      for (let i = Tstr.length - 1; i >= 0; i--) {
+        S = (S + parseInt(Tstr.charAt(i)) * (9 - (M++ % 6))) % 11;
       }
       return S ? S - 1 : 'k';
     },

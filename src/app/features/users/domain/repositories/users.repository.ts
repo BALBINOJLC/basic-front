@@ -1,18 +1,16 @@
 import { Observable } from 'rxjs';
-import { IResponseUserDeleted, IResposeGetUsers, IUser, IQueryUser, IQueryUsers, IUserUpdate } from '../interfaces';
+import { IResponseUserDeleted, IResponseGetUsers, IUser, IQueryUser, IQueryUsers, IUserUpdate } from '../interfaces';
 
 export abstract class UsersRepository {
-  abstract getUsers(params: IQueryUsers): Observable<IResposeGetUsers>;
+  abstract getUsers(params: IQueryUsers): Observable<IResponseGetUsers>;
 
-  abstract searchUsers(params: IQueryUsers, query: string): Observable<IResposeGetUsers>;
+  abstract searchUsers(params: IQueryUsers, query: string): Observable<IResponseGetUsers>;
 
   abstract getUser(params: IQueryUser): Observable<IUser>;
 
   abstract addUser(data: IUser): Observable<IUser>;
 
   abstract updateUser(id: string, data: IUserUpdate): Observable<IUser>;
-
-  abstract updateProfile(id: string, data: IUserUpdate): Observable<IUser>;
 
   abstract deleteUser(id: string): Observable<IResponseUserDeleted>;
 }

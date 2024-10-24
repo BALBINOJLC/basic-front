@@ -1,7 +1,7 @@
 export const environment = {
   baseUrl: 'http://localhost:4444',
   production: false,
-  urlApi: 'http://localhost:5678/api/v1',
+  urlApi: 'http://localhost:3025/api/v1',
   seed: 'ggggggggggggggggggg$$%%&&',
   firebase: {
     apiKey: 'AIzaSyAN8uEmoMZ-O_CFNZNVGl7WbYuIHLE54pg',

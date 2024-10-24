@@ -1,3 +1,5 @@
+/* eslint-disable max-params */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { CommonModule, DOCUMENT, NgIf, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';

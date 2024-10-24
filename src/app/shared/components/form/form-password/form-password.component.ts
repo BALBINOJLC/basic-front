@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -15,7 +14,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModules, FormsModules } from '@shared';
+import { CommonModules, FormsModules, validatePasswordControl } from '@shared';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -42,14 +41,15 @@ export class FormPasswordComponent implements OnInit, OnDestroy, OnChanges {
   @Input() password: string = '';
   @Input() labelPassword = 'AUTH.SIGN_UP.PASSWORD';
   @Output() setPassword = new EventEmitter<string>();
+  @Input() colSpan = 2;
   form: FormGroup;
   subscriptions: Subscription[];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder) {
     this.showConfirm = false;
     this.subscriptions = [];
-    this.form = this.formBuilder.group({
-      password: ['', Validators.compose([Validators.required])],
+    this.form = this._formBuilder.group({
+      password: ['', Validators.compose([Validators.required, validatePasswordControl])],
       passwordConfirm: [''],
     });
 

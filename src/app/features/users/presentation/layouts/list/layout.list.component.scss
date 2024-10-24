@@ -1,5 +1,5 @@
 @mixin text-list {
-  @apply capitalize text-gray-700 font-medium truncate dark:text-white;
+  @apply capitalize text-black font-semibold truncate dark:text-white;
 }
 
 .text-list {
@@ -7,7 +7,7 @@
 }
 
 @mixin div-grid {
-  @apply grid grid-cols-3 gap-4 px-6 py-4 md:px-8 my-2;
+  @apply grid sm:grid-cols-7 grid-cols-4 gap-4 p-3 md:px-8 bg-custom-2 bg-opacity-30 rounded-tl-xl rounded-tr-xl;
 }
 
 .div-grid {
@@ -20,4 +20,32 @@
 
 .div-phone{
   @include div-phone;
+}
+
+@mixin div-layout-users {
+  @apply col-span-1 sm:flex items-center justify-end hidden ;
+}
+
+.div-layout-users {
+  @include div-layout-users;
+}
+
+@mixin div-layout-users-2 {
+  @apply col-span-1 flex items-center justify-end ;
+}
+
+.div-layout-users-2 {
+  @include div-layout-users-2;
+}
+
+@mixin div-layout-users-1 {
+  @apply flex flex-col flex-auto bg-custom-1 m-5 rounded-xl border ;
+}
+
+.div-layout-users-1 {
+  @include div-layout-users-1;
+}
+
+.display {
+  display: none;
 }

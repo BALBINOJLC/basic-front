@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, type OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { SignUpHeaderComponent } from '../header/sign-up-header.component';
 import { SignUpFormComponent } from '../form/sign-up-form.component';
 
@@ -13,7 +12,7 @@ import { SignUpFormComponent } from '../form/sign-up-form.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignUpClassicComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

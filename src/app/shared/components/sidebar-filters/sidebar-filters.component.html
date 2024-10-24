@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+  <div class="w-full p-4 bg-card mt-10">
+    <div class="flex justify-between items-center my-5">
+      <div>
+        <h2 class="text-teal-700 text-2xl font-semibold">{{ 'SIDEBAR.FILTERS' | transloco }}</h2>
+      </div>
+
+      <div>
+        <button
+          mat-flat-button
+          (click)="cleanFilters()"
+          color="primary"
+          class="flex items-center justify-center gap-2 px-4 py-2 text-teal-700 rounded-full bg-teal-700 bg-opacity-30 transition-colors"
+        >
+          <span>{{ 'SIDEBAR.CLEAN_FILTERS' | transloco }}</span>
+        </button>
+      </div>
+    </div>
+    <form-date-range-picker
+      *ngIf="filtersPickers"
+      class="w-60"
+      [max]="max"
+      (dateRange)="setDateRangeChange($event)"
+    ></form-date-range-picker>
+
+    <ng-container *ngIf="filters">
+      <div class="flex justify-center sm:justify-center w-full mb-10">
+        <!-- <mat-form-field class="w-80">
+          <mat-label>{{ 'TREATMENT.FOR_STATUS' | transloco }}</mat-label>
+          <mat-select formControlName="status" (selectionChange)="selectionFilter($event, 'STATUS')">
+            <mat-option *ngFor="let option of status" [value]="option">
+              {{ 'TREATMENT.STATUS_VIEW.' + option | transloco }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field> -->
+      </div>
+    </ng-container>
+  </div>
+</form>

@@ -22,21 +22,4 @@ export default [
       },
     ],
   },
-  {
-    path: 'clients',
-    component: UsersComponent,
-    children: [
-      {
-        path: '',
-        component: MainComponent,
-        children: [
-          {
-            path: ':id',
-            component: DetailsComponent,
-            canDeactivate: [CanDeactivateClientsDetails],
-          },
-        ],
-      },
-    ],
-  },
 ] as Routes;

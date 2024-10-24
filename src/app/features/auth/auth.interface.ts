@@ -13,13 +13,14 @@ export interface ISignInForm {
 }
 
 export interface ISignUpForm {
-    email           : string;
-    last_name       : string;
-    first_name      : string;
-    password        : IPasswordForm;
-    passwordConfirm : string;
-    policy          : boolean;
-    organization?   : string;
+  email           : string;
+  last_name       : string;
+  first_name      : string;
+  dni             : string;
+  password        : IPasswordForm;
+  passwordConfirm : string;
+  policy?         : boolean;
+  organization?   : string;
 }
 
 export interface IAuthSignUpOptions {
@@ -46,12 +47,16 @@ export interface IAuthSignIn {
 }
 
 export interface IAuthSignUp {
-    email       : string;
-    password    : string;
-    last_name   : string;
-    first_name  : string;
-    network?    : TSocialNetwork;
-    socialToken?: string;
+  email        : string;
+  password     : string;
+  last_name    : string;
+  first_name   : string;
+  dni          : string;
+  network?     : TSocialNetwork;
+  socialToken? : string;
+  is_active?   : boolean;
+  email_verify?: boolean;
+  role?        : string;
 }
 
 export interface ILoadUser {

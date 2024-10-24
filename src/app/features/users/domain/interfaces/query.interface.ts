@@ -1,10 +1,13 @@
 
 import { Query, RespApiGETS } from '@utils';
 import { IUser } from './users.interface';
-import { TSortUser } from '../types';
+import { ETypeEnum, TSortUser } from '../types';
 
 export interface IUserFilter {
-  id?: string;
+  id                  ?: string;
+  organization_id     ?: string;
+  name                ?: string;
+  type                ?: ETypeEnum
 }
 
 export interface IQueryUsers extends Query {
@@ -23,19 +26,10 @@ export interface IRespApiUsers extends RespApiGETS {
 
 export interface IUserUpdated {
   data        : IUser;
-  access_token: string;
   message     : string;
 }
 
 export interface ISortUsers {
   field: TSortUser;
   order: number;
-}
-
-export interface ISingUpSucces {
-  user_name : string;
-  email     : string;
-  message   : string;
-  id       : string;
-  user      : IUser;
 }

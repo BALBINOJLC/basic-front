@@ -1,26 +1,28 @@
-import { IUser, IUserAppState, TUserRoles } from '@users';
+import { IUser, IUserAppState } from '@users';
 
 export const userActions = 'USERS';
-export const userRouteBase = '/admin/users';
+export const userRouteUser = '/admin/user';
 export const translate = 'USER';
-export const iconScreen = 'feather:user-plus';
+export const iconScreen = 'feather:airplay';
 
-export const userKeyStore: keyof IUserAppState = 'users';
+export const userKeyStore: keyof IUserAppState = 'users' as const;
 
 export const initialUser: IUser = {
   id: null,
-  first_name: '',
-  last_name: '',
+  display_name: '',
   email: '',
-  Profiles: [],
+  dni: '',
   email_verify: false,
+  first_name: '',
   is_active: false,
-  Avatar: {
-    url: '',
-    name: '',
-    size: 0,
-    type: '',
-  },
+  status: undefined,
+  last_name: '',
+  phone: '',
+  phone_area: '',
+  address: '',
+  birth_date: '',
+  user_name: '',
+  is_new: false,
+  reason_rejection: '',
+  Avatar: undefined,
 };
-
-export const roles: TUserRoles[] = ['ADMIN', 'USER'];

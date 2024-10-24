@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnDestroy, type OnInit } from '@angular/core';
 import { SignUpClassicComponent } from '../../components/signup/classic/sign-up.component';
@@ -41,6 +42,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: { password },
       first_name,
       last_name,
+      dni,
     } = dataForm;
 
     const user: IAuthSignUp = {
@@ -48,6 +50,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
       password: password.trim(),
       first_name,
       last_name,
+      dni,
     };
 
     this.fStore.authSignUp({ user, invited: false, sendEmail: true });
